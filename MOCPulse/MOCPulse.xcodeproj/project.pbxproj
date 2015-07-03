@@ -1,0 +1,759 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
+		F798B37A1B46C34800A17754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3791B46C34800A17754 /* ViewController.swift */; };
+		F798B37D1B46C34900A17754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B37B1B46C34900A17754 /* Main.storyboard */; };
+		F798B37F1B46C34900A17754 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B37E1B46C34900A17754 /* Images.xcassets */; };
+		F798B3821B46C34900A17754 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F798B3801B46C34900A17754 /* LaunchScreen.xib */; };
+		F798B38E1B46C34900A17754 /* MOCPulseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B38D1B46C34900A17754 /* MOCPulseTests.swift */; };
+		F798B3A11B46C36E00A17754 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3A01B46C36E00A17754 /* InterfaceController.swift */; };
+		F798B3A31B46C36E00A17754 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3A21B46C36E00A17754 /* NotificationController.swift */; };
+		F798B3A51B46C36E00A17754 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B3A41B46C36E00A17754 /* Images.xcassets */; };
+		F798B3A91B46C36E00A17754 /* MOCPulse WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = F798B3A81B46C36E00A17754 /* MOCPulse WatchKit App.app */; };
+		F798B3B11B46C36F00A17754 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B3AF1B46C36F00A17754 /* Interface.storyboard */; };
+		F798B3B31B46C36F00A17754 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B3B21B46C36F00A17754 /* Images.xcassets */; };
+		F798B3B61B46C36F00A17754 /* MOCPulse WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F798B39B1B46C36E00A17754 /* MOCPulse WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F798B3881B46C34900A17754 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F798B36A1B46C34700A17754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F798B3711B46C34700A17754;
+			remoteInfo = MOCPulse;
+		};
+		F798B3AA1B46C36E00A17754 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F798B36A1B46C34700A17754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F798B3A71B46C36E00A17754;
+			remoteInfo = "MOCPulse WatchKit App";
+		};
+		F798B3B41B46C36F00A17754 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F798B36A1B46C34700A17754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F798B39A1B46C36E00A17754;
+			remoteInfo = "MOCPulse WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F798B3BD1B46C36F00A17754 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F798B3B61B46C36F00A17754 /* MOCPulse WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		61AA81994E61EC5F8E1299E9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F798B3721B46C34700A17754 /* MOCPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOCPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F798B3761B46C34800A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F798B3771B46C34800A17754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F798B3791B46C34800A17754 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F798B37C1B46C34900A17754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F798B37E1B46C34900A17754 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F798B3811B46C34900A17754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F798B3871B46C34900A17754 /* MOCPulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOCPulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F798B38C1B46C34900A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F798B38D1B46C34900A17754 /* MOCPulseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOCPulseTests.swift; sourceTree = "<group>"; };
+		F798B39B1B46C36E00A17754 /* MOCPulse WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MOCPulse WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F798B39E1B46C36E00A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F798B39F1B46C36E00A17754 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		F798B3A01B46C36E00A17754 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F798B3A21B46C36E00A17754 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		F798B3A41B46C36E00A17754 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F798B3A81B46C36E00A17754 /* MOCPulse WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MOCPulse WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F798B3AE1B46C36F00A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F798B3B01B46C36F00A17754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F798B3B21B46C36F00A17754 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F798B36F1B46C34700A17754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3841B46C34900A17754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3981B46C36E00A17754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E17897313ABD3CBDD9AAC0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61AA81994E61EC5F8E1299E9 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57A19113A0CDCFA8D8A3F6E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */,
+				B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F798B3691B46C34700A17754 = {
+			isa = PBXGroup;
+			children = (
+				F798B3741B46C34700A17754 /* MOCPulse */,
+				F798B38A1B46C34900A17754 /* MOCPulseTests */,
+				F798B39C1B46C36E00A17754 /* MOCPulse WatchKit Extension */,
+				F798B3AC1B46C36E00A17754 /* MOCPulse WatchKit App */,
+				F798B3731B46C34700A17754 /* Products */,
+				57A19113A0CDCFA8D8A3F6E8 /* Pods */,
+				0E17897313ABD3CBDD9AAC0D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F798B3731B46C34700A17754 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3721B46C34700A17754 /* MOCPulse.app */,
+				F798B3871B46C34900A17754 /* MOCPulseTests.xctest */,
+				F798B39B1B46C36E00A17754 /* MOCPulse WatchKit Extension.appex */,
+				F798B3A81B46C36E00A17754 /* MOCPulse WatchKit App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F798B3741B46C34700A17754 /* MOCPulse */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3771B46C34800A17754 /* AppDelegate.swift */,
+				F798B3791B46C34800A17754 /* ViewController.swift */,
+				F798B37B1B46C34900A17754 /* Main.storyboard */,
+				F798B37E1B46C34900A17754 /* Images.xcassets */,
+				F798B3801B46C34900A17754 /* LaunchScreen.xib */,
+				F798B3751B46C34700A17754 /* Supporting Files */,
+			);
+			path = MOCPulse;
+			sourceTree = "<group>";
+		};
+		F798B3751B46C34700A17754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3761B46C34800A17754 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F798B38A1B46C34900A17754 /* MOCPulseTests */ = {
+			isa = PBXGroup;
+			children = (
+				F798B38D1B46C34900A17754 /* MOCPulseTests.swift */,
+				F798B38B1B46C34900A17754 /* Supporting Files */,
+			);
+			path = MOCPulseTests;
+			sourceTree = "<group>";
+		};
+		F798B38B1B46C34900A17754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F798B38C1B46C34900A17754 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F798B39C1B46C36E00A17754 /* MOCPulse WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3A01B46C36E00A17754 /* InterfaceController.swift */,
+				F798B3A21B46C36E00A17754 /* NotificationController.swift */,
+				F798B3A41B46C36E00A17754 /* Images.xcassets */,
+				F798B39D1B46C36E00A17754 /* Supporting Files */,
+			);
+			path = "MOCPulse WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		F798B39D1B46C36E00A17754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F798B39E1B46C36E00A17754 /* Info.plist */,
+				F798B39F1B46C36E00A17754 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F798B3AC1B46C36E00A17754 /* MOCPulse WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3AF1B46C36F00A17754 /* Interface.storyboard */,
+				F798B3B21B46C36F00A17754 /* Images.xcassets */,
+				F798B3AD1B46C36F00A17754 /* Supporting Files */,
+			);
+			path = "MOCPulse WatchKit App";
+			sourceTree = "<group>";
+		};
+		F798B3AD1B46C36F00A17754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F798B3AE1B46C36F00A17754 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F798B3711B46C34700A17754 /* MOCPulse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F798B3911B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulse" */;
+			buildPhases = (
+				18BB22EC37898B3B0EF2B20C /* Check Pods Manifest.lock */,
+				F798B36E1B46C34700A17754 /* Sources */,
+				F798B36F1B46C34700A17754 /* Frameworks */,
+				F798B3701B46C34700A17754 /* Resources */,
+				F798B3BD1B46C36F00A17754 /* Embed App Extensions */,
+				BFD77A74770D2DE4AD2F7DBF /* Embed Pods Frameworks */,
+				1A743C9DA16B3B9BE832A66E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F798B3B51B46C36F00A17754 /* PBXTargetDependency */,
+			);
+			name = MOCPulse;
+			productName = MOCPulse;
+			productReference = F798B3721B46C34700A17754 /* MOCPulse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F798B3861B46C34900A17754 /* MOCPulseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F798B3941B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulseTests" */;
+			buildPhases = (
+				F798B3831B46C34900A17754 /* Sources */,
+				F798B3841B46C34900A17754 /* Frameworks */,
+				F798B3851B46C34900A17754 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F798B3891B46C34900A17754 /* PBXTargetDependency */,
+			);
+			name = MOCPulseTests;
+			productName = MOCPulseTests;
+			productReference = F798B3871B46C34900A17754 /* MOCPulseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F798B39A1B46C36E00A17754 /* MOCPulse WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F798B3BA1B46C36F00A17754 /* Build configuration list for PBXNativeTarget "MOCPulse WatchKit Extension" */;
+			buildPhases = (
+				F798B3971B46C36E00A17754 /* Sources */,
+				F798B3981B46C36E00A17754 /* Frameworks */,
+				F798B3991B46C36E00A17754 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F798B3AB1B46C36E00A17754 /* PBXTargetDependency */,
+			);
+			name = "MOCPulse WatchKit Extension";
+			productName = "MOCPulse WatchKit Extension";
+			productReference = F798B39B1B46C36E00A17754 /* MOCPulse WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		F798B3A71B46C36E00A17754 /* MOCPulse WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F798B3B71B46C36F00A17754 /* Build configuration list for PBXNativeTarget "MOCPulse WatchKit App" */;
+			buildPhases = (
+				F798B3A61B46C36E00A17754 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MOCPulse WatchKit App";
+			productName = "MOCPulse WatchKit App";
+			productReference = F798B3A81B46C36E00A17754 /* MOCPulse WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F798B36A1B46C34700A17754 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = MOC;
+				TargetAttributes = {
+					F798B3711B46C34700A17754 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					F798B3861B46C34900A17754 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = F798B3711B46C34700A17754;
+					};
+					F798B39A1B46C36E00A17754 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					F798B3A71B46C36E00A17754 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = F798B36D1B46C34700A17754 /* Build configuration list for PBXProject "MOCPulse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F798B3691B46C34700A17754;
+			productRefGroup = F798B3731B46C34700A17754 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F798B3711B46C34700A17754 /* MOCPulse */,
+				F798B3861B46C34900A17754 /* MOCPulseTests */,
+				F798B39A1B46C36E00A17754 /* MOCPulse WatchKit Extension */,
+				F798B3A71B46C36E00A17754 /* MOCPulse WatchKit App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F798B3701B46C34700A17754 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B37D1B46C34900A17754 /* Main.storyboard in Resources */,
+				F798B3821B46C34900A17754 /* LaunchScreen.xib in Resources */,
+				F798B37F1B46C34900A17754 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3851B46C34900A17754 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3991B46C36E00A17754 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B3A91B46C36E00A17754 /* MOCPulse WatchKit App.app in Resources */,
+				F798B3A51B46C36E00A17754 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3A61B46C36E00A17754 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B3B11B46C36F00A17754 /* Interface.storyboard in Resources */,
+				F798B3B31B46C36F00A17754 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18BB22EC37898B3B0EF2B20C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1A743C9DA16B3B9BE832A66E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFD77A74770D2DE4AD2F7DBF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F798B36E1B46C34700A17754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B37A1B46C34800A17754 /* ViewController.swift in Sources */,
+				F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3831B46C34900A17754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B38E1B46C34900A17754 /* MOCPulseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F798B3971B46C36E00A17754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F798B3A31B46C36E00A17754 /* NotificationController.swift in Sources */,
+				F798B3A11B46C36E00A17754 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F798B3891B46C34900A17754 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F798B3711B46C34700A17754 /* MOCPulse */;
+			targetProxy = F798B3881B46C34900A17754 /* PBXContainerItemProxy */;
+		};
+		F798B3AB1B46C36E00A17754 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F798B3A71B46C36E00A17754 /* MOCPulse WatchKit App */;
+			targetProxy = F798B3AA1B46C36E00A17754 /* PBXContainerItemProxy */;
+		};
+		F798B3B51B46C36F00A17754 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F798B39A1B46C36E00A17754 /* MOCPulse WatchKit Extension */;
+			targetProxy = F798B3B41B46C36F00A17754 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F798B37B1B46C34900A17754 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F798B37C1B46C34900A17754 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F798B3801B46C34900A17754 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F798B3811B46C34900A17754 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		F798B3AF1B46C36F00A17754 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F798B3B01B46C36F00A17754 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F798B38F1B46C34900A17754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F798B3901B46C34900A17754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F798B3921B46C34900A17754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MOCPulse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F798B3931B46C34900A17754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MOCPulse/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F798B3951B46C34900A17754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MOCPulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOCPulse.app/MOCPulse";
+			};
+			name = Debug;
+		};
+		F798B3961B46C34900A17754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MOCPulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOCPulse.app/MOCPulse";
+			};
+			name = Release;
+		};
+		F798B3B81B46C36F00A17754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = MOCPulse_WatchKit_Extension;
+				INFOPLIST_FILE = "MOCPulse WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		F798B3B91B46C36F00A17754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = MOCPulse_WatchKit_Extension;
+				INFOPLIST_FILE = "MOCPulse WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		F798B3BB1B46C36F00A17754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MOCPulse WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F798B3BC1B46C36F00A17754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "MOCPulse WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F798B36D1B46C34700A17754 /* Build configuration list for PBXProject "MOCPulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F798B38F1B46C34900A17754 /* Debug */,
+				F798B3901B46C34900A17754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F798B3911B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F798B3921B46C34900A17754 /* Debug */,
+				F798B3931B46C34900A17754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F798B3941B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F798B3951B46C34900A17754 /* Debug */,
+				F798B3961B46C34900A17754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F798B3B71B46C36F00A17754 /* Build configuration list for PBXNativeTarget "MOCPulse WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F798B3B81B46C36F00A17754 /* Debug */,
+				F798B3B91B46C36F00A17754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F798B3BA1B46C36F00A17754 /* Build configuration list for PBXNativeTarget "MOCPulse WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F798B3BB1B46C36F00A17754 /* Debug */,
+				F798B3BC1B46C36F00A17754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F798B36A1B46C34700A17754 /* Project object */;
+}
