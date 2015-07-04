@@ -8,15 +8,17 @@
 
 import UIKit
 
-class LocalObjectsManager: NSObject {
+class LocalObjectsManager {
     
     var user : UserModel?
     
-    var votes : NSMutableArray?
+    var votes : NSMutableArray = []
     
-    internal class var sharedInstance : LocalObjectsManager {
+    var voteIndexSelected : Int?
+    
+    class var sharedInstance : LocalObjectsManager {
         struct singleton {
-            static let instance = LocalObjectsManager()
+            static let instance : LocalObjectsManager = LocalObjectsManager();
         }
         return singleton.instance
     }

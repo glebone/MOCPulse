@@ -15,6 +15,9 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var VoteLabel: WKInterfaceLabel!
     
     var notificationDic: NSDictionary!
+    var isNotification : Bool = false
+    var voteId : String!
+    
 
     
     override func awakeWithContext(context: AnyObject?) {
@@ -25,7 +28,15 @@ class InterfaceController: WKInterfaceController {
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
+        println("-----")
+        
+        
         super.willActivate()
+        println(isNotification)
+        if(!isNotification)
+        {
+            getVote()
+        }
     }
 
     override func didDeactivate() {
@@ -36,7 +47,12 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func RedButtonPressed() {
         NSLog("Red action")
-        sendParent(["Red", notificationDic["aps"]!["id"]! as! String])
+        if (isNotification) {
+            sendParent(["Red", notificationDic["aps"]!["id"]! as! String])
+        } else
+        {
+           sendParent(["Red" , voteId!])
+        }
         pushThanks()
 
         
@@ -44,12 +60,26 @@ class InterfaceController: WKInterfaceController {
     
     @IBAction func YellowButtonPressed() {
         NSLog("Yellow action")
+        if (isNotification) {
+            sendParent(["Yellow", notificationDic["aps"]!["id"]! as! String])
+        } else
+        {
+            sendParent(["Yellow" , voteId!])
+        }
+        
         pushThanks()
      
     }
     
     @IBAction func GreenButtonPressed() {
         NSLog("Green Action")
+        if (isNotification) {
+            sendParent(["Green", notificationDic["aps"]!["id"]! as! String])
+        } else
+        {
+            sendParent(["Green" , voteId!])
+        }
+
         pushThanks()
     }
     
@@ -72,6 +102,22 @@ class InterfaceController: WKInterfaceController {
         })
     }
     
+    func getVote() {
+        var req = ["value" : "", "id" : "-1"]
+        WKInterfaceController.openParentApplication(req, reply: { (data, error) in
+            if let error = error {
+                println(error)
+            }
+            if let data = data {
+                println(data)
+                //sendParent([data!["value"]!, data["id"]!])
+                self.VoteLabel.setText(data["name"] as? String)
+                self.voteId = data["id"] as! String
+            }
+        })
+        
+    }
+    
     
     override func handleActionWithIdentifier(identifier: String?,
         forRemoteNotification remoteNotification: [NSObject : AnyObject]) {
@@ -81,6 +127,7 @@ class InterfaceController: WKInterfaceController {
                 
                 VoteLabel.setText(remoteNotification["aps"]!["alert"] as? String)
                 notificationDic = remoteNotification
+                isNotification = true
                 if notificationIdentifier == "voteButtonAction" {
                     NSLog("There")
                 }

@@ -2,15 +2,18 @@ PODS:
   - Alamofire (1.2.3)
   - OAuthSwift (0.3.6)
   - SwiftyJSON (2.2.0)
+  - VBPieChart (0.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
   - OAuthSwift (~> 0.3.4)
   - SwiftyJSON (~> 2.2.0)
+  - VBPieChart (~> 0.3.0)
 
 SPEC CHECKSUMS:
   Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
   OAuthSwift: 3517e94380923085dfa7f23421bc3d4a61ce48c0
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+  VBPieChart: ea8f9220d050a25b25d70b94ae8c193d7fb9c5e1
 
 COCOAPODS: 0.37.2
