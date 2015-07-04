@@ -60,9 +60,9 @@ class InterfaceController: WKInterfaceController {
                 "data":"Passed through hierarchical navigation"])
     }
     
-    func sendParent(value: [String]) {
-        
-        WKInterfaceController.openParentApplication(value, reply: { (data, error) in
+    func sendParent(value: [String]?) {
+        var userInfo = ["personName" : "wqeqwe"]
+        WKInterfaceController.openParentApplication(userInfo, reply: { (data, error) in
             if let error = error {
                 println(error)
             }
