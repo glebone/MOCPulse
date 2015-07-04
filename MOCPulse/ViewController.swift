@@ -13,9 +13,20 @@ class ViewController: UIViewController {
 
     @IBOutlet var authTryButton : UIButton!
     
+    var colorChart : ColorChart!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        setupView()
+    }
+    
+    func setupView() {
+        var screenRect : CGRect = UIScreen.mainScreen().bounds
+        
+        colorChart = ColorChart(frame: CGRectInset(screenRect,screenRect.size.width/6,screenRect.size.height/2-20))
+        
+        self.view!.addSubview(colorChart)
     }
     
     @IBAction func authTryAction()
