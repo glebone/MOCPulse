@@ -1,1 +1,11 @@
-/Pods
+# Xcode
+#
+DerivedData
+
+.DS_Store
+
+Pods/
+
+Podfile.lock
+
+*.lock
