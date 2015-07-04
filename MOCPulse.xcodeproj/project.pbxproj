@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		746D577D1B480C900090DF7D /* SimpleChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746D577C1B480C900090DF7D /* SimpleChart.swift */; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
 		F798B37A1B46C34800A17754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3791B46C34800A17754 /* ViewController.swift */; };
 		F798B37D1B46C34900A17754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B37B1B46C34900A17754 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		61AA81994E61EC5F8E1299E9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		746D577C1B480C900090DF7D /* SimpleChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleChart.swift; sourceTree = "<group>"; };
 		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F798B3721B46C34700A17754 /* MOCPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOCPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 			children = (
 				F798B3771B46C34800A17754 /* AppDelegate.swift */,
 				F798B3791B46C34800A17754 /* ViewController.swift */,
+				746D577C1B480C900090DF7D /* SimpleChart.swift */,
 				F798B37B1B46C34900A17754 /* Main.storyboard */,
 				F798B37E1B46C34900A17754 /* Images.xcassets */,
 				F798B3801B46C34900A17754 /* LaunchScreen.xib */,
@@ -443,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F798B37A1B46C34800A17754 /* ViewController.swift in Sources */,
+				746D577D1B480C900090DF7D /* SimpleChart.swift in Sources */,
 				F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

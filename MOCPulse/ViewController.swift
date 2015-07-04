@@ -12,10 +12,16 @@ import OAuthSwift
 class ViewController: UIViewController {
 
     @IBOutlet var authTryButton : UIButton!
+    var chart = SimpleChart();
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        self.view.addSubview(chart.chartView);
+        
+        var result = String("{\"yellow\" : 50,\"red\" : 50,\"green\" : 50}").dataUsingEncoding(NSUTF8StringEncoding);
+        chart.DrawChartWithJSON(result!);
+        
     }
     
     @IBAction func authTryAction()
