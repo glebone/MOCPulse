@@ -1,21 +1,29 @@
 //
-//  ViewController.swift
+//  VotesListViewController.swift
 //  MOCPulse
 //
-//  Created by gleb on 7/3/15.
+//  Created by Paul Kovalenko on 04.07.15.
 //  Copyright (c) 2015 MOC. All rights reserved.
 //
 
 import UIKit
 import OAuthSwift
 
-class ViewController: UIViewController {
+class VotesListViewController: UIViewController {
 
     @IBOutlet var authTryButton : UIButton!
     
+    var colorChart : ColorChart!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        
+        
     }
     
     @IBAction func authTryAction()
@@ -53,6 +61,4 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-enum VoteType : Int {
+enum VoteType : NSInteger {
     case Default = 0
     case Color = 1
 }
@@ -38,12 +38,15 @@ class VoteModel : NSObject {
             success: { (object) -> Void in
                 var list: NSMutableArray = [];
                 for (index: String, subJson: JSON) in object {
+                    
                     let voitsDict: Dictionary<String, JSON> = subJson[index].dictionaryValue
-                    var vote: VoteModel = VoteModel();
-                    vote.id = voitsDict["id"]?.intValue;
-                    vote.name = voitsDict["name"]?.stringValue
-//                    vote.type = voitsDict["name"]?.intValue
-                    vote.result = voitsDict["result"]?.stringValue
+                    
+                    var voteID : NSInteger = voitsDict["id"]!.intValue;
+                    var voteName : NSString = voitsDict["name"]!.stringValue
+                    var voteResult : NSString = voitsDict["result"]!.stringValue
+                    
+                    var vote: VoteModel = VoteModel(id: voteID, name: voteName as String, type: VoteType.Color, result: voteResult as String)
+                    
                     list.addObject(vote);
                 }
                 _completion(list);

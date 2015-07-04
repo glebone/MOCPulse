@@ -46,7 +46,7 @@ class ColorChart: UIView {
             redColor!.value = 33
             redColor!.color = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
         }
-        return yellowColor!
+        return redColor!
     }
     
     func setup() {

@@ -9,7 +9,6 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-//import AlamofireSwiftyJSON
 
 let kHost : NSString = "http://localhost:3000/"
 
@@ -34,7 +33,7 @@ class API : NSObject {
     }
     
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil) -> Request {
-        return Manager.sharedInstance.request(_method, "\(kHost)\(_path)", parameters: _parameters, encoding: ParameterEncoding.URL)
+        return Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL)
     }
     
     static func response(_request:Request, completionHandler: (NSURLRequest, NSHTTPURLResponse?, SwiftyJSON.JSON, NSError?) -> Void) -> Request {

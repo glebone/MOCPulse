@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+import Alamofire
+import SwiftyJSON
 
 class UserModel : NSObject {
     var token : NSString?
@@ -31,5 +32,28 @@ class UserModel : NSObject {
         self.email = _email
         self.firstName = _firstName
         self.lastName = _lastName
+    }
+    
+    static func user(_completion: (NSArray?) -> Void) -> Request {
+        return API.response(API.request(.POST, path: "http://192.168.4.121:3000/api/me.json", parameters: nil),
+            success: { (object) -> Void in
+                var list: NSMutableArray = [];
+                for (index: String, subJson: JSON) in object {
+                    
+                    let voitsDict: Dictionary<String, JSON> = subJson[index].dictionaryValue
+                    
+                    var voteID : NSInteger = voitsDict["id"]!.intValue;
+                    var voteName : NSString = voitsDict["name"]!.stringValue
+                    var voteResult : NSString = voitsDict["result"]!.stringValue
+                    
+                    var vote: VoteModel = VoteModel(id: voteID, name: voteName as String, type: VoteType.Color, result: voteResult as String)
+                    
+                    list.addObject(vote);
+                }
+                _completion(list);
+            },
+            failure: { (error) -> Void in
+                //
+        });
     }
 }
