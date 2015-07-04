@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E54DA1F8-226D-4A9E-8A56-A801896E5895</string>
+	<string>4DC5EF02-97D2-407A-8849-6614358D3E23</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MOCPulse</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>D63906DBD92DE49D60463EED9A7FD621A46DED7D</key>
-		<string>github.com:glebone/MOCPulse.git</string>
+		<string>https://github.com/glebone/MOCPulse.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MOCPulse.xcworkspace</string>
@@ -21,7 +21,7 @@
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:glebone/MOCPulse.git</string>
+	<string>https://github.com/glebone/MOCPulse.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
