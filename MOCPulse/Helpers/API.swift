@@ -29,12 +29,20 @@ class API : NSObject {
     }
     
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible) -> Request {
-        return request(_method, path: _path, parameters: nil)
+        return request(_method, path: _path, parameters: nil, headers: nil)
     }
     
-    static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil) -> Request {
-        return Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL)
+    static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]?) -> Request {
+        var manager : Manager = Manager.sharedInstance
+        manager.session.configuration.HTTPAdditionalHeaders = headers
+        return manager.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL)
     }
+    
+//    static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil) -> Request {
+//        var manager : Manager = Manager.sharedInstance
+//        manager.session.configuration.HTTPAdditionalHeaders = ["Authorization": ""]
+//        return manager.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL)
+//    }
     
     static func response(_request:Request, completionHandler: (NSURLRequest, NSHTTPURLResponse?, SwiftyJSON.JSON, NSError?) -> Void) -> Request {
         

@@ -34,7 +34,7 @@ class VoteModel : NSObject {
     }
     
     static func votes(_completion: (NSArray?) -> Void) -> Request {
-        return API.response(API.request(.GET, path: "votes", parameters: nil),
+        return API.response(API.request(.GET, path: "votes", parameters: nil, headers: ["" : ""]),
             success: { (object) -> Void in
                 var list: NSMutableArray = [];
                 for (index: String, subJson: JSON) in object {

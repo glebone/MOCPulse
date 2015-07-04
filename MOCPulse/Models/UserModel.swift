@@ -35,7 +35,7 @@ class UserModel : NSObject {
     }
     
     static func user(_completion: (NSArray?) -> Void) -> Request {
-        return API.response(API.request(.POST, path: "http://192.168.4.121:3000/api/me.json", parameters: nil),
+        return API.response(API.request(.POST, path: "http://192.168.4.121:3000/api/me.json", parameters: nil, headers: ["" : ""]),
             success: { (object) -> Void in
                 var list: NSMutableArray = [];
                 for (index: String, subJson: JSON) in object {
