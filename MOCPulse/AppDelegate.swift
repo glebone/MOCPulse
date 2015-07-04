@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var backgroundTaskIdentifier: UIBackgroundTaskIdentifier =
+    UIBackgroundTaskInvalid
+    
     var myViewController: ViewController {
         return window?.rootViewController as! ViewController
     }
@@ -61,14 +64,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest
         voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
             
-            if let info = voteInfo as? [String : String] {
-                println(voteInfo)
-                let val = voteInfo!["value"] as? String
-                myViewController.authTryButton.setTitle(val, forState: UIControlState.Normal)
-                reply.map { $0(["response" : "success"]) }
-            } else {
-                reply.map { $0(["response" : "fail"]) }
+            var task = UIBackgroundTaskInvalid
+            UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({ () -> Void in
+                UIApplication.sharedApplication().endBackgroundTask(task)
+                task = UIBackgroundTaskInvalid
+            })
+            
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                // do some task
+            
+            
+                if let info = voteInfo as? [String : String] {
+                    println(voteInfo)
+                    let val = voteInfo!["value"] as? String
+                    let id =  voteInfo!["id"] as? String
+                    if (id == "-1") {
+                        reply.map {$0 (["name" : "How is pizza?", "id": "5"])}
+                    }
+                    else {
+                        
+                        reply.map { $0(["response" : "success"]) }
+                    }
+                } else {
+                    
+                    
+                    reply.map { $0(["response" : "fail"]) }
+                }
+
             }
+            UIApplication.sharedApplication().endBackgroundTask(task)
+            
+            task = UIBackgroundTaskInvalid
     }
 
 
