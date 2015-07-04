@@ -16,11 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var myViewController: ViewController {
+        return window?.rootViewController as! ViewController
+    }
+
+    
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         println(url)
         OAuth2Swift.handleOpenURL(url)
         return true
     }
+    
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -49,6 +56,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
+    func application(application: UIApplication, handleWatchKitExtensionRequest
+        voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
+            
+            if let info = voteInfo as? [String : String] {
+                println(voteInfo)
+                let val = voteInfo!["value"] as? String
+                myViewController.authTryButton.setTitle(val, forState: UIControlState.Normal)
+                reply.map { $0(["response" : "success"]) }
+            } else {
+                reply.map { $0(["response" : "fail"]) }
+            }
+    }
+
 
 
 }

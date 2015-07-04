@@ -35,8 +35,8 @@ class InterfaceController: WKInterfaceController {
     
     
     @IBAction func RedButtonPressed() {
-        NSLog("Yellow action")
-        sendParent(["Yellow", notificationDic["aps"]!["alert"]! as! String])
+        NSLog("Red action")
+        sendParent(["Red", notificationDic["aps"]!["id"]! as! String])
         pushThanks()
 
         
@@ -60,9 +60,9 @@ class InterfaceController: WKInterfaceController {
                 "data":"Passed through hierarchical navigation"])
     }
     
-    func sendParent(value: [String]?) {
-        var userInfo = ["personName" : "wqeqwe"]
-        WKInterfaceController.openParentApplication(userInfo, reply: { (data, error) in
+    func sendParent(value: [String]) {
+        var voteInfo = ["value" : value[0], "id" : value[1]]
+        WKInterfaceController.openParentApplication(voteInfo, reply: { (data, error) in
             if let error = error {
                 println(error)
             }
