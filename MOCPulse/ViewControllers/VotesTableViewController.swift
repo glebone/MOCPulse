@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VotesTableViewController : UITableViewController, UITableViewDataSource {
+class VotesTableViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,5 +30,10 @@ class VotesTableViewController : UITableViewController, UITableViewDataSource {
         
         cell.textLabel?.text = obj.name;
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        LocalObjectsManager.sharedInstance.voteIndexSelected = indexPath.row
     }
 }

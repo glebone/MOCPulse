@@ -14,6 +14,8 @@ class LocalObjectsManager {
     
     var votes : NSMutableArray = []
     
+    var voteIndexSelected : Int?
+    
     class var sharedInstance : LocalObjectsManager {
         struct singleton {
             static let instance : LocalObjectsManager = LocalObjectsManager();

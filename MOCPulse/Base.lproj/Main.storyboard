@@ -81,13 +81,25 @@
             </objects>
             <point key="canvasLocation" x="286" y="987"/>
         </scene>
-        <!--View Controller-->
+        <!--Vote View Controller-->
         <scene sceneID="5a9-Ce-uBa">
             <objects>
-                <viewController id="Hai-sd-NKn" sceneMemberID="viewController">
+                <viewController id="Hai-sd-NKn" customClass="VoteViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="to6-XM-loc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Oac-Ce-TLa">
+                                <rect key="frame" x="105" y="112" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Random">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="randButtonClicked:" destination="Hai-sd-NKn" eventType="touchUpInside" id="unT-Nf-0mF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="BlX-gm-Xsg"/>

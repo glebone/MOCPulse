@@ -16,37 +16,37 @@ enum ChartColors {
     case CHART_COLOR_YELLOW
 }
 
-class ChartItem {
-    var color: ChartColors;
-    var value: Int;
-    
-    init(color_: ChartColors, value_: Int) {
-        self.color = color_;
-        self.value = value_;
-    }
-    
-    func GenerateArray() -> [String:NSObject]
-    {
-        var colorFromHex : UIColor;
-        
-        switch self.color {
-        case ChartColors.CHART_COLOR_GREEN:
-            colorFromHex = UIColor(hexString: "00bf20");
-        case ChartColors.CHART_COLOR_RED:
-            colorFromHex = UIColor(hexString: "fb250d");
-        case ChartColors.CHART_COLOR_YELLOW:
-            colorFromHex = UIColor(hexString: "ffc000");
-        }
-        
-        var result = ["name": "unk", "value":self.value, "color":colorFromHex];
-        
-        return result;
-    }
-}
-
 class SimpleChart /*: VBPieChart */{
     var chartView = VBPieChart();
     var chartArray : [ChartItem] = [];
+    
+    class ChartItem {
+        var color: ChartColors;
+        var value: Int;
+        
+        init(color_: ChartColors, value_: Int) {
+            self.color = color_;
+            self.value = value_;
+        }
+        
+        func GenerateArray() -> [String:NSObject]
+        {
+            var colorFromHex : UIColor;
+            
+            switch self.color {
+            case ChartColors.CHART_COLOR_GREEN:
+                colorFromHex = UIColor(hexString: "00bf20");
+            case ChartColors.CHART_COLOR_RED:
+                colorFromHex = UIColor(hexString: "fb250d");
+            case ChartColors.CHART_COLOR_YELLOW:
+                colorFromHex = UIColor(hexString: "ffc000");
+            }
+            
+            var result = ["name": "unk", "value":self.value, "color":colorFromHex];
+            
+            return result;
+        }
+    }
     
     init() {
         //super.init();
