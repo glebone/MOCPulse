@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var myViewController: ViewController {
-        return window?.rootViewController as! ViewController
+    var myViewController: VotesListViewController {
+        return window?.rootViewController as! VotesListViewController
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
@@ -48,10 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        var manager : LocalObjectsManager = LocalObjectsManager()
         
+        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
             println("Need call OAuth")
+            API.oauthAuthorization()
         }
     }
 
@@ -66,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let info = voteInfo as? [String : String] {
                 println(voteInfo)
                 let val = voteInfo!["value"] as? String
-                myViewController.authTryButton.setTitle(val, forState: UIControlState.Normal)
                 reply.map { $0(["response" : "success"]) }
             } else {
                 reply.map { $0(["response" : "fail"]) }
