@@ -42,7 +42,7 @@ class VoteModel : NSObject {
         //self.result = _result;
     }
     
-    static func votes(_completion: (NSArray?) -> Void) -> Request {
+    static func votes(_completion: (NSMutableArray?) -> Void) -> Request {
         return API.response(API.request(.GET, path: "http://192.168.4.63:8080/votes", parameters: nil, headers: ["auth_token" : "123123"]),
             success: { (object) -> Void in
                 var list: NSMutableArray = [];
@@ -69,9 +69,7 @@ class VoteModel : NSObject {
             },
             failure: { (error) -> Void in
                 var error2: NSError? = error
-
                 println(error2?.localizedDescription)
-                //
         });
     }
 }

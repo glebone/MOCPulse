@@ -22,6 +22,16 @@
                                     <segue destination="Eky-ft-Gd0" kind="push" id="KkL-YO-fzy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G5R-Nh-n5n">
+                                <rect key="frame" x="141" y="167" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Votes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JL0-nu-qh4" kind="push" id="q8U-Gs-b50"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -30,6 +40,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286" y="350"/>
+        </scene>
+        <!--Votes Table View Controller-->
+        <scene sceneID="Uur-OZ-bRF">
+            <objects>
+                <tableViewController id="JL0-nu-qh4" customClass="VotesTableViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ygZ-55-FCm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VoteCell" textLabel="i24-dL-rg2" style="IBUITableViewCellStyleDefault" id="oUY-JV-S5N">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUY-JV-S5N" id="P22-hO-Cmw">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i24-dL-rg2">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Hai-sd-NKn" kind="push" id="tSS-4h-yLc"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JL0-nu-qh4" id="4fR-5C-PG4"/>
+                            <outlet property="delegate" destination="JL0-nu-qh4" id="gfE-X7-ELD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="sYW-BU-glM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qy4-a8-PTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286" y="987"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5a9-Ce-uBa">
+            <objects>
+                <viewController id="Hai-sd-NKn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="to6-XM-loc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BlX-gm-Xsg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tRf-iX-lhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="714" y="996"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Rh-VR-FuZ">

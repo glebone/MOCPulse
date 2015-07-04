@@ -29,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Alamofire.request(.GET, "http://httpbin.org/get")
+        
+        VoteModel.votes({(data) -> Void in
+            LocalObjectsManager.sharedInstance.votes = data!;
+        });
+        
+        
         return true
     }
 
@@ -48,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
+      
         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
             println("Need call OAuth")
