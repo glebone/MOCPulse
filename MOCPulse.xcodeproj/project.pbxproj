@@ -10,7 +10,10 @@
 		03C3EED01B48246E00A9EA45 /* ColorChartObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EECF1B48246E00A9EA45 /* ColorChartObject.swift */; };
 		03C3EED21B48249700A9EA45 /* ColorChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED11B48249700A9EA45 /* ColorChart.swift */; };
 		0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		0C24204E1B48144F007333C4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18B1B47E90E00B6B358 /* UserModel.swift */; };
+		3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
+		3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
+		3DECE1991B48249400B6B358 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
 		0C2420501B4832E8007333C4 /* ThanksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C24204F1B4832E8007333C4 /* ThanksController.swift */; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
 		F798B37A1B46C34800A17754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3791B46C34800A17754 /* ViewController.swift */; };
@@ -66,6 +69,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3DECE18B1B47E90E00B6B358 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = Models/UserModel.swift; sourceTree = "<group>"; };
+		3DECE18D1B47EECD00B6B358 /* VoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoteModel.swift; path = Models/VoteModel.swift; sourceTree = "<group>"; };
+		3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Helpers/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
+		3DECE1971B48249400B6B358 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = Helpers/API.swift; sourceTree = "<group>"; };
 		03C3EECF1B48246E00A9EA45 /* ColorChartObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChartObject.swift; sourceTree = "<group>"; };
 		03C3EED11B48249700A9EA45 /* ColorChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChart.swift; sourceTree = "<group>"; };
 		0C24204F1B4832E8007333C4 /* ThanksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksController.swift; sourceTree = "<group>"; };
@@ -137,6 +144,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3DECE18A1B47E90500B6B358 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3DECE18B1B47E90E00B6B358 /* UserModel.swift */,
+				3DECE18D1B47EECD00B6B358 /* VoteModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3DECE1951B48246900B6B358 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */,
+				3DECE1971B48249400B6B358 /* API.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		57A19113A0CDCFA8D8A3F6E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +198,8 @@
 		F798B3741B46C34700A17754 /* MOCPulse */ = {
 			isa = PBXGroup;
 			children = (
+				3DECE1951B48246900B6B358 /* Helpers */,
+				3DECE18A1B47E90500B6B358 /* Models */,
 				F798B3771B46C34800A17754 /* AppDelegate.swift */,
 				F798B3791B46C34800A17754 /* ViewController.swift */,
 				F798B37B1B46C34900A17754 /* Main.storyboard */,
@@ -462,6 +489,10 @@
 			files = (
 				03C3EED21B48249700A9EA45 /* ColorChart.swift in Sources */,
 				F798B37A1B46C34800A17754 /* ViewController.swift in Sources */,
+				3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */,
+				3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */,
+				3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */,
+				3DECE1991B48249400B6B358 /* API.swift in Sources */,
 				03C3EED01B48246E00A9EA45 /* ColorChartObject.swift in Sources */,
 				F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */,
 			);
@@ -480,7 +511,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F798B3A31B46C36E00A17754 /* NotificationController.swift in Sources */,
-				0C24204E1B48144F007333C4 /* (null) in Sources */,
 				0C2420501B4832E8007333C4 /* ThanksController.swift in Sources */,
 				F798B3A11B46C36E00A17754 /* InterfaceController.swift in Sources */,
 			);
