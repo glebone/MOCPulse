@@ -34,6 +34,7 @@ class API : NSObject {
         self.host = _host
     }
     
+// MARK: Authorization
     static func oauthAuthorization()
     {
         if (API.isRunAuthorization) {
@@ -69,10 +70,11 @@ class API : NSObject {
                 API.isRunAuthorization = false;
         })
     }
-    
+
+// MARK: API Call
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
-        
-        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL)
+        // FIXME: need to add Authorization Token to headers
+        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
         request.session.configuration.HTTPAdditionalHeaders = headers;
         
         println("request.headers:\n\(request.session.configuration.HTTPAdditionalHeaders!)")

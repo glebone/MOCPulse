@@ -10,19 +10,22 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-enum VoteType : NSInteger {
-    case Default = 0
-    case Color = 1
-}
+//enum VoteType : NSInteger {
+//    case Default = 0
+//    case Color = 1
+//}
+
+let kAuthToken_FIXME = ["auth_token" : "123123"]
 
 class VoteModel : NSObject {
     var id : String?
     var name : String?
-    var type : VoteType = VoteType.Default
-    var result : String?
+//    var type : VoteType = VoteType.Default
+
     var greenVotes : NSInteger?
     var redVotes : NSInteger?
     var yellowVotes : NSInteger?
+
     var allUsers : NSInteger?
     var voteUsers : NSInteger?
     
@@ -30,46 +33,92 @@ class VoteModel : NSObject {
         super.init()
     }
     
-    init(id _id: String, name _name: String, greenVotes _greenVotes: NSInteger, redVotes _redVotes: NSInteger, yellowVotes  _yellowVotes: NSInteger) {
+    init(id _id: String, name _name: String) {
         super.init()
-        self.id = _id
-        self.name = _name;
-        self.greenVotes = _greenVotes;
-        self.redVotes = _redVotes;
-        self.yellowVotes = _yellowVotes;
         
-        //self.type = _type;
-        //self.result = _result;
+        self.id = _id
+        self.name = _name
     }
     
-    static func votes(_completion: (NSMutableArray?) -> Void) -> Request {
-        return API.response(API.request(.GET, path: "http://192.168.4.63:8080/votes", parameters: nil, headers: ["auth_token" : "123123"]),
+    init(json _json:SwiftyJSON.JSON)
+    {
+        super.init()
+        update(json: _json)
+    }
+    
+    func update(json _json:SwiftyJSON.JSON)
+    {
+        self.id = _json["id"].stringValue
+        self.name = _json["name"].stringValue
+        
+        self.greenVotes = _json["result"]["green"].intValue
+        self.redVotes = _json["result"]["red"].intValue
+        self.yellowVotes = _json["result"]["yellow"].intValue
+        
+        self.allUsers = _json["result"]["all_users"].intValue
+        self.voteUsers = _json["result"]["vote_users"].intValue
+    }
+    
+// MARK: API Call
+    func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["name": self.name! , "value" : _color]
+        
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                self.update(json: object["vote"]);
+                _completion(self);
+            },
+            failure: { (error) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
+    static func votes(completion _completion: (NSMutableArray?) -> Void) -> Request {
+        return API.response(API.request(.GET, path: "\(kProductionServer)votes", headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 var list: NSMutableArray = [];
 
-                for (index: String, subJson: JSON) in object["votes"]{
-
-                    var voteID = subJson["id"].string;
-                    var voteName = subJson["name"].string;
-                    
-                    var greenVotes = subJson["result"]["green"].intValue;
-                    var redVotes = subJson["result"]["red"].intValue;
-                    var yellowVotes = subJson["result"]["yellow"].intValue;
-                
-                    var allUsers = subJson["result"]["all_users"].intValue;
-                    var voteUsers = subJson["result"]["vote_users"].intValue;
-                    
-                    var vote : VoteModel = VoteModel(id: voteID!, name: voteName!, greenVotes: greenVotes, redVotes: redVotes, yellowVotes: yellowVotes);
-                    vote.allUsers = allUsers;
-                    vote.voteUsers = voteUsers;
-                
+                for (index: String, subJson: JSON) in object["votes"] {
+                    var vote : VoteModel = VoteModel(json: subJson)
                     list.addObject(vote);
                 }
                 _completion(list);
             },
             failure: { (error) -> Void in
-                var error2: NSError? = error
-                println(error2?.localizedDescription)
+               println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
+    static func voteByID(_id:String, completion _completion: (VoteModel?) -> Void) -> Request {
+        return API.response(API.request(.GET, path: "\(kProductionServer)votes/\(_id)", headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                var vote : VoteModel = VoteModel(json: object["vote"]);
+                _completion(vote);
+            },
+            failure: { (error) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
+    func reloadVote(completion _completion: (VoteModel?) -> Void) -> Request {
+        return API.response(API.request(.GET, path: "\(kProductionServer)votes/\(self.id!)", headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                self.update(json: object["vote"]);
+                _completion(self);
+            },
+            failure: { (error) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
+    static func createVote(name:String, completion _completion: (VoteModel?) -> Void) -> Request {
+        return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["vote": ["name": name , "type" : "1"]], headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                var vote : VoteModel = VoteModel(json: object["vote"]);
+                _completion(vote);
+            },
+            failure: { (error) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
         });
     }
 }

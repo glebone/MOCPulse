@@ -28,12 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        Alamofire.request(.GET, "http://httpbin.org/get")
         
-        VoteModel.votes({(data) -> Void in
+        VoteModel.votes(completion: {(data) -> Void in
             LocalObjectsManager.sharedInstance.votes = data!;
         });
-        
         
         return true
     }

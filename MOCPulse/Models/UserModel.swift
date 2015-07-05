@@ -28,6 +28,7 @@ class UserModel : NSObject {
         self.userID = _userID
     }
     
+// MARK: API Call    
     static func user(token: String, _completion: (UserModel?) -> Void) -> Request {
         
         return API.response(API.request(.GET, path: "\(kAuthorizationServer)api/me.json", headers: ["Authorization" : "Bearer \(token)"]),
