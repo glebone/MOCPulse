@@ -46,4 +46,14 @@ class UserModel : NSObject {
                 println(error2?.localizedDescription)
         });
     }
+    
+    static func updatePushToken(userToken: NSString, deviceToken: NSString) -> Request {
+        return API.response(API.request(.POST, path: "http://192.168.4.121:3000/api/me/data", parameters: nil, headers: ["Authorization" : NSString(format:"Bearer %@", userToken) as String]), success: { (responseObject) -> Void in
+            println(responseObject)
+        }, failure: { (error) -> Void in
+            var error2: NSError? = error
+            println(error2?.localizedDescription)
+        })
+    }
+    
 }
