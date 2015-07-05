@@ -68,7 +68,7 @@ class VoteModel : NSObject {
                 self.update(json: object["vote"]);
                 _completion(self);
             },
-            failure: { (error) -> Void in
+            failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
         });
     }
@@ -84,7 +84,7 @@ class VoteModel : NSObject {
                 }
                 _completion(list);
             },
-            failure: { (error) -> Void in
+            failure: { (error : NSError?) -> Void in
                println("API.Error: \(error?.localizedDescription)")
         });
     }
@@ -95,7 +95,7 @@ class VoteModel : NSObject {
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
             },
-            failure: { (error) -> Void in
+            failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
         });
     }
@@ -106,7 +106,7 @@ class VoteModel : NSObject {
                 self.update(json: object["vote"]);
                 _completion(self);
             },
-            failure: { (error) -> Void in
+            failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
         });
     }
@@ -117,7 +117,7 @@ class VoteModel : NSObject {
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
             },
-            failure: { (error) -> Void in
+            failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
         });
     }
