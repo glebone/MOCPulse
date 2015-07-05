@@ -9,9 +9,21 @@
 import UIKit
 
 class VotesTableViewController : UITableViewController {
+    var votes : [VoteModel]?
+    @IBOutlet var votesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        VoteModel.votes(completion: {(data) -> Void in
+            self.votes = data!;
+            self.votesTableView.reloadData();
+            
+            LocalObjectsManager.sharedInstance.votes = self.votes;
+        });
     }
     
     override func didReceiveMemoryWarning() {
@@ -20,13 +32,13 @@ class VotesTableViewController : UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LocalObjectsManager.sharedInstance.votes.count;
+        return (self.votes == nil) ? 0 : self.votes!.count;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VoteCell", forIndexPath: indexPath) as! UITableViewCell
-        var obj: VoteModel = LocalObjectsManager.sharedInstance.votes[indexPath.row] as! VoteModel;
         
+        var obj: VoteModel = self.votes![indexPath.row];
         
         cell.textLabel?.text = obj.name;
         return cell

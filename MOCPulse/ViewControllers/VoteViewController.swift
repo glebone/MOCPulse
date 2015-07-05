@@ -9,15 +9,26 @@
 import UIKit
 
 class VoteViewController : UIViewController {
-    var chart = SimpleChart()
+    private var chart : PieChart!
     var vote : VoteModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addSubview(chart.chartView)
+        self.chart = PieChart()
+        self.chart.frame = CGRectMake(20, 250, 300, 300)
+        self.chart.setup()
+        self.view.addSubview(self.chart)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        UpdateChart()
+        var objPointer = LocalObjectsManager.sharedInstance
+        self.vote = objPointer.votes![objPointer.voteIndexSelected!]
+        
+        randomData()
+        drawChart()
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,26 +36,24 @@ class VoteViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func DrawChart()
+    func drawChart()
     {
-        chart.ClearChart()
-        chart.AddChartItem(self.vote!.greenVotes!, color: ChartColors.CHART_COLOR_GREEN)
-        chart.AddChartItem(self.vote!.redVotes!, color: ChartColors.CHART_COLOR_RED)
-        chart.AddChartItem(self.vote!.yellowVotes!, color: ChartColors.CHART_COLOR_YELLOW)
-        chart.DrawChart()
+        self.chart.ClearChart()
+        self.chart.AddChartItem(self.vote!.greenVotes!, color: ChartColors.CHART_COLOR_GREEN)
+        self.chart.AddChartItem(self.vote!.redVotes!, color: ChartColors.CHART_COLOR_RED)
+        self.chart.AddChartItem(self.vote!.yellowVotes!, color: ChartColors.CHART_COLOR_YELLOW)
+        self.chart.DrawChart()
     }
     
-    func UpdateChart()
+    func randomData()
     {
-        var objPointer = LocalObjectsManager.sharedInstance
-        self.vote = objPointer.votes[objPointer.voteIndexSelected!] as? VoteModel
-        DrawChart()
-    }
-    
-    @IBAction func randButtonClicked(sender: AnyObject) {
         self.vote?.redVotes = NSInteger(arc4random_uniform(100))
         self.vote?.greenVotes = NSInteger(arc4random_uniform(100))
         self.vote?.yellowVotes = NSInteger(arc4random_uniform(100))
-        UpdateChart()
+    }
+    
+    @IBAction func randButtonClicked(sender: AnyObject) {
+        randomData()
+        drawChart()
     }
 }

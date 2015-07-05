@@ -12,7 +12,7 @@ class LocalObjectsManager {
     
     var user : UserModel?
     
-    var votes : NSMutableArray = []
+    var votes : [VoteModel]?
     
     var voteIndexSelected : Int?
     

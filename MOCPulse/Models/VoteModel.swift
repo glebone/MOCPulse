@@ -73,14 +73,14 @@ class VoteModel : NSObject {
         });
     }
     
-    static func votes(completion _completion: (NSMutableArray?) -> Void) -> Request {
+    static func votes(completion _completion: ([VoteModel]?) -> Void) -> Request {
         return API.response(API.request(.GET, path: "\(kProductionServer)votes", headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var list: NSMutableArray = [];
+                var list: [VoteModel] = [];
 
                 for (index: String, subJson: JSON) in object["votes"] {
                     var vote : VoteModel = VoteModel(json: subJson)
-                    list.addObject(vote);
+                    list.append(vote);
                 }
                 _completion(list);
             },
