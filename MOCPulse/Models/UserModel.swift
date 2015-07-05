@@ -11,39 +11,40 @@ import Alamofire
 import SwiftyJSON
 
 class UserModel : NSObject {
-    var userID: NSString?
-    var token : NSString?
-    var email : NSString?
-    var name : NSString?
+    var userID: String?
+    var token : String?
+    var email : String?
+    var name : String?
     
-    init(token _token: NSString) {
+    init(token _token: String) {
         super.init()
         self.token = _token
     }
     
-    init(email _email: NSString, name _name: NSString, userID _userID: NSString) {
+    init(email _email: String, name _name: String, userID _userID: String) {
         super.init()
         self.email = _email
         self.name = _name
         self.userID = _userID
     }
     
-    static func user(token: NSString, _completion: (UserModel?) -> Void) -> Request {
-        return API.response(API.request(.GET, path: "http://192.168.4.121:3000/api/me.json", parameters: nil, headers: ["Authorization" : NSString(format:"Bearer %@", token) as String]),
+// MARK: API Call    
+    static func user(token: String, _completion: (UserModel?) -> Void) -> Request {
+        
+        return API.response(API.request(.GET, path: "\(kAuthorizationServer)api/me.json", headers: ["Authorization" : "Bearer \(token)"]),
             success: { (object) -> Void in
                 println(object)
                 
-                var email : NSString = object["email"].stringValue
-                var name : NSString = object["name"].stringValue
-                var userID : NSString = object["uid"].stringValue
+                var email : String = object["email"].stringValue
+                var name : String = object["name"].stringValue
+                var userID : String = object["uid"].stringValue
                 
                 var user: UserModel = UserModel(email: email, name: name, userID: userID)
 
                 _completion(user);
             },
             failure: { (error) -> Void in
-                var error2: NSError? = error
-                println(error2?.localizedDescription)
+                println("API.Error: \(error?.localizedDescription)")
         });
     }
     

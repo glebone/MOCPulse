@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var myViewController: VotesListViewController {
-        return window?.rootViewController as! VotesListViewController
-    }
-
+    var backgroundTaskIdentifier: UIBackgroundTaskIdentifier =
+    UIBackgroundTaskInvalid
+    
+ 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         println(url)
         OAuth2Swift.handleOpenURL(url)
@@ -28,7 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        Alamofire.request(.GET, "http://httpbin.org/get")
+        
+        VoteModel.votes(completion: {(data) -> Void in
+            LocalObjectsManager.sharedInstance.votes = data!;
+        });
+        
         return true
     }
 
@@ -48,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
+      
         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
             println("Need call OAuth")
@@ -64,13 +68,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest
         voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
             
-            if let info = voteInfo as? [String : String] {
-                println(voteInfo)
-                let val = voteInfo!["value"] as? String
-                reply.map { $0(["response" : "success"]) }
-            } else {
-                reply.map { $0(["response" : "fail"]) }
+            var task = UIBackgroundTaskInvalid
+            UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({ () -> Void in
+                UIApplication.sharedApplication().endBackgroundTask(task)
+                task = UIBackgroundTaskInvalid
+            })
+            
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                // do some task
+            
+            
+                if let info = voteInfo as? [String : String] {
+                    println(voteInfo)
+                    let val = voteInfo!["value"] as? String
+                    let id =  voteInfo!["id"] as? String
+                    if (id == "-1") {
+                        reply.map {$0 (["name" : "How is pizza?", "id": "5"])}
+                    }
+                    else {
+                        
+                        reply.map { $0(["response" : "success"]) }
+                    }
+                } else {
+                    
+                    
+                    reply.map { $0(["response" : "fail"]) }
+                }
+
             }
+            UIApplication.sharedApplication().endBackgroundTask(task)
+            
+            task = UIBackgroundTaskInvalid
     }
 
 
