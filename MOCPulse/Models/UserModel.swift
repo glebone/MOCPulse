@@ -48,8 +48,8 @@ class UserModel : NSObject {
         });
     }
     
-    static func updatePushToken(userToken: NSString, deviceToken: NSString) -> Request {
-        return API.response(API.request(.POST, path: "http://192.168.4.121:3000/api/me/data", parameters: nil, headers: ["Authorization" : NSString(format:"Bearer %@", userToken) as String]), success: { (responseObject) -> Void in
+    static func updatePushToken(userToken: String, deviceToken: String, _completion: (UserModel?) -> Void) -> Request {
+        return API.response(API.request(.POST, path: "\(kAuthorizationServer)/api/me/data", parameters: nil, headers: ["Authorization" : "Bearer \(userToken)"]), success: { (responseObject) -> Void in
             println(responseObject)
         }, failure: { (error) -> Void in
             var error2: NSError? = error

@@ -54,6 +54,8 @@ class API : NSObject {
         
         var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
         
+        let userClass: UserModel
+        
         oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
             credential, response, parameters in
             
@@ -63,6 +65,11 @@ class API : NSObject {
                 
                 println(manager.user)
                 API.isRunAuthorization = false;
+                
+                UserModel.updatePushToken("", deviceToken: "", _completion: { (user) -> Void in
+                    println(user)
+                })
+                
             })
             
             }, failure: {(error:NSError!) -> Void in
