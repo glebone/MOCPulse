@@ -13,7 +13,7 @@ import OAuthSwift
 
 let kDevServer : String = "http://localhost:3000/"
 let kProductionServer : String = "http://localhost:3000/" // "http://192.168.4.63:8080/"
-let kAuthorizationServer : String = "http://192.168.4.121:3000/" // tunel "http://b3e355cc.ngrok.io/"
+let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
     
