@@ -57,6 +57,12 @@ class LocalObjectsManager {
         return (tokenHash != 0 && token != nil && tokenHash == token!.hash) ? token : nil;
     }
     
+    // MARK: Management Votes
+    func getLastVote() -> VoteModel? {
+        var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.voted == false}.first
+        return vote;
+    }
+    
     // MARK: Generation
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []

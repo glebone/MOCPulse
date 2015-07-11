@@ -21,7 +21,10 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         votes = LocalObjectsManager.sharedInstance.generationVotes(count: 50)
+        LocalObjectsManager.sharedInstance.votes = votes;
+        
         setupView()
     }
     
