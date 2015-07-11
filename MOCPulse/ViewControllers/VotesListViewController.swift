@@ -28,6 +28,12 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         setupView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     func setupView() {
         setupButton(pendingButton)
         setupButton(votedButton)
@@ -92,6 +98,14 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
+        
+        var votesList = self.tableArray()
+        
+        detailsVC.voteModel = votesList[indexPath.row] as! VoteModel
+        
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
 //MARK: actions

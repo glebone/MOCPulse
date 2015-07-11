@@ -93,7 +93,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i24-dL-rg2">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -164,43 +164,66 @@
         <!--Vote Details View Controller-->
         <scene sceneID="oCU-mj-bD5">
             <objects>
-                <viewController id="Eky-ft-Gd0" customClass="VoteDetailsViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VoteDetailsVC" id="Eky-ft-Gd0" customClass="VoteDetailsViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TwS-s1-rfI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Q6-hg-bS6">
+                                <rect key="frame" x="10" y="40" width="300" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="LWL-RS-hKQ">
+                                <rect key="frame" x="20" y="73" width="280" height="128"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" id="SdH-gQ-6To">
+                                <rect key="frame" x="10" y="300" width="300" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="X8g-74-GJn">
-                                <rect key="frame" x="0.0" y="300" width="320" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="280" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ivz-tU-AVz">
-                                        <rect key="frame" x="5" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add green">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-uo-70s">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.8666666666666667" green="0.18823529411764706" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addGreenAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="W3d-I2-I4d"/>
+                                            <action selector="redButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="zFi-Fh-2f3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JeJ-Eo-fj9">
-                                        <rect key="frame" x="110" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add yellow">
+                                        <rect key="frame" x="106" y="0.0" width="108" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="0.82352941176470584" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addYellowAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="DNL-Pm-VAk"/>
+                                            <action selector="yellowButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="zPX-as-6EF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-uo-70s">
-                                        <rect key="frame" x="215" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add red">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ivz-tU-AVz">
+                                        <rect key="frame" x="214" y="0.0" width="106" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.50980392156862742" green="0.69411764705882351" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addRedAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="8UE-H3-dd8"/>
+                                            <action selector="greenButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="Vd2-or-VWi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -210,6 +233,15 @@
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="0yR-8z-SeG"/>
+                    <connections>
+                        <outlet property="buttonsHolderView" destination="X8g-74-GJn" id="PzI-Yw-eDc"/>
+                        <outlet property="greenButton" destination="Ivz-tU-AVz" id="nKn-ar-bZi"/>
+                        <outlet property="ownerTitleLabel" destination="0Q6-hg-bS6" id="imo-d8-VQe"/>
+                        <outlet property="progressHolderView" destination="SdH-gQ-6To" id="GX6-HS-j8W"/>
+                        <outlet property="redButton" destination="Xbp-uo-70s" id="DhC-Lk-8gE"/>
+                        <outlet property="voteBodyTextView" destination="LWL-RS-hKQ" id="FmV-oM-Tma"/>
+                        <outlet property="yellowButton" destination="JeJ-Eo-fj9" id="IDw-b7-ZxH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdm-Vr-zl5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
