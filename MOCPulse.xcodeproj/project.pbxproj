@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03C3EED01B48246E00A9EA45 /* ColorChartObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EECF1B48246E00A9EA45 /* ColorChartObject.swift */; };
-		03C3EED21B48249700A9EA45 /* ColorChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED11B48249700A9EA45 /* ColorChart.swift */; };
+		032262161B4FB97A00BE38A4 /* UIButton+StateColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032262151B4FB97A00BE38A4 /* UIButton+StateColor.swift */; };
+		0322621D1B4FC6A700BE38A4 /* ColorChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032262191B4FC6A700BE38A4 /* ColorChart.swift */; };
+		0322621E1B4FC6A700BE38A4 /* ColorChartObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322621A1B4FC6A700BE38A4 /* ColorChartObject.swift */; };
+		0322621F1B4FC6A700BE38A4 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322621B1B4FC6A700BE38A4 /* PieChart.swift */; };
+		032262201B4FC6A700BE38A4 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322621C1B4FC6A700BE38A4 /* PulseAnimation.swift */; };
+		032262241B4FC6C800BE38A4 /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032262221B4FC6C800BE38A4 /* VoteCell.swift */; };
+		032262251B4FC6C800BE38A4 /* VoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032262231B4FC6C800BE38A4 /* VoteCell.xib */; };
 		03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED41B48396000A9EA45 /* VotesListViewController.swift */; };
 		03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */; };
 		03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
@@ -21,7 +26,6 @@
 		74BDCF761B486934003B3E7E /* VotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF751B486934003B3E7E /* VotesTableViewController.swift */; };
 		74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF771B487227003B3E7E /* VoteViewController.swift */; };
 		97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 97A503C31B490A4F00B931AC /* iTunesArtwork */; };
-		97A503C61B4929A400B931AC /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A503C51B4929A400B931AC /* PieChart.swift */; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
 		F798B37D1B46C34900A17754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B37B1B46C34900A17754 /* Main.storyboard */; };
 		F798B37F1B46C34900A17754 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B37E1B46C34900A17754 /* Images.xcassets */; };
@@ -75,8 +79,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		03C3EECF1B48246E00A9EA45 /* ColorChartObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChartObject.swift; sourceTree = "<group>"; };
-		03C3EED11B48249700A9EA45 /* ColorChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChart.swift; sourceTree = "<group>"; };
+		032262151B4FB97A00BE38A4 /* UIButton+StateColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+StateColor.swift"; path = "Helpers/UIButton+StateColor.swift"; sourceTree = "<group>"; };
+		032262191B4FC6A700BE38A4 /* ColorChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChart.swift; sourceTree = "<group>"; };
+		0322621A1B4FC6A700BE38A4 /* ColorChartObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChartObject.swift; sourceTree = "<group>"; };
+		0322621B1B4FC6A700BE38A4 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
+		0322621C1B4FC6A700BE38A4 /* PulseAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
+		032262221B4FC6C800BE38A4 /* VoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
+		032262231B4FC6C800BE38A4 /* VoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteCell.xib; sourceTree = "<group>"; };
 		03C3EED41B48396000A9EA45 /* VotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesListViewController.swift; sourceTree = "<group>"; };
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
@@ -90,7 +99,6 @@
 		74BDCF771B487227003B3E7E /* VoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		97A503C31B490A4F00B931AC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		97A503C51B4929A400B931AC /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F798B3721B46C34700A17754 /* MOCPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOCPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F798B3761B46C34800A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,14 +147,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03C3EECE1B48240C00A9EA45 /* ColoredChart */ = {
+		032262171B4FC6A700BE38A4 /* CustomUIClasses */ = {
 			isa = PBXGroup;
 			children = (
-				97A503C51B4929A400B931AC /* PieChart.swift */,
-				03C3EECF1B48246E00A9EA45 /* ColorChartObject.swift */,
-				03C3EED11B48249700A9EA45 /* ColorChart.swift */,
+				032262211B4FC6B400BE38A4 /* Cells */,
+				032262181B4FC6A700BE38A4 /* ColoredChart */,
+			);
+			path = CustomUIClasses;
+			sourceTree = "<group>";
+		};
+		032262181B4FC6A700BE38A4 /* ColoredChart */ = {
+			isa = PBXGroup;
+			children = (
+				032262191B4FC6A700BE38A4 /* ColorChart.swift */,
+				0322621A1B4FC6A700BE38A4 /* ColorChartObject.swift */,
+				0322621B1B4FC6A700BE38A4 /* PieChart.swift */,
+				0322621C1B4FC6A700BE38A4 /* PulseAnimation.swift */,
 			);
 			path = ColoredChart;
+			sourceTree = "<group>";
+		};
+		032262211B4FC6B400BE38A4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				032262221B4FC6C800BE38A4 /* VoteCell.swift */,
+				032262231B4FC6C800BE38A4 /* VoteCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		03C3EED31B48384300A9EA45 /* ViewControllers */ = {
@@ -183,6 +210,7 @@
 				3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */,
 				3DECE1971B48249400B6B358 /* API.swift */,
 				03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */,
+				032262151B4FB97A00BE38A4 /* UIButton+StateColor.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -231,7 +259,7 @@
 				F798B37B1B46C34900A17754 /* Main.storyboard */,
 				F798B37E1B46C34900A17754 /* Images.xcassets */,
 				F798B3801B46C34900A17754 /* LaunchScreen.xib */,
-				03C3EECE1B48240C00A9EA45 /* ColoredChart */,
+				032262171B4FC6A700BE38A4 /* CustomUIClasses */,
 				F798B3751B46C34700A17754 /* Supporting Files */,
 			);
 			path = MOCPulse;
@@ -431,6 +459,7 @@
 				F798B3821B46C34900A17754 /* LaunchScreen.xib in Resources */,
 				F798B37F1B46C34900A17754 /* Images.xcassets in Resources */,
 				97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */,
+				032262251B4FC6C800BE38A4 /* VoteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,18 +543,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97A503C61B4929A400B931AC /* PieChart.swift in Sources */,
 				74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */,
-				03C3EED21B48249700A9EA45 /* ColorChart.swift in Sources */,
 				03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */,
 				3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */,
+				0322621F1B4FC6A700BE38A4 /* PieChart.swift in Sources */,
+				032262161B4FB97A00BE38A4 /* UIButton+StateColor.swift in Sources */,
 				3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */,
 				3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */,
+				032262241B4FC6C800BE38A4 /* VoteCell.swift in Sources */,
+				0322621E1B4FC6A700BE38A4 /* ColorChartObject.swift in Sources */,
 				03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */,
 				03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */,
+				0322621D1B4FC6A700BE38A4 /* ColorChart.swift in Sources */,
 				3DECE1991B48249400B6B358 /* API.swift in Sources */,
 				74BDCF761B486934003B3E7E /* VotesTableViewController.swift in Sources */,
-				03C3EED01B48246E00A9EA45 /* ColorChartObject.swift in Sources */,
+				032262201B4FC6A700BE38A4 /* PulseAnimation.swift in Sources */,
 				F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +715,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -698,6 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

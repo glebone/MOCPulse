@@ -14,6 +14,10 @@ class ColorChart: UIView {
     var yellowColor : ColorChartObject?
     var greenColor : ColorChartObject?
     
+    var redLabel : UILabel?
+    var yellowLabel : UILabel?
+    var greenLabel : UILabel?
+    
     var colorsAray : NSMutableArray?
     
     override init(frame: CGRect) {
@@ -26,7 +30,7 @@ class ColorChart: UIView {
         if (greenColor == nil) {
             greenColor = ColorChartObject()
             greenColor!.value = 33
-            greenColor!.color = UIColor(red: 0/255, green: 255/255, blue: 0/255, alpha: 1)
+            greenColor!.color = UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1)
         }
         return greenColor!
     }
@@ -35,7 +39,7 @@ class ColorChart: UIView {
         if (yellowColor == nil) {
             yellowColor = ColorChartObject()
             yellowColor!.value = 33
-            yellowColor!.color = UIColor(red: 255/255, green: 255/255, blue: 0/255, alpha: 1)
+            yellowColor!.color = UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1)
         }
         return yellowColor!
     }
@@ -44,9 +48,42 @@ class ColorChart: UIView {
         if (redColor == nil) {
             redColor = ColorChartObject()
             redColor!.value = 33
-            redColor!.color = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+            redColor!.color = UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1)
         }
         return redColor!
+    }
+    
+    func getGreenLabel() -> UILabel {
+        if (greenLabel == nil) {
+            greenLabel = UILabel()
+            greenLabel?.minimumScaleFactor = 0.5
+            greenLabel?.textAlignment = NSTextAlignment.Center
+            greenLabel?.textColor = UIColor.whiteColor()
+            self.addSubview(greenLabel!)
+        }
+        return greenLabel!
+    }
+    
+    func getYellowLabel() -> UILabel {
+        if (yellowLabel == nil) {
+            yellowLabel = UILabel()
+            yellowLabel?.minimumScaleFactor = 0.5
+            yellowLabel?.textAlignment = NSTextAlignment.Center
+            yellowLabel?.textColor = UIColor.whiteColor()
+            self.addSubview(yellowLabel!)
+        }
+        return yellowLabel!
+    }
+    
+    func getRedLabel() -> UILabel {
+        if (redLabel == nil) {
+            redLabel = UILabel()
+            redLabel?.minimumScaleFactor = 0.5
+            redLabel?.textAlignment = NSTextAlignment.Center
+            redLabel?.textColor = UIColor.whiteColor()
+            self.addSubview(redLabel!)
+        }
+        return redLabel!
     }
     
     func setup() {
@@ -55,7 +92,7 @@ class ColorChart: UIView {
         colorsAray?.addObject(self.getYellowColor())
         colorsAray?.addObject(self.getRedColor())
         
-        self.layer.cornerRadius = self.bounds.height / 2
+        self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
         self.backgroundColor = UIColor.blackColor()
     }
@@ -74,7 +111,6 @@ class ColorChart: UIView {
         CGContextAddRect(currentGraphicsContext, rect);
         CGContextSetFillColorWithColor(currentGraphicsContext, color);
         CGContextFillRect(currentGraphicsContext, rect);
-        
     }
     
     override func drawRect(rect: CGRect) {
@@ -90,7 +126,7 @@ class ColorChart: UIView {
         
         var lastSegmentRect : CGRect = CGRectMake(0, 0, 0, 0)
         
-        for colorObject in [greenColor, yellowColor, redColor]
+        for colorObject in [redColor, yellowColor, greenColor]
         {
             var currentSegmentValue : CGFloat = colorObject!.value
             
@@ -102,12 +138,26 @@ class ColorChart: UIView {
             
             progressRect.size.width *= percentage
             
-            progressRect.origin.x    += lastSegmentRect.origin.x + lastSegmentRect.size.width
+            progressRect.origin.x += lastSegmentRect.origin.x + lastSegmentRect.size.width
             
             lastSegmentRect = progressRect;
             
             self.fillRectWithColorOnContext(lastSegmentRect, color: color, currentGraphicsContext: currentGraphicsContext)
             
+            var label = UILabel()
+            
+            if (colorObject == greenColor) {
+                label = self.getGreenLabel()
+            }
+            else if (colorObject == yellowColor) {
+                label = self.getYellowLabel()
+            }
+            else if (colorObject == redColor) {
+                label = self.getRedLabel()
+            }
+            
+            label.frame = lastSegmentRect
+            label.text = NSString(format: "%.0f", colorObject!.value) as String
         }
     }
     

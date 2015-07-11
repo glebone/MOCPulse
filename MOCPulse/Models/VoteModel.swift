@@ -21,6 +21,8 @@ class VoteModel : NSObject {
     var id : String?
     var name : String?
 //    var type : VoteType = VoteType.Default
+    
+    var voted : Bool?
 
     var greenVotes : NSInteger?
     var redVotes : NSInteger?
