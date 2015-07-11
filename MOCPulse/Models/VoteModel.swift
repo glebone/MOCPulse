@@ -10,26 +10,21 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-//enum VoteType : NSInteger {
-//    case Default = 0
-//    case Color = 1
-//}
-
 let kAuthToken_FIXME = ["auth_token" : "123123"]
 
 class VoteModel : NSObject {
     var id : String?
     var name : String?
-//    var type : VoteType = VoteType.Default
-    
+    var owner : String?
+    var create : NSDate?
     var voted : Bool?
 
-    var greenVotes : NSInteger?
-    var redVotes : NSInteger?
-    var yellowVotes : NSInteger?
+    var greenVotes : Int?
+    var redVotes : Int?
+    var yellowVotes : Int?
 
-    var allUsers : NSInteger?
-    var voteUsers : NSInteger?
+    var allUsers : Int?
+    var voteUsers : Int?
     
     override init () {
         super.init()
@@ -52,6 +47,9 @@ class VoteModel : NSObject {
     {
         self.id = _json["id"].stringValue
         self.name = _json["name"].stringValue
+        
+        self.owner = _json["owner"].stringValue
+        self.create = NSDate(timeIntervalSince1970:_json["create"].doubleValue)
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue

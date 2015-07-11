@@ -67,18 +67,19 @@ class LocalObjectsManager {
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []
         for (var i = 0; i < _count; i++) {
-            var vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(140))
+            var vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(Int(10 + arc4random_uniform(130))))
             
-            
+            vote.owner = self.randomStringWithLength(Int(5+arc4random_uniform(30)))
             vote.voted = (arc4random_uniform(2) != 0)
             
-            vote.greenVotes = NSInteger(arc4random_uniform(25))
-            vote.redVotes = NSInteger(arc4random_uniform(25))
-            vote.yellowVotes = NSInteger(arc4random_uniform(25))
+            vote.greenVotes = Int(arc4random_uniform(25))
+            vote.redVotes = Int(arc4random_uniform(25))
+            vote.yellowVotes = Int(arc4random_uniform(25))
             
+            vote.create = NSDate()
 
             vote.voteUsers = vote.greenVotes! + vote.redVotes! + vote.yellowVotes!;
-            vote.allUsers = vote.voteUsers! + NSInteger(arc4random_uniform(25))
+            vote.allUsers = vote.voteUsers! + Int(arc4random_uniform(25))
             
             votes.append(vote)
         }
