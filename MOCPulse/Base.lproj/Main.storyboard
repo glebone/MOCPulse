@@ -50,20 +50,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="nAv-BC-Te3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aKc-fK-GHF">
-                                <rect key="frame" x="110" y="20" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chart">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Eky-ft-Gd0" kind="push" id="KkL-YO-fzy"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I"/>
                     <connections>
                         <outlet property="pendingButton" destination="RWO-VR-0am" id="9dV-i7-cMS"/>
                         <outlet property="tableView" destination="MQU-f0-DgP" id="Zjw-wb-dS5"/>
@@ -125,49 +112,6 @@
             </objects>
             <point key="canvasLocation" x="286" y="1023"/>
         </scene>
-        <!--Votes Table View Controller-->
-        <scene sceneID="Uur-OZ-bRF">
-            <objects>
-                <tableViewController id="JL0-nu-qh4" customClass="VotesTableViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ygZ-55-FCm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VoteCell" textLabel="i24-dL-rg2" style="IBUITableViewCellStyleDefault" id="oUY-JV-S5N">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUY-JV-S5N" id="P22-hO-Cmw">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i24-dL-rg2">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Hai-sd-NKn" kind="push" id="tSS-4h-yLc"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JL0-nu-qh4" id="4fR-5C-PG4"/>
-                            <outlet property="delegate" destination="JL0-nu-qh4" id="gfE-X7-ELD"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="sYW-BU-glM"/>
-                    <connections>
-                        <outlet property="votesTableView" destination="ygZ-55-FCm" id="bZn-cl-MDX"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qy4-a8-PTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="714" y="1197"/>
-        </scene>
         <!--Vote View Controller-->
         <scene sceneID="5a9-Ce-uBa">
             <objects>
@@ -217,7 +161,7 @@
             <objects>
                 <viewController storyboardIdentifier="VoteDetailsVC" id="Eky-ft-Gd0" customClass="VoteDetailsViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TwS-s1-rfI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Q6-hg-bS6">
