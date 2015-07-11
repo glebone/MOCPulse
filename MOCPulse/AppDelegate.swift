@@ -29,6 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         updateGlobalUI()
+        
+        if(application.respondsToSelector(Selector("registerUserNotificationSettings:")))
+        {
+            var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+        }
+        else
+        {
+            application.registerForRemoteNotifications()
+//            application.registerForRemoteNotificationTypes(.Alert | .Badge | .Sound)
+        }
+        
         return true
     }
     
@@ -66,6 +79,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+//MARK: push notifications
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current installation and save it to Parse.
+        println("device token : \n\(deviceToken)")
+        
+        var tokenString = deviceToken.description
+        
+        var charsSet = NSCharacterSet(charactersInString:"<>")
+        
+        var token = tokenString.stringByTrimmingCharactersInSet(charsSet)
+        
+        var newToken : String  = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        println(newToken)
+            
+//        NSUserDefaults.standardUserDefaults().setBool(true, forKey: .AppLaunchedFirstTime)
+//        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    //Called if unable to register for APNS.
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        println("Recived: \(userInfo)")
+        //Parsing userinfo:
+        var temp : NSDictionary = userInfo
+        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+        {
+            var alertMsg = info["alert"] as! String
+            var alert: UIAlertView!
+            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+    }
+    
+//MARK: watch kit
     
     func application(application: UIApplication, handleWatchKitExtensionRequest
         voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
@@ -103,8 +159,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             task = UIBackgroundTaskInvalid
     }
-
-
 
 }
 
