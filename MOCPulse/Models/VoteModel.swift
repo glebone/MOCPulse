@@ -10,26 +10,21 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-//enum VoteType : NSInteger {
-//    case Default = 0
-//    case Color = 1
-//}
-
 let kAuthToken_FIXME = ["auth_token" : "123123"]
 
 class VoteModel : NSObject {
     var id : String?
     var name : String?
-//    var type : VoteType = VoteType.Default
-    
-    var voted : Bool?
+    var owner : String?
+    var create : NSDate?
+    var voted : Bool! = false
 
-    var greenVotes : NSInteger?
-    var redVotes : NSInteger?
-    var yellowVotes : NSInteger?
+    var greenVotes : Int?
+    var redVotes : Int?
+    var yellowVotes : Int?
 
-    var allUsers : NSInteger?
-    var voteUsers : NSInteger?
+    var allUsers : Int?
+    var voteUsers : Int?
     
     override init () {
         super.init()
@@ -53,6 +48,9 @@ class VoteModel : NSObject {
         self.id = _json["id"].stringValue
         self.name = _json["name"].stringValue
         
+        self.owner = _json["owner"].stringValue
+        self.create = NSDate(timeIntervalSince1970:_json["create"].doubleValue)
+        
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
         self.yellowVotes = _json["result"]["yellow"].intValue
@@ -62,8 +60,21 @@ class VoteModel : NSObject {
     }
     
 // MARK: API Call
+    static func voteFor(id _id:String, color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color]
+        
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                var vote : VoteModel = VoteModel(json: object["vote"]);
+                _completion(vote);
+            },
+            failure: { (error : NSError?) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
     func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["name": self.name! , "value" : _color]
+        let _parameters: [String : AnyObject] = ["value" : _color]
         
         return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
             success: { (object) -> Void in

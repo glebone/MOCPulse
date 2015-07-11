@@ -17,11 +17,21 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     @IBOutlet var tableView : UITableView!
 
     var colorChart : ColorChart!
+    var votes : [VoteModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        votes = LocalObjectsManager.sharedInstance.generationVotes(count: 50)
+        LocalObjectsManager.sharedInstance.votes = votes;
+        
         setupView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
     
     func setupView() {
@@ -32,6 +42,12 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         
         pendingButton.selected = true
         votedButton.selected = false
+    }
+    
+    func tableArray() -> NSArray {
+        var array = votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
+        
+        return array!
     }
     
     func setupButton(button : UIButton) {
@@ -77,7 +93,9 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        var votesList = self.tableArray()
+        
+        return votesList.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -101,13 +119,23 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
             cell = NSBundle.mainBundle().loadNibNamed("VoteCell", owner: nil, options: nil)[0] as? VoteCell
         }
         
-        cell!.textLabel?.text = "\(indexPath.row)"
+        var votesList = self.tableArray()
+
+        cell?.setupWithVote(votesList[indexPath.row] as! VoteModel)
         
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
+        
+        var votesList = self.tableArray()
+        
+        detailsVC.voteModel = votesList[indexPath.row] as! VoteModel
+        
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
 //MARK: actions
@@ -116,12 +144,16 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     {
         votedButton.selected = false
         pendingButton.selected = true
+        
+        tableView.reloadData()
     }
     
     @IBAction func votedAction()
     {
         votedButton.selected = true
         pendingButton.selected = false
+        
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
