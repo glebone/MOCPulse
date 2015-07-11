@@ -66,7 +66,6 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         self.charsLeftLabel.frame = CGRectMake(0, kbRect.origin.y - self.charsLeftLabel.frame.height - self.createButton.frame.height - 10, self.view.frame.width, self.charsLeftLabel.frame.height)
     }
     
-
     func calculateCharsLeft() {
         var charsLeft = 140 - count(self.voteTextView.text)
         
@@ -77,8 +76,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         if (notEnoughChars) {
             var voteNameText : String = self.voteTextView.text!
             let stringLength = count(voteNameText)
-            let substringIndex = stringLength - 1
-            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, substringIndex))
+            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, 140))
             self.voteTextView.text = voteNameText
         }
     }
