@@ -17,10 +17,11 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     @IBOutlet var tableView : UITableView!
 
     var colorChart : ColorChart!
+    var votes : [VoteModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        votes = LocalObjectsManager.sharedInstance.generationVotes(count: 50)
         setupView()
     }
     
@@ -47,7 +48,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return (votes == nil) ? 0 : votes!.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -70,8 +71,9 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed("VoteCell", owner: nil, options: nil)[0] as? VoteCell
         }
+        var vote : VoteModel = votes![indexPath.row]
         
-        cell!.textLabel?.text = "\(indexPath.row)"
+        cell!.textLabel?.text = "\(vote.name!)"
         
         return cell!
     }

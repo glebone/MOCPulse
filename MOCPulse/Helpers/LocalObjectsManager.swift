@@ -56,4 +56,42 @@ class LocalObjectsManager {
         var tokenHash: NSInteger = NSUserDefaults.standardUserDefaults().integerForKey(_server)
         return (tokenHash != 0 && token != nil && tokenHash == token!.hash) ? token : nil;
     }
+    
+    // MARK: Generation
+    func generationVotes(count _count:Int) -> [VoteModel] {
+        var votes : [VoteModel] = []
+        for (var i = 0; i < _count; i++) {
+            var vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(140))
+            
+            
+            vote.voted = (arc4random_uniform(2) != 0)
+            
+            vote.greenVotes = NSInteger(arc4random_uniform(25))
+            vote.redVotes = NSInteger(arc4random_uniform(25))
+            vote.yellowVotes = NSInteger(arc4random_uniform(25))
+            
+
+            vote.voteUsers = vote.greenVotes! + vote.redVotes! + vote.yellowVotes!;
+            vote.allUsers = vote.voteUsers! + NSInteger(arc4random_uniform(25))
+            
+            votes.append(vote)
+        }
+        return votes;
+    }
+    
+    private func randomStringWithLength (len : Int) -> String {
+        
+        let letters : String = "   abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var randomString : String = String()
+        
+        for (var i = 0; i < len; i++) {
+            var length = UInt32 (count(letters))
+            var rand = arc4random_uniform(length)
+            let char : Character = letters[advance(letters.startIndex, Int(rand))]
+            randomString.append(char)
+        }
+        
+        return randomString
+    }
 }
