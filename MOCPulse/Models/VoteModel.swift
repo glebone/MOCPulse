@@ -17,7 +17,7 @@ class VoteModel : NSObject {
     var name : String?
     var owner : String?
     var create : NSDate?
-    var voted : Bool?
+    var voted : Bool! = false
 
     var greenVotes : Int?
     var redVotes : Int?

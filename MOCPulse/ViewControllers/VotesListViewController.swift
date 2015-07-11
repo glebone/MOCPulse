@@ -36,6 +36,12 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         votedButton.selected = false
     }
     
+    func tableArray() -> NSArray {
+        var array = votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
+        
+        return array!
+    }
+    
     func setupButton(button : UIButton) {
         button.setColorState(UIColor(red: 194.0/255, green: 194.0/255, blue: 194.0/255, alpha: 1.0), state: UIControlState.Selected)
         button.setColorState(UIColor(red: 76.0/255, green: 76.0/255, blue: 76.0/255, alpha: 1.0), state: UIControlState.Normal)
@@ -51,7 +57,9 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (votes == nil) ? 0 : votes!.count
+        var votesList = self.tableArray()
+        
+        return votesList.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -74,9 +82,10 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         if cell == nil {
             cell = NSBundle.mainBundle().loadNibNamed("VoteCell", owner: nil, options: nil)[0] as? VoteCell
         }
-        var vote : VoteModel = votes![indexPath.row]
         
-        cell!.textLabel?.text = "\(vote.name!)"
+        var votesList = self.tableArray()
+
+        cell?.setupWithVote(votesList[indexPath.row] as! VoteModel)
         
         return cell!
     }
@@ -91,12 +100,16 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     {
         votedButton.selected = false
         pendingButton.selected = true
+        
+        tableView.reloadData()
     }
     
     @IBAction func votedAction()
     {
         votedButton.selected = true
         pendingButton.selected = false
+        
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

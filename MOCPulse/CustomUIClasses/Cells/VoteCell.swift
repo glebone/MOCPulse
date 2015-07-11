@@ -9,9 +9,19 @@
 import UIKit
 
 class VoteCell: UITableViewCell {
+    
+    @IBOutlet var userNaleLabel : UILabel!
+    @IBOutlet var dateLabel : UILabel!
+    @IBOutlet var voteBodyLabel : UILabel!
 
-    func setupWithVote(VoteModel) {
-        
+    override func prepareForReuse() {
+        userNaleLabel.text = ""
+        dateLabel.text = ""
+        voteBodyLabel.text = ""
+    }
+    
+    func setupWithVote(vote : VoteModel) {
+        voteBodyLabel.text = vote.name
     }
     
     override func awakeFromNib() {
