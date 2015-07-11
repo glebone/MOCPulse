@@ -142,9 +142,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let val = voteInfo!["value"] as? String
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
-                        reply.map {$0 (["name" : "How is pizza?", "id": "5"])}
+                        var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
+                        if curVote == nil
+                        {
+                           reply.map {$0 (["name" : "", "id": ""])}
+                        }
+                        else
+                        {
+                            reply.map {$0 (["name" : curVote!.name!, "id": curVote!.id!])}
+                        }
                     }
                     else {
+                        
+                        VoteModel.voteFor(id: id!, color: val!, completion: { (vote) -> Void in
+                            println("Voted!!!!)))")
+                        })
+                        
                         
                         reply.map { $0(["response" : "success"]) }
                     }

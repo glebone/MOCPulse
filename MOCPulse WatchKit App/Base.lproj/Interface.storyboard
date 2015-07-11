@@ -10,7 +10,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MOCPulse_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label width="135" height="44" alignment="left" text="Vote" numberOfLines="3" id="YNK-lU-Z1f"/>
+                        <label width="1" height="1" alignment="left" text="Vote" numberOfLines="0" id="YNK-lU-Z1f"/>
                         <button width="1" alignment="left" id="Y3b-Oo-14R">
                             <color key="backgroundColor" red="1" green="0.27076413490675" blue="0.29530996725349978" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -35,12 +35,12 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="353"/>
+            <point key="canvasLocation" x="220" y="354.5"/>
         </scene>
-        <!--ThanksController-->
+        <!--Voted-->
         <scene sceneID="DJl-Cl-id2">
             <objects>
-                <controller identifier="ThanksController" title="ThanksController" id="sW4-dW-31E" customClass="ThanksController" customModule="MOCPulse_WatchKit_Extension">
+                <controller identifier="ThanksController" title="Voted" id="sW4-dW-31E" customClass="ThanksController" customModule="MOCPulse_WatchKit_Extension">
                     <items>
                         <label width="61" height="54" alignment="center" verticalAlignment="center" text="Thanks!" id="sRY-Yc-2N4"/>
                     </items>
