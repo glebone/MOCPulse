@@ -62,8 +62,21 @@ class VoteModel : NSObject {
     }
     
 // MARK: API Call
+    static func voteFor(id _id:String, color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color]
+        
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                var vote : VoteModel = VoteModel(json: object["vote"]);
+                _completion(vote);
+            },
+            failure: { (error : NSError?) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+        });
+    }
+    
     func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["name": self.name! , "value" : _color]
+        let _parameters: [String : AnyObject] = ["value" : _color]
         
         return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
