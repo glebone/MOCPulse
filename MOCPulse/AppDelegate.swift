@@ -18,11 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var backgroundTaskIdentifier: UIBackgroundTaskIdentifier =
     UIBackgroundTaskInvalid
-
  
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        println(url)
-        OAuth2Swift.handleOpenURL(url)
+        // handle todays url
+        if (url.scheme == "mocpulse") {
+            var param : [AnyObject] = url.pathComponents!
+            var action: String = param[1] as! String
+            
+            switch action {
+                case "recent":
+                    println("recent")
+                case "vote":
+                    var color: String = param[2] as! String
+                    var id: String = param[3] as! String
+                    
+                    // need auth check?
+                    VoteModel.voteFor(id: id, color: color, completion: { (vote) -> Void in
+                        // need some notification
+                        println("Voted!")
+                    })
+                
+                default:
+                    println("Unknown url for scheme ", &action)
+            }
+        } else {
+            OAuth2Swift.handleOpenURL(url)
+        }
+        
         return true
     }
 

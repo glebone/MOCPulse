@@ -19,12 +19,33 @@
 		03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
 		0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C2420501B4832E8007333C4 /* ThanksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C24204F1B4832E8007333C4 /* ThanksController.swift */; };
+		2E3C07580047D65842B49FC5 /* Pods_MOCPulse_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		31E948B9ADCAB7758C6ED44F /* Pods_MOCPulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3DA53BAA52AA2742E77B16D3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18B1B47E90E00B6B358 /* UserModel.swift */; };
 		3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
 		3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
 		3DECE1991B48249400B6B358 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
 		745942821B511EBC00A0C8BF /* CreateVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */; };
 		74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF771B487227003B3E7E /* VoteViewController.swift */; };
+		842D25A01B53E5420013844F /* LastVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D259E1B53E5420013844F /* LastVoteViewController.swift */; };
+		842D25A11B53E5420013844F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D259F1B53E5420013844F /* LoadingViewController.swift */; };
+		842D25A31B53E54C0013844F /* VoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D25A21B53E54C0013844F /* VoteTableViewCell.swift */; };
+		842D25A41B53E5630013844F /* LastVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D259E1B53E5420013844F /* LastVoteViewController.swift */; };
+		842D25A51B53E5630013844F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D259F1B53E5420013844F /* LoadingViewController.swift */; };
+		842D25A61B53E5630013844F /* VoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D25A21B53E54C0013844F /* VoteTableViewCell.swift */; };
+		845054431B53452D00489897 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B37E1B46C34900A17754 /* Images.xcassets */; };
+		8496CDEF1B52B3EF00984A0D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8496CDA81B528E5700984A0D /* NotificationCenter.framework */; };
+		8496CDF61B52B3EF00984A0D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8496CDF51B52B3EF00984A0D /* MainInterface.storyboard */; };
+		8496CDF91B52B3EF00984A0D /* MOCPulse Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8496CDEE1B52B3EF00984A0D /* MOCPulse Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8496CE031B52B47100984A0D /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = 8496CE011B52B47100984A0D /* Helpers */; };
+		8496CE041B52B47100984A0D /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 8496CE021B52B47100984A0D /* Models */; };
+		8496CE1D1B52C31C00984A0D /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
+		8496CE1E1B52C31C00984A0D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
+		8496CE1F1B52C31C00984A0D /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
+		8496CE201B52C31C00984A0D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18B1B47E90E00B6B358 /* UserModel.swift */; };
+		8496CE211B52C31C00984A0D /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
+		84FA7E901B52CDA300C2D0D8 /* VotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA7E8E1B52CD0600C2D0D8 /* VotesTableViewController.swift */; };
 		97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 97A503C31B490A4F00B931AC /* iTunesArtwork */; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
 		F798B37D1B46C34900A17754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B37B1B46C34900A17754 /* Main.storyboard */; };
@@ -41,6 +62,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8496CDF71B52B3EF00984A0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F798B36A1B46C34700A17754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8496CDED1B52B3EF00984A0D;
+			remoteInfo = "MOCPulse WIdget";
+		};
 		F798B3881B46C34900A17754 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F798B36A1B46C34700A17754 /* Project object */;
@@ -72,6 +100,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				F798B3B61B46C36F00A17754 /* MOCPulse WatchKit Extension.appex in Embed App Extensions */,
+				8496CDF91B52B3EF00984A0D /* MOCPulse Widget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +119,7 @@
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
 		0C24204F1B4832E8007333C4 /* ThanksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksController.swift; sourceTree = "<group>"; };
+		1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse.release.xcconfig"; sourceTree = "<group>"; };
 		3DECE18B1B47E90E00B6B358 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = Models/UserModel.swift; sourceTree = "<group>"; };
 		3DECE18D1B47EECD00B6B358 /* VoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoteModel.swift; path = Models/VoteModel.swift; sourceTree = "<group>"; };
 		3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Helpers/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
@@ -97,9 +127,24 @@
 		61AA81994E61EC5F8E1299E9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVoteViewController.swift; sourceTree = "<group>"; };
 		74BDCF771B487227003B3E7E /* VoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
+		7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOCPulse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		842D259E1B53E5420013844F /* LastVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastVoteViewController.swift; path = "MOCPulse Widget/ViewControllers/LastVoteViewController.swift"; sourceTree = SOURCE_ROOT; };
+		842D259F1B53E5420013844F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "MOCPulse Widget/ViewControllers/LoadingViewController.swift"; sourceTree = SOURCE_ROOT; };
+		842D25A21B53E54C0013844F /* VoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoteTableViewCell.swift; path = "MOCPulse Widget/View/VoteTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		8496CDA81B528E5700984A0D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		8496CDEE1B52B3EF00984A0D /* MOCPulse Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MOCPulse Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8496CDF21B52B3EF00984A0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8496CDF51B52B3EF00984A0D /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		8496CE011B52B47100984A0D /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Helpers; path = MOCPulse/Helpers; sourceTree = SOURCE_ROOT; };
+		8496CE021B52B47100984A0D /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = MOCPulse/Models; sourceTree = SOURCE_ROOT; };
+		84FA7E8E1B52CD0600C2D0D8 /* VotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotesTableViewController.swift; path = "MOCPulse Widget/ViewControllers/VotesTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse Widget/Pods-MOCPulse Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		97A503C31B490A4F00B931AC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse Widget/Pods-MOCPulse Widget.release.xcconfig"; sourceTree = "<group>"; };
 		B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOCPulse_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F77959EC2A930AAF636DCC /* Pods-MOCPulse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse.debug.xcconfig"; sourceTree = "<group>"; };
 		F798B3721B46C34700A17754 /* MOCPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOCPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F798B3761B46C34800A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F798B3771B46C34800A17754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,11 +167,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8496CDEB1B52B3EF00984A0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8496CDEF1B52B3EF00984A0D /* NotificationCenter.framework in Frameworks */,
+				3DA53BAA52AA2742E77B16D3 /* Pods.framework in Frameworks */,
+				2E3C07580047D65842B49FC5 /* Pods_MOCPulse_Widget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F798B36F1B46C34700A17754 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */,
+				31E948B9ADCAB7758C6ED44F /* Pods_MOCPulse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				61AA81994E61EC5F8E1299E9 /* Pods.framework */,
+				8496CDA81B528E5700984A0D /* NotificationCenter.framework */,
+				7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */,
+				B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,8 +279,52 @@
 			children = (
 				8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */,
 				B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */,
+				C1F77959EC2A930AAF636DCC /* Pods-MOCPulse.debug.xcconfig */,
+				8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */,
+				1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */,
+				9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8496CDF01B52B3EF00984A0D /* MOCPulse Widget */ = {
+			isa = PBXGroup;
+			children = (
+				8496CE1C1B52BFB500984A0D /* ViewControllers */,
+				84FA7E8B1B52C9F300C2D0D8 /* View */,
+				8496CE011B52B47100984A0D /* Helpers */,
+				8496CE021B52B47100984A0D /* Models */,
+				8496CDF51B52B3EF00984A0D /* MainInterface.storyboard */,
+				8496CDF11B52B3EF00984A0D /* Supporting Files */,
+			);
+			name = "MOCPulse Widget";
+			path = "MOCPulse WIdget";
+			sourceTree = "<group>";
+		};
+		8496CDF11B52B3EF00984A0D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8496CDF21B52B3EF00984A0D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8496CE1C1B52BFB500984A0D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				842D259E1B53E5420013844F /* LastVoteViewController.swift */,
+				842D259F1B53E5420013844F /* LoadingViewController.swift */,
+				84FA7E8E1B52CD0600C2D0D8 /* VotesTableViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84FA7E8B1B52C9F300C2D0D8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842D25A21B53E54C0013844F /* VoteTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		F798B3691B46C34700A17754 = {
@@ -231,6 +334,7 @@
 				F798B38A1B46C34900A17754 /* MOCPulseTests */,
 				F798B39C1B46C36E00A17754 /* MOCPulse WatchKit Extension */,
 				F798B3AC1B46C36E00A17754 /* MOCPulse WatchKit App */,
+				8496CDF01B52B3EF00984A0D /* MOCPulse Widget */,
 				F798B3731B46C34700A17754 /* Products */,
 				57A19113A0CDCFA8D8A3F6E8 /* Pods */,
 				0E17897313ABD3CBDD9AAC0D /* Frameworks */,
@@ -245,6 +349,7 @@
 				F798B3871B46C34900A17754 /* MOCPulseTests.xctest */,
 				F798B39B1B46C36E00A17754 /* MOCPulse WatchKit Extension.appex */,
 				F798B3A81B46C36E00A17754 /* MOCPulse WatchKit App.app */,
+				8496CDEE1B52B3EF00984A0D /* MOCPulse Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +437,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8496CDED1B52B3EF00984A0D /* MOCPulse Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8496CDFA1B52B3EF00984A0D /* Build configuration list for PBXNativeTarget "MOCPulse Widget" */;
+			buildPhases = (
+				51614B9ADFF180E79943DCB7 /* Check Pods Manifest.lock */,
+				8496CDEA1B52B3EF00984A0D /* Sources */,
+				8496CDEB1B52B3EF00984A0D /* Frameworks */,
+				8496CDEC1B52B3EF00984A0D /* Resources */,
+				1DF562ADB0F40909185B6D4A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MOCPulse Widget";
+			productName = "MOCPulse WIdget";
+			productReference = 8496CDEE1B52B3EF00984A0D /* MOCPulse Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F798B3711B46C34700A17754 /* MOCPulse */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F798B3911B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulse" */;
@@ -348,6 +472,7 @@
 			);
 			dependencies = (
 				F798B3B51B46C36F00A17754 /* PBXTargetDependency */,
+				8496CDF81B52B3EF00984A0D /* PBXTargetDependency */,
 			);
 			name = MOCPulse;
 			productName = MOCPulse;
@@ -414,6 +539,10 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = MOC;
 				TargetAttributes = {
+					8496CDED1B52B3EF00984A0D = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = ZLW345FG82;
+					};
 					F798B3711B46C34700A17754 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = ZLW345FG82;
@@ -450,11 +579,23 @@
 				F798B3861B46C34900A17754 /* MOCPulseTests */,
 				F798B39A1B46C36E00A17754 /* MOCPulse WatchKit Extension */,
 				F798B3A71B46C36E00A17754 /* MOCPulse WatchKit App */,
+				8496CDED1B52B3EF00984A0D /* MOCPulse Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8496CDEC1B52B3EF00984A0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8496CE041B52B47100984A0D /* Models in Resources */,
+				845054431B53452D00489897 /* Images.xcassets in Resources */,
+				8496CE031B52B47100984A0D /* Helpers in Resources */,
+				8496CDF61B52B3EF00984A0D /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F798B3701B46C34700A17754 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -522,7 +663,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DF562ADB0F40909185B6D4A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulse Widget/Pods-MOCPulse Widget-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51614B9ADFF180E79943DCB7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BFD77A74770D2DE4AD2F7DBF /* Embed Pods Frameworks */ = {
@@ -537,26 +708,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8496CDEA1B52B3EF00984A0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				842D25A41B53E5630013844F /* LastVoteViewController.swift in Sources */,
+				842D25A51B53E5630013844F /* LoadingViewController.swift in Sources */,
+				842D25A61B53E5630013844F /* VoteTableViewCell.swift in Sources */,
+				84FA7E901B52CDA300C2D0D8 /* VotesTableViewController.swift in Sources */,
+				8496CE1D1B52C31C00984A0D /* Alamofire-SwiftyJSON.swift in Sources */,
+				8496CE1E1B52C31C00984A0D /* API.swift in Sources */,
+				8496CE1F1B52C31C00984A0D /* LocalObjectsManager.swift in Sources */,
+				8496CE201B52C31C00984A0D /* UserModel.swift in Sources */,
+				8496CE211B52C31C00984A0D /* VoteModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F798B36E1B46C34700A17754 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */,
+				842D25A31B53E54C0013844F /* VoteTableViewCell.swift in Sources */,
 				03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */,
 				3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */,
 				0322621F1B4FC6A700BE38A4 /* PieChart.swift in Sources */,
 				032262161B4FB97A00BE38A4 /* UIButton+StateColor.swift in Sources */,
+				842D25A11B53E5420013844F /* LoadingViewController.swift in Sources */,
 				3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */,
 				3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */,
 				032262241B4FC6C800BE38A4 /* VoteCell.swift in Sources */,
 				0322621E1B4FC6A700BE38A4 /* ColorChartObject.swift in Sources */,
 				03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */,
+				842D25A01B53E5420013844F /* LastVoteViewController.swift in Sources */,
 				03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */,
 				0322621D1B4FC6A700BE38A4 /* ColorChart.swift in Sources */,
 				745942821B511EBC00A0C8BF /* CreateVoteViewController.swift in Sources */,
@@ -587,6 +777,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8496CDF81B52B3EF00984A0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8496CDED1B52B3EF00984A0D /* MOCPulse Widget */;
+			targetProxy = 8496CDF71B52B3EF00984A0D /* PBXContainerItemProxy */;
+		};
 		F798B3891B46C34900A17754 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F798B3711B46C34700A17754 /* MOCPulse */;
@@ -632,6 +827,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8496CDFB1B52B3EF00984A0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MOCPulse WIdget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TODAY_EXTENSION";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8496CDFC1B52B3EF00984A0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				INFOPLIST_FILE = "MOCPulse WIdget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TODAY_EXTENSION";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		F798B38F1B46C34900A17754 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -719,14 +946,14 @@
 		};
 		F798B3921B46C34900A17754 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = C1F77959EC2A930AAF636DCC /* Pods-MOCPulse.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
 				INFOPLIST_FILE = MOCPulse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
@@ -737,14 +964,14 @@
 		};
 		F798B3931B46C34900A17754 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2792E67DC0C395DE4767F51 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
 				INFOPLIST_FILE = MOCPulse/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
@@ -863,6 +1090,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8496CDFA1B52B3EF00984A0D /* Build configuration list for PBXNativeTarget "MOCPulse Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8496CDFB1B52B3EF00984A0D /* Debug */,
+				8496CDFC1B52B3EF00984A0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F798B36D1B46C34700A17754 /* Build configuration list for PBXProject "MOCPulse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

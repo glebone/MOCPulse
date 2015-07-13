@@ -9,10 +9,12 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+#if !TODAY_EXTENSION
 import OAuthSwift
+#endif
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://192.168.4.63:8080/"
+let kProductionServer : String = "http://212.55.76.132/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
@@ -37,45 +39,48 @@ class API : NSObject {
 // MARK: Authorization
     static func oauthAuthorization()
     {
-        if (API.isRunAuthorization) {
-            return
-        }
-        API.isRunAuthorization = true;
-        
-        let oauthswift = OAuth2Swift(
-            consumerKey:    "288c7689f3eb0d5426c434413a8711534cc781751a545e431af6f7f3aa8650ee",
-            consumerSecret: "0d88640d7e479c01cb37bff27cc08843e97d4b3d021e3d13449a377afeeec5f3",
-            authorizeUrl:   "\(kAuthorizationServer)oauth/authorize",
-            accessTokenUrl: "\(kAuthorizationServer)oauth/token",
-            responseType:   "code"
-        )
-        
-        let state: String = generateStateWithLength(20) as String
-        
-        var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
-        
-        let userClass: UserModel
-        
-        oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
-            credential, response, parameters in
+        // no need auth in today extension?
+        #if !TODAY_EXTENSION
+            if (API.isRunAuthorization) {
+                return
+            }
+            API.isRunAuthorization = true;
             
-            UserModel.user(credential.oauth_token, _completion: { (user) -> Void in
-                var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
-                manager.user = user
+            let oauthswift = OAuth2Swift(
+                consumerKey:    "288c7689f3eb0d5426c434413a8711534cc781751a545e431af6f7f3aa8650ee",
+                consumerSecret: "0d88640d7e479c01cb37bff27cc08843e97d4b3d021e3d13449a377afeeec5f3",
+                authorizeUrl:   "\(kAuthorizationServer)oauth/authorize",
+                accessTokenUrl: "\(kAuthorizationServer)oauth/token",
+                responseType:   "code"
+            )
+            
+            let state: String = generateStateWithLength(20) as String
+            
+            var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
+            
+            let userClass: UserModel
+            
+            oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
+                credential, response, parameters in
                 
-                println(manager.user)
-                API.isRunAuthorization = false;
-                
-                UserModel.updatePushToken("", deviceToken: "", _completion: { (user) -> Void in
-                    println(user)
+                UserModel.user(credential.oauth_token, _completion: { (user) -> Void in
+                    var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+                    manager.user = user
+                    
+                    println(manager.user)
+                    API.isRunAuthorization = false;
+                    
+                    UserModel.updatePushToken("", deviceToken: "", _completion: { (user) -> Void in
+                        println(user)
+                    })
+                    
                 })
                 
+                }, failure: {(error:NSError!) -> Void in
+                    println(error.localizedDescription)
+                    API.isRunAuthorization = false;
             })
-            
-            }, failure: {(error:NSError!) -> Void in
-                println(error.localizedDescription)
-                API.isRunAuthorization = false;
-        })
+        #endif
     }
 
 // MARK: API Call
