@@ -9,7 +9,7 @@
 import UIKit
 import OAuthSwift
 
-class VotesListViewController: UIViewController , UITableViewDataSource , UITableViewDelegate
+class VotesListViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate
 {
     @IBOutlet var pendingButton : UIButton!
     @IBOutlet var votedButton : UIButton!
@@ -28,7 +28,15 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         setupView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     func setupView() {
+        addRightNavItemOnView()
+        
         setupButton(pendingButton)
         setupButton(votedButton)
         
@@ -48,6 +56,34 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         
         button.setTitleColor(UIColor(red: 37.0/255, green: 37.0/255, blue: 37.0/255, alpha: 1.0), forState: UIControlState.Selected)
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+    }
+    
+    func addRightNavItemOnView()
+    {
+        let createViewButton = UIView(frame: CGRectMake(0, 0, 85, 40))
+        let imageView = UIImageView(image: UIImage(named:"plusImage"))
+        imageView.frame = CGRectMake(60, 7, 25, 25)
+        
+        let label = UILabel(frame: CGRectMake(0, 0, 60, 40))
+        label.text = "New";
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = NSTextAlignment.Right
+        
+        createViewButton.addSubview(label)
+        createViewButton.addSubview(imageView)
+        
+        let tapOnCreate = UITapGestureRecognizer(target: self, action: Selector("rightNavItemCreateClick:"))
+        tapOnCreate.delegate = self
+        createViewButton.addGestureRecognizer(tapOnCreate)
+
+        var rightBarButtonItemDelete: UIBarButtonItem = UIBarButtonItem(customView: createViewButton)
+        
+        self.navigationItem.setRightBarButtonItem(rightBarButtonItemDelete, animated: false)
+    }
+    
+    func rightNavItemCreateClick(sender: UITapGestureRecognizer)
+    {
+        performSegueWithIdentifier("showCreateView", sender: nil)
     }
     
 //MARK: tableview
@@ -92,6 +128,14 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
+        
+        var votesList = self.tableArray()
+        
+        detailsVC.voteModel = votesList[indexPath.row] as! VoteModel
+        
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
 //MARK: actions

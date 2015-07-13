@@ -50,72 +50,67 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="nAv-BC-Te3">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aKc-fK-GHF">
-                                <rect key="frame" x="110" y="20" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Chart">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Eky-ft-Gd0" kind="push" id="KkL-YO-fzy"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I"/>
                     <connections>
                         <outlet property="pendingButton" destination="RWO-VR-0am" id="9dV-i7-cMS"/>
                         <outlet property="tableView" destination="MQU-f0-DgP" id="Zjw-wb-dS5"/>
                         <outlet property="votedButton" destination="0sd-Dh-Y6d" id="UbK-LS-D6N"/>
+                        <segue destination="s1j-iw-4cT" kind="push" identifier="showCreateView" id="Su6-Zl-qKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="286" y="350"/>
         </scene>
-        <!--Votes Table View Controller-->
-        <scene sceneID="Uur-OZ-bRF">
+        <!--Create new vote-->
+        <scene sceneID="vtC-1e-hR1">
             <objects>
-                <tableViewController id="JL0-nu-qh4" customClass="VotesTableViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ygZ-55-FCm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                <viewController title="Create new vote" id="s1j-iw-4cT" customClass="CreateVoteViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wu3-c4-aKg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="VoteCell" textLabel="i24-dL-rg2" style="IBUITableViewCellStyleDefault" id="oUY-JV-S5N">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUY-JV-S5N" id="P22-hO-Cmw">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i24-dL-rg2">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Acb-Or-duk">
+                                <rect key="frame" x="0.0" y="267" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40370501893939392" green="0.40370501893939392" blue="0.40370501893939392" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="Hai-sd-NKn" kind="push" id="tSS-4h-yLc"/>
+                                    <action selector="createButtonClicked:" destination="s1j-iw-4cT" eventType="touchUpInside" id="1wD-zV-uDO"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JL0-nu-qh4" id="4fR-5C-PG4"/>
-                            <outlet property="delegate" destination="JL0-nu-qh4" id="gfE-X7-ELD"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="sYW-BU-glM"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Vote text" id="AIW-sN-qj3">
+                                <rect key="frame" x="16" y="20" width="288" height="161"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chars left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sZp-5E-Euz">
+                                <rect key="frame" x="11" y="225" width="299" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create new vote" id="pN7-G4-ubd">
+                        <barButtonItem key="backBarButtonItem" title="Custom" id="lB4-hu-REU"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="votesTableView" destination="ygZ-55-FCm" id="bZn-cl-MDX"/>
+                        <outlet property="charsLeftLabel" destination="sZp-5E-Euz" id="RO8-Rg-lAq"/>
+                        <outlet property="createButton" destination="Acb-Or-duk" id="7Ak-Hd-G6A"/>
+                        <outlet property="voteTextView" destination="AIW-sN-qj3" id="spZ-HN-L5a"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qy4-a8-PTc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aNh-Qe-zzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="987"/>
+            <point key="canvasLocation" x="286" y="1023"/>
         </scene>
         <!--Vote View Controller-->
         <scene sceneID="5a9-Ce-uBa">
@@ -142,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRf-iX-lhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="714" y="996"/>
+            <point key="canvasLocation" x="1086" y="1205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Rh-VR-FuZ">
@@ -164,43 +159,66 @@
         <!--Vote Details View Controller-->
         <scene sceneID="oCU-mj-bD5">
             <objects>
-                <viewController id="Eky-ft-Gd0" customClass="VoteDetailsViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VoteDetailsVC" id="Eky-ft-Gd0" customClass="VoteDetailsViewController" customModule="MOCPulse" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TwS-s1-rfI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Q6-hg-bS6">
+                                <rect key="frame" x="10" y="40" width="300" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="LWL-RS-hKQ">
+                                <rect key="frame" x="20" y="73" width="280" height="128"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" id="SdH-gQ-6To">
+                                <rect key="frame" x="10" y="300" width="300" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="X8g-74-GJn">
-                                <rect key="frame" x="0.0" y="300" width="320" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="280" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ivz-tU-AVz">
-                                        <rect key="frame" x="5" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add green">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-uo-70s">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.8666666666666667" green="0.18823529411764706" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addGreenAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="W3d-I2-I4d"/>
+                                            <action selector="redButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="zFi-Fh-2f3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JeJ-Eo-fj9">
-                                        <rect key="frame" x="110" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add yellow">
+                                        <rect key="frame" x="106" y="0.0" width="108" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
+                                        <color key="backgroundColor" red="0.9882352941176471" green="0.82352941176470584" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addYellowAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="DNL-Pm-VAk"/>
+                                            <action selector="yellowButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="zPX-as-6EF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xbp-uo-70s">
-                                        <rect key="frame" x="215" y="35" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Add red">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ivz-tU-AVz">
+                                        <rect key="frame" x="214" y="0.0" width="106" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.50980392156862742" green="0.69411764705882351" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="addRedAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="8UE-H3-dd8"/>
+                                            <action selector="greenButtonAction" destination="Eky-ft-Gd0" eventType="touchUpInside" id="Vd2-or-VWi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -210,6 +228,15 @@
                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="0yR-8z-SeG"/>
+                    <connections>
+                        <outlet property="buttonsHolderView" destination="X8g-74-GJn" id="PzI-Yw-eDc"/>
+                        <outlet property="greenButton" destination="Ivz-tU-AVz" id="nKn-ar-bZi"/>
+                        <outlet property="ownerTitleLabel" destination="0Q6-hg-bS6" id="imo-d8-VQe"/>
+                        <outlet property="progressHolderView" destination="SdH-gQ-6To" id="GX6-HS-j8W"/>
+                        <outlet property="redButton" destination="Xbp-uo-70s" id="DhC-Lk-8gE"/>
+                        <outlet property="voteBodyTextView" destination="LWL-RS-hKQ" id="FmV-oM-Tma"/>
+                        <outlet property="yellowButton" destination="JeJ-Eo-fj9" id="IDw-b7-ZxH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdm-Vr-zl5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

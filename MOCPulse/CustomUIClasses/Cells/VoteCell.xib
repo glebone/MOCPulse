@@ -38,7 +38,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="9QT-wy-7uU" id="oar-bD-huL"/>
-                <outlet property="userNaleLabel" destination="4LT-px-0Ca" id="xtx-bH-tBB"/>
+                <outlet property="usernameLabel" destination="4LT-px-0Ca" id="NMl-3r-VOc"/>
                 <outlet property="voteBodyLabel" destination="h8l-lj-lru" id="PEi-V0-ONS"/>
             </connections>
             <point key="canvasLocation" x="325" y="358"/>

@@ -23,7 +23,7 @@
 		3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
 		3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
 		3DECE1991B48249400B6B358 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
-		74BDCF761B486934003B3E7E /* VotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF751B486934003B3E7E /* VotesTableViewController.swift */; };
+		745942821B511EBC00A0C8BF /* CreateVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */; };
 		74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF771B487227003B3E7E /* VoteViewController.swift */; };
 		97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 97A503C31B490A4F00B931AC /* iTunesArtwork */; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
@@ -95,7 +95,7 @@
 		3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Helpers/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
 		3DECE1971B48249400B6B358 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = Helpers/API.swift; sourceTree = "<group>"; };
 		61AA81994E61EC5F8E1299E9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74BDCF751B486934003B3E7E /* VotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesTableViewController.swift; sourceTree = "<group>"; };
+		745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVoteViewController.swift; sourceTree = "<group>"; };
 		74BDCF771B487227003B3E7E /* VoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteViewController.swift; sourceTree = "<group>"; };
 		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		97A503C31B490A4F00B931AC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 			children = (
 				03C3EED41B48396000A9EA45 /* VotesListViewController.swift */,
 				03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */,
-				74BDCF751B486934003B3E7E /* VotesTableViewController.swift */,
 				74BDCF771B487227003B3E7E /* VoteViewController.swift */,
+				745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -559,8 +559,8 @@
 				03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */,
 				03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */,
 				0322621D1B4FC6A700BE38A4 /* ColorChart.swift in Sources */,
+				745942821B511EBC00A0C8BF /* CreateVoteViewController.swift in Sources */,
 				3DECE1991B48249400B6B358 /* API.swift in Sources */,
-				74BDCF761B486934003B3E7E /* VotesTableViewController.swift in Sources */,
 				032262201B4FC6A700BE38A4 /* PulseAnimation.swift in Sources */,
 				F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */,
 			);
