@@ -34,6 +34,14 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         tableView.reloadData()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        var rateView = RateAlertView(ownerTitle: "Paul", voteBody: "Vote body")
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
+    }
+    
     func setupView() {
         addRightNavItemOnView()
         
