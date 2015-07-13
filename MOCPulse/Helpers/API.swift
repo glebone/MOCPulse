@@ -12,7 +12,7 @@ import SwiftyJSON
 import OAuthSwift
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://192.168.4.63:8080/"
+let kProductionServer : String = "http://192.168.5.225:8080/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
@@ -80,11 +80,16 @@ class API : NSObject {
 
 // MARK: API Call
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
-        // FIXME: need to add Authorization Token to headers
-        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
-        request.session.configuration.HTTPAdditionalHeaders = headers;
         
-        println("request.headers:\n\(request.session.configuration.HTTPAdditionalHeaders!)")
+//        if _parameters != nil {
+//            println(JSON(_parameters!))
+//        }
+        
+        // FIXME: need to add Authorization Token to headers
+        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
+        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
+        
+        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
         
         return request;
     }
@@ -101,6 +106,9 @@ class API : NSObject {
                 _failure(error)
             }
             else {
+//                if json != nil {
+//                    println("\(json)")
+//                }
                 _success(json)
             }
         });

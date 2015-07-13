@@ -19,12 +19,12 @@ class VoteModel : NSObject {
     var create : NSDate?
     var voted : Bool! = false
 
-    var greenVotes : Int?
-    var redVotes : Int?
-    var yellowVotes : Int?
+    var greenVotes : Int! = 0
+    var redVotes : Int! = 0
+    var yellowVotes : Int! = 0
 
-    var allUsers : Int?
-    var voteUsers : Int?
+    var allUsers : Int! = 0
+    var voteUsers : Int! = 0
     
     override init () {
         super.init()
@@ -61,9 +61,9 @@ class VoteModel : NSObject {
     
 // MARK: API Call
     static func voteFor(id _id:String, color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color]
+        let _parameters: [String : AnyObject] = ["value" : _color.hash] 
         
-        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
@@ -74,9 +74,9 @@ class VoteModel : NSObject {
     }
     
     func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color]
+        let _parameters: [String : AnyObject] = ["value" : _color.hash]
         
-        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 self.update(json: object["vote"]);
                 _completion(self);
@@ -125,7 +125,7 @@ class VoteModel : NSObject {
     }
     
     static func createVote(name:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["vote": ["name": name , "type" : "1"]], headers: kAuthToken_FIXME),
+        return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["name" : name, "type" : "1"], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
