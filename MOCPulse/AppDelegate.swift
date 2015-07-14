@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
             println("Need call OAuth")
-//            API.oauthAuthorization()
+            API.oauthAuthorization()
         }
     }
 

@@ -29,7 +29,6 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         super.viewWillAppear(animated)
         
         VoteModel.votes { (votesList) -> Void in
-          println(votesList)
             self.votes = votesList
             LocalObjectsManager.sharedInstance.votes = votesList;
             

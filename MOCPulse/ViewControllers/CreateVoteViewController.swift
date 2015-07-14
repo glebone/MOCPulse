@@ -34,6 +34,10 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     @IBAction func createButtonClicked(sender: AnyObject) {
         var voteText = self.voteTextView.text
         // send to server
+
+        VoteModel.createVote(voteText, completion: { (vote) -> Void in
+            println(vote)
+        })
     }
     
     func setupView() {

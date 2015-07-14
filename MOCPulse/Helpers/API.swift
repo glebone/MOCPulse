@@ -66,10 +66,15 @@ class API : NSObject {
                 println(manager.user)
                 API.isRunAuthorization = false;
                 
-                UserModel.updatePushToken("", deviceToken: "", _completion: { (user) -> Void in
+                var token = NSUserDefaults.standardUserDefaults().stringForKey("device_push_token") as String!
+                
+                var userToken: String = credential.oauth_token as String
+                
+                var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
+                
+                UserModel.updatePushToken(_userToken: userToken, _deviceToken: deviceToken, _completion: { (user) -> Void in
                     println(user)
                 })
-                
             })
             
             }, failure: {(error:NSError!) -> Void in
