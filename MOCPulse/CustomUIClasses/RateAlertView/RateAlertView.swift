@@ -51,7 +51,17 @@ class RateAlertView: UIView {
         containerView.addSubview(voteBodyTextView)
         
         var voteButtons = UIView(frame: CGRectMake(0, 215, containerView.frame.size.width, 85))
+        
+        var maskLayer = CAShapeLayer()
+        var roundedPath = UIBezierPath(roundedRect: voteButtons.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: CGSizeMake(5.0, 5.0))
+        maskLayer.fillColor = UIColor.whiteColor().CGColor;
+        maskLayer.backgroundColor = UIColor.clearColor().CGColor;
+        maskLayer.path = roundedPath.CGPath;
+        
+        voteButtons.layer.mask = maskLayer
+        
         voteButtons.clipsToBounds = true
+        
         containerView.addSubview(voteButtons)
         
         var redButton = UIButton(frame: CGRectMake(0, 0, voteButtons.frame.size.width / 3, 100))
@@ -71,12 +81,24 @@ class RateAlertView: UIView {
         
         containerView.center = CGPointMake(UIScreen.mainScreen().bounds.width / 2, UIScreen.mainScreen().bounds.height / 2)
         
-        var closeButton = UIButton(frame: CGRectMake(containerView.frame.size.width - 20, -20, 40, 40))
+        var closeButton = UIButton(frame: CGRectMake(containerView.frame.size.width - 30, -10, 40, 40))
         closeButton.backgroundColor = UIColor.whiteColor()
         closeButton.setTitle("X", forState: UIControlState.Normal)
         closeButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         closeButton.layer.cornerRadius = closeButton.frame.height/2
+        closeButton.addTarget(self, action: "closeButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         containerView.addSubview(closeButton)
+        
+        var xAxis = UIInterpolatingMotionEffect(keyPath: "center.x", type: UIInterpolatingMotionEffectType.TiltAlongHorizontalAxis)
+        xAxis.minimumRelativeValue = (-25)
+        xAxis.maximumRelativeValue = (25)
+        
+        var yAxis = UIInterpolatingMotionEffect(keyPath: "center.y", type: UIInterpolatingMotionEffectType.TiltAlongVerticalAxis)
+        yAxis.minimumRelativeValue = (-50);
+        yAxis.maximumRelativeValue = (50);
+        
+        containerView.addMotionEffect(xAxis)
+        containerView.addMotionEffect(yAxis)
     }
     
     func redButtonAction(sender:UIButton!) {
@@ -92,7 +114,11 @@ class RateAlertView: UIView {
     }
     
     func closeButtonAction(sender:UIButton!) {
-        self.removeFromSuperview()
+        UIView.animateWithDuration(0.25, animations: { () -> Void in
+            self.alpha = 0.0
+            }, completion: { (completed) -> Void in
+                self.removeFromSuperview()
+        })
     }
     
     func animateAndRate(color: UIColor) {

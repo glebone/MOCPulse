@@ -87,38 +87,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // Store the deviceToken in the current installation and save it to Parse.
-        println("device token : \n\(deviceToken)")
+        var token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString:"<>"))
         
-        var tokenString = deviceToken.description
+        token = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        var charsSet = NSCharacterSet(charactersInString:"<>")
+        println(token)
         
-        var token = tokenString.stringByTrimmingCharactersInSet(charsSet)
-        
-        var newToken : String  = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        println(newToken)
-            
-//        NSUserDefaults.standardUserDefaults().setBool(true, forKey: .AppLaunchedFirstTime)
-//        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    //Called if unable to register for APNS.
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println(error)
+        NSUserDefaults.standardUserDefaults().setObject(token, forKey: "device_push_token")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("Recived: \(userInfo)")
         //Parsing userinfo:
-        var temp : NSDictionary = userInfo
-        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
-        {
-            var alertMsg = info["alert"] as! String
-            var alert: UIAlertView!
-            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
+//        var temp : NSDictionary = userInfo
+//        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+//        {
+//            var alertMsg = info["alert"] as! String
+//            var alert: UIAlertView!
+//            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+//            alert.show()
+//        }
+        
+        var rateView = RateAlertView(ownerTitle: "Owner", voteBody: "Vote body string")
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
     }
     
 //MARK: watch kit
