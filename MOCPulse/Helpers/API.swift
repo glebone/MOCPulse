@@ -70,11 +70,12 @@ class API : NSObject {
                 println(manager.user)
                 API.isRunAuthorization = false;
                 
-                var token = NSUserDefaults.standardUserDefaults().stringForKey("device_push_token") as String!
                 var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
                 
-                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken, _completion: { (user) -> Void in
+                UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken, _completion: { (Void) -> Void in
                     println(user)
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                 })
             })
             

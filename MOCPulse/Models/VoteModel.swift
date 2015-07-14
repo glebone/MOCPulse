@@ -81,7 +81,9 @@ class VoteModel : NSObject {
         self.name = _json["name"].stringValue
         
         self.owner = _json["owner"].stringValue
-        self.create = NSDate(timeIntervalSince1970:_json["create"].doubleValue)
+        self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
+        
+        self.voted = _json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
@@ -124,6 +126,7 @@ class VoteModel : NSObject {
                 var list: [VoteModel] = [];
 
                 for (index: String, subJson: JSON) in object["votes"] {
+//                    println(object)
                     var vote : VoteModel = VoteModel(json: subJson)
                     list.append(vote);
                 }
