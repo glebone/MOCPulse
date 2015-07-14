@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
                 if let info = voteInfo as? [String : String] {
                     println(voteInfo)
-                    let val = voteInfo!["value"] as? String
+                    let val = voteInfo!["value"] as? VoteColor
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
                         var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()

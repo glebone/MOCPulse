@@ -12,6 +12,38 @@ import SwiftyJSON
 
 let kAuthToken_FIXME = ["auth_token" : "123123"]
 
+
+enum VoteColor : Int {
+    case VOTE_COLOR_RED = 0
+    case VOTE_COLOR_YELLOW = 1
+    case VOTE_COLOR_GREEN = 2
+    
+    var description : String {
+        switch self {
+        case .VOTE_COLOR_GREEN: return "VOTE_COLOR_GREEN";
+        case .VOTE_COLOR_RED: return "VOTE_COLOR_RED";
+        case .VOTE_COLOR_YELLOW: return "VOTE_COLOR_YELLOW";
+        }
+    }
+    
+    var color : UIColor {
+        switch self {
+        case .VOTE_COLOR_GREEN: return UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1);
+        case .VOTE_COLOR_RED: return UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1);
+        case .VOTE_COLOR_YELLOW: return UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1);
+        }
+    }
+    
+    var forPieChart : UIColor {
+        switch self {
+        case .VOTE_COLOR_GREEN: return UIColor(hexString: "00bf20");
+        case .VOTE_COLOR_RED: return UIColor(hexString: "fb250d");
+        case .VOTE_COLOR_YELLOW: return UIColor(hexString: "ffc000");
+        }
+    }
+}
+
+
 class VoteModel : NSObject {
     var id : String?
     var name : String?
@@ -60,8 +92,8 @@ class VoteModel : NSObject {
     }
     
 // MARK: API Call
-    static func voteFor(id _id:String, color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color.hash] 
+    static func voteFor(id _id:String, color _color:VoteColor, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color.hashValue]
         
         return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
@@ -73,8 +105,8 @@ class VoteModel : NSObject {
         });
     }
     
-    func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color.hash]
+    func voteFor(color _color:VoteColor, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color.hashValue]
         
         return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in

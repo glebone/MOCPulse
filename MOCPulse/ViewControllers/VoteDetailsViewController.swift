@@ -46,6 +46,9 @@ class VoteDetailsViewController: UIViewController {
     }
     
     func interfaceFotVote(vote : VoteModel) {
+        
+        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
+        
         if voteModel.voted == true {
             if colorChart == nil {
                 colorChart = ColorChart(frame: CGRectMake(0, 0, progressHolderView.frame.size.width, progressHolderView.frame.size.height))
@@ -77,61 +80,29 @@ class VoteDetailsViewController: UIViewController {
         }
     }
     
-    @IBAction func greenButtonAction()
-    {
+    func voteForColor(voteColor:VoteColor) {
+        
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        showPulseAnimation(voteColor.color)
         
-//        var greenColor : ColorChartObject = colorChart.getGreenColor()
-//
-//        greenColor.value += 10
-//        
-//        colorChart.reloadChart()
-        
-        showPulseAnimation(UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1))
-        
-        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
-        
-        voteModel.voted = true
-        voteModel.greenVotes = voteModel.greenVotes! + 1
-        self.interfaceFotVote(voteModel)
+        voteModel.voteFor(color: voteColor, completion:  { (vote:VoteModel?) -> Void in
+            self.interfaceFotVote(self.voteModel)
+        })
     }
     
-    @IBAction func yellowButtonAction()
-    {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    @IBAction func greenButtonAction() {
         
-//        var yellowColor : ColorChartObject = colorChart.getYellowColor()
-//        
-//        yellowColor.value += 10
-//        
-//        colorChart.reloadChart()
-        
-        showPulseAnimation(UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1))
-        
-        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
-        
-        voteModel.voted = true
-        voteModel.yellowVotes = voteModel.yellowVotes! + 1
-        self.interfaceFotVote(voteModel)
+        voteForColor(.VOTE_COLOR_GREEN)
     }
     
-    @IBAction func redButtonAction()
-    {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    @IBAction func yellowButtonAction() {
         
-//        var redColor : ColorChartObject = colorChart.getRedColor()
-//        
-//        redColor.value += 10
-//        
-//        colorChart.reloadChart()
+        voteForColor(.VOTE_COLOR_YELLOW)
+    }
+    
+    @IBAction func redButtonAction() {
         
-        showPulseAnimation(UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1))
-        
-        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
-        
-        voteModel.voted = true
-        voteModel.redVotes = voteModel.redVotes! + 1
-        self.interfaceFotVote(voteModel)
+        voteForColor(.VOTE_COLOR_RED)
     }
     
     func showPulseAnimation(color : UIColor) {
@@ -147,16 +118,4 @@ class VoteDetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

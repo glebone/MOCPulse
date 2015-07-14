@@ -39,9 +39,9 @@ class VoteViewController : UIViewController {
     func drawChart()
     {
         self.chart.ClearChart()
-        self.chart.AddChartItem(self.vote!.greenVotes!, color: ChartColors.CHART_COLOR_GREEN)
-        self.chart.AddChartItem(self.vote!.redVotes!, color: ChartColors.CHART_COLOR_RED)
-        self.chart.AddChartItem(self.vote!.yellowVotes!, color: ChartColors.CHART_COLOR_YELLOW)
+        self.chart.AddChartItem(self.vote!.greenVotes!, color: .VOTE_COLOR_GREEN)
+        self.chart.AddChartItem(self.vote!.redVotes!, color: .VOTE_COLOR_RED)
+        self.chart.AddChartItem(self.vote!.yellowVotes!, color: .VOTE_COLOR_YELLOW)
         self.chart.DrawChart()
     }
     
