@@ -20,6 +20,8 @@ class API : NSObject {
     var host : String?
     var token : String?
     
+    static var userToken : String?
+    
     static var isRunAuthorization: Bool = false;
     
     class var sharedInstance : API {
@@ -58,8 +60,10 @@ class API : NSObject {
         
         oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
             credential, response, parameters in
+        
+            self.userToken = String(credential.oauth_token)
             
-            UserModel.user(credential.oauth_token, _completion: { (user) -> Void in
+            UserModel.user(self.userToken!, _completion: { (user) -> Void in
                 var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
                 manager.user = user
                 
@@ -67,12 +71,9 @@ class API : NSObject {
                 API.isRunAuthorization = false;
                 
                 var token = NSUserDefaults.standardUserDefaults().stringForKey("device_push_token") as String!
-                
-                var userToken: String = credential.oauth_token as String
-                
                 var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
                 
-                UserModel.updatePushToken(_userToken: userToken, _deviceToken: deviceToken, _completion: { (user) -> Void in
+                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken, _completion: { (user) -> Void in
                     println(user)
                 })
             })
