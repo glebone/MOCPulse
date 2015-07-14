@@ -22,16 +22,19 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        votes = LocalObjectsManager.sharedInstance.generationVotes(count: 50)
-        LocalObjectsManager.sharedInstance.votes = votes;
-        
         setupView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        VoteModel.votes { (votesList) -> Void in
+          println(votesList)
+            self.votes = votesList
+            LocalObjectsManager.sharedInstance.votes = votesList;
+            
+            self.tableView.reloadData()
+        }
     }
     
     func setupView() {
@@ -45,9 +48,13 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableArray() -> NSArray {
-        var array = votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
+        if votes != nil {
+            var array = votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
+            
+            return array!
+        }
         
-        return array!
+        return NSArray()
     }
     
     func setupButton(button : UIButton) {
