@@ -84,7 +84,8 @@ class VoteModel : NSObject {
         self.owner = _json["owner"].stringValue
         self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
         
-        self.voted = _json["voted"].boolValue
+        // we receive inversion of value, why?
+        self.voted = !_json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
@@ -92,6 +93,16 @@ class VoteModel : NSObject {
         
         self.allUsers = _json["result"]["all_users"].intValue
         self.voteUsers = _json["result"]["vote_users"].intValue
+    }
+    
+    func isNewerThan(vote: VoteModel) -> Bool {
+        var result = false
+        
+        if (self.create?.compare(vote.create!) == NSComparisonResult.OrderedDescending) {
+            result = true
+        }
+        
+        return result
     }
     
 // MARK: API Call

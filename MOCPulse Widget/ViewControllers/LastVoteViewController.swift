@@ -30,10 +30,6 @@ class LastVoteViewController: UIViewController, NCWidgetProviding {
     
     func setupView() {
         self.question.text = vote.name
-        if (count(self.question.text!.utf16) < 50) {
-            self.question.sizeToFit()
-        }
-
         self.author.text = vote.owner
         
         var dateFormatter = NSDateFormatter()

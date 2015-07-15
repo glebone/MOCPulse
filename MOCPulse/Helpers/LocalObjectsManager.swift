@@ -63,6 +63,10 @@ class LocalObjectsManager {
         return vote;
     }
     
+    func sortVotesByDate() {
+        self.votes = self.votes?.sorted{($0 as VoteModel).isNewerThan($1 as VoteModel)}
+    }
+    
     // MARK: Generation
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []

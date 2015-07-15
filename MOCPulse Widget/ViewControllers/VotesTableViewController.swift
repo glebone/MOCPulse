@@ -16,6 +16,8 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateSize()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,10 +48,6 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.NewData)
     }
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsetsZero
-    }
-    
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -65,7 +63,8 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VoteCell", forIndexPath: indexPath) as! VoteTableViewCell
-        var vote = LocalObjectsManager.sharedInstance.votes![indexPath.row]
+        println(indexPath.row)
+        var vote : VoteModel = LocalObjectsManager.sharedInstance.votes![indexPath.row]
         cell.setupWithVote(vote)
         return cell
     }

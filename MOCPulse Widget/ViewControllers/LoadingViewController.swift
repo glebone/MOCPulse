@@ -11,7 +11,7 @@ import NotificationCenter
 
 class LoadingViewController: UIViewController, NCWidgetProviding {
 
-    let viewHeight : CGFloat = 50.0
+    let viewHeight : CGFloat = 120.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +25,25 @@ class LoadingViewController: UIViewController, NCWidgetProviding {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateSize()
-        VoteModel.votes(completion: { (arr) -> Void in
-            LocalObjectsManager.sharedInstance.votes = arr
-            
-            var lastVote = LocalObjectsManager.sharedInstance.getLastVote()
-            if lastVote == nil {
+
+        VoteModel.votes(completion: { (arr: [VoteModel]?) -> Void in
+            if arr?.count < 0 {
                 return
             }
-
-            if (lastVote?.voted == true) {
+            
+            LocalObjectsManager.sharedInstance.votes = arr
+            LocalObjectsManager.sharedInstance.sortVotesByDate()
+            
+            var lastVotedVote = LocalObjectsManager.sharedInstance.getLastVote()
+            if lastVotedVote == nil {
+                self.performSegueWithIdentifier("showVotes", sender: nil)
+                return
+            }
+            
+            if (lastVotedVote?.voted == true) {
                 self.performSegueWithIdentifier("showVotes", sender: nil)
             } else {
-                self.pushToLastVote(lastVote!)
+                self.pushToLastVote(lastVotedVote!)
             }
         })
     }

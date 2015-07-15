@@ -17,7 +17,6 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIKeyboardDidShowNotification
         
         self.voteTextView.delegate = self
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
@@ -38,16 +37,14 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         VoteModel.createVote(voteText, completion: { (vote) -> Void in
             println(vote)
         })
+        
+        self.navigationController!.popViewControllerAnimated(true)
     }
     
     func setupView() {
         textViewDidChange(self.voteTextView)
         
         var vWidth = self.view.frame.width
-        
-        self.createButton.frame = CGRectMake(0, self.createButton.frame.origin.y, vWidth, self.createButton.frame.height)
-        self.charsLeftLabel.frame = CGRectMake(0, self.charsLeftLabel.frame.origin.y, vWidth, self.charsLeftLabel.frame.height)
-        self.voteTextView.frame = CGRectMake(0, self.voteTextView.frame.origin.y, vWidth, self.voteTextView.frame.height)
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -71,7 +68,8 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     }
     
     func calculateCharsLeft() {
-        var charsLeft = 140 - count(self.voteTextView.text)
+        let maxChars = 140
+        var charsLeft = maxChars - count(self.voteTextView.text)
         
         var notEnoughChars : Bool = charsLeft < 0
         
@@ -80,7 +78,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         if (notEnoughChars) {
             var voteNameText : String = self.voteTextView.text!
             let stringLength = count(voteNameText)
-            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, 140))
+            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, maxChars))
             self.voteTextView.text = voteNameText
         }
     }

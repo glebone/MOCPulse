@@ -14,7 +14,7 @@ import OAuthSwift
 #endif
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://212.55.76.115/"
+let kProductionServer : String = "http://192.168.5.225:8080/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {

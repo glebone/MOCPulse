@@ -43,13 +43,16 @@ class VoteDetailsViewController: UIViewController {
         
         ownerTitleLabel.text = voteModel.owner
         voteBodyTextView.text = voteModel.name
+        
+        interfaceFotVote(self.voteModel)
     }
     
     func interfaceFotVote(vote : VoteModel) {
         
         println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
         
-        if voteModel.voted == true {
+        if vote.voted == true {
+            
             if colorChart == nil {
                 colorChart = ColorChart(frame: CGRectMake(0, 0, progressHolderView.frame.size.width, progressHolderView.frame.size.height))
                 var greenColor : ColorChartObject = colorChart.getGreenColor()
@@ -86,7 +89,7 @@ class VoteDetailsViewController: UIViewController {
         showPulseAnimation(voteColor.color)
         
         voteModel.voteFor(color: voteColor, completion:  { (vote:VoteModel?) -> Void in
-            self.interfaceFotVote(self.voteModel)
+            self.interfaceFotVote(vote!)
         })
     }
     
