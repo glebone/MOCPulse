@@ -14,6 +14,7 @@
 		032262201B4FC6A700BE38A4 /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322621C1B4FC6A700BE38A4 /* PulseAnimation.swift */; };
 		032262241B4FC6C800BE38A4 /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032262221B4FC6C800BE38A4 /* VoteCell.swift */; };
 		032262251B4FC6C800BE38A4 /* VoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032262231B4FC6C800BE38A4 /* VoteCell.xib */; };
+		032CB2711B51535400612183 /* RateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032CB2701B51535400612183 /* RateAlertView.swift */; };
 		03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED41B48396000A9EA45 /* VotesListViewController.swift */; };
 		03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */; };
 		03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
@@ -115,6 +116,7 @@
 		0322621C1B4FC6A700BE38A4 /* PulseAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
 		032262221B4FC6C800BE38A4 /* VoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		032262231B4FC6C800BE38A4 /* VoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteCell.xib; sourceTree = "<group>"; };
+		032CB2701B51535400612183 /* RateAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateAlertView.swift; sourceTree = "<group>"; };
 		03C3EED41B48396000A9EA45 /* VotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesListViewController.swift; sourceTree = "<group>"; };
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		032262171B4FC6A700BE38A4 /* CustomUIClasses */ = {
 			isa = PBXGroup;
 			children = (
+				032CB26F1B514F4E00612183 /* RateAlertView */,
 				032262211B4FC6B400BE38A4 /* Cells */,
 				032262181B4FC6A700BE38A4 /* ColoredChart */,
 			);
@@ -230,6 +233,14 @@
 				032262231B4FC6C800BE38A4 /* VoteCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		032CB26F1B514F4E00612183 /* RateAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				032CB2701B51535400612183 /* RateAlertView.swift */,
+			);
+			path = RateAlertView;
 			sourceTree = "<group>";
 		};
 		03C3EED31B48384300A9EA45 /* ViewControllers */ = {
@@ -739,6 +750,7 @@
 				03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */,
 				3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */,
 				0322621F1B4FC6A700BE38A4 /* PieChart.swift in Sources */,
+				032CB2711B51535400612183 /* RateAlertView.swift in Sources */,
 				032262161B4FB97A00BE38A4 /* UIButton+StateColor.swift in Sources */,
 				842D25A11B53E5420013844F /* LoadingViewController.swift in Sources */,
 				3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */,
@@ -899,7 +911,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
+				PROVISIONING_PROFILE = "891a26fb-73ac-42cb-afd8-920ff5ed30c3";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -938,7 +950,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
+				PROVISIONING_PROFILE = "891a26fb-73ac-42cb-afd8-920ff5ed30c3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -956,7 +968,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
+				PROVISIONING_PROFILE = "891a26fb-73ac-42cb-afd8-920ff5ed30c3";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -974,7 +986,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "29464844-1163-475d-94cb-c7b591ccc29a";
+				PROVISIONING_PROFILE = "891a26fb-73ac-42cb-afd8-920ff5ed30c3";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;

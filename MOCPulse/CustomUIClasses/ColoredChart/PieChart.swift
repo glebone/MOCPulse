@@ -10,38 +10,15 @@ import Foundation
 import VBPieChart
 import SwiftyJSON
 
-enum ChartColors {
-    case CHART_COLOR_GREEN
-    case CHART_COLOR_RED
-    case CHART_COLOR_YELLOW
-
-    
-    var description : String {
-        switch self {
-        case .CHART_COLOR_GREEN: return "CHART_COLOR_GREEN";
-        case .CHART_COLOR_RED: return "CHART_COLOR_RED";
-        case .CHART_COLOR_YELLOW: return "CHART_COLOR_YELLOW";
-        }
-    }
-    
-    var color : UIColor {
-        switch self {
-        case .CHART_COLOR_GREEN: return UIColor(hexString: "00bf20");
-        case .CHART_COLOR_RED: return UIColor(hexString: "fb250d");
-        case .CHART_COLOR_YELLOW: return UIColor(hexString: "ffc000");
-        }
-    }
-}
-
 class PieChart : VBPieChart {
     var chartArray : [ChartItem] = [];
     
     class ChartItem {
         var name: String
-        var chartColor: ChartColors        
+        var chartColor: VoteColor
         var value: Int
         
-        init(color_: ChartColors, value_: Int) {
+        init(color_: VoteColor, value_: Int) {
             self.name = "unk"
             self.chartColor = color_
             self.value = value_
@@ -49,7 +26,7 @@ class PieChart : VBPieChart {
         
         func toDictionary() -> [String:NSObject]
         {
-            return ["name": "unk", "value":self.value, "color":self.chartColor.color]
+            return ["name": "unk", "value":self.value, "color":self.chartColor.forPieChart]
         }
     }
     
@@ -81,9 +58,9 @@ class PieChart : VBPieChart {
         var rCount = json["red"].intValue;
         
         ClearChart();
-        AddChartItem(yCount, color: ChartColors.CHART_COLOR_YELLOW);
-        AddChartItem(gCount, color: ChartColors.CHART_COLOR_GREEN);
-        AddChartItem(rCount, color: ChartColors.CHART_COLOR_RED);
+        AddChartItem(yCount, color: .VOTE_COLOR_YELLOW);
+        AddChartItem(gCount, color: .VOTE_COLOR_GREEN);
+        AddChartItem(rCount, color: .VOTE_COLOR_RED);
         DrawChart();
     }
     
@@ -92,7 +69,7 @@ class PieChart : VBPieChart {
         self.chartArray.removeAll(keepCapacity: false);
     }
     
-    func AddChartItem(value: NSInteger, color: ChartColors)
+    func AddChartItem(value: NSInteger, color: VoteColor)
     {
         if value == 0 {
             return;

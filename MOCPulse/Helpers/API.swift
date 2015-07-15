@@ -14,13 +14,15 @@ import OAuthSwift
 #endif
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://212.55.76.132/"
+let kProductionServer : String = "http://212.55.76.115/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
     
     var host : String?
     var token : String?
+    
+    static var userToken : String?
     
     static var isRunAuthorization: Bool = false;
     
@@ -63,17 +65,22 @@ class API : NSObject {
             oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
                 credential, response, parameters in
                 
-                UserModel.user(credential.oauth_token, _completion: { (user) -> Void in
+                self.userToken = String(credential.oauth_token)
+                
+                UserModel.user(self.userToken!, _completion: { (user) -> Void in
                     var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
                     manager.user = user
                     
                     println(manager.user)
                     API.isRunAuthorization = false;
                     
-                    UserModel.updatePushToken("", deviceToken: "", _completion: { (user) -> Void in
-                        println(user)
-                    })
+                    var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
                     
+                    UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken, _completion: { (Void) -> Void in
+                        println(user)
+            
+                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                    })
                 })
                 
                 }, failure: {(error:NSError!) -> Void in
@@ -85,11 +92,16 @@ class API : NSObject {
 
 // MARK: API Call
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
-        // FIXME: need to add Authorization Token to headers
-        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
-        request.session.configuration.HTTPAdditionalHeaders = headers;
         
-        println("request.headers:\n\(request.session.configuration.HTTPAdditionalHeaders!)")
+//        if _parameters != nil {
+//            println(JSON(_parameters!))
+//        }
+        
+        // FIXME: need to add Authorization Token to headers
+        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
+        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
+        
+        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
         
         return request;
     }
@@ -106,6 +118,9 @@ class API : NSObject {
                 _failure(error)
             }
             else {
+//                if json != nil {
+//                    println("\(json)")
+//                }
                 _success(json)
             }
         });

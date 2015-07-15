@@ -22,25 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         // handle todays url
         if (url.scheme == "mocpulse") {
-            var param : [AnyObject] = url.pathComponents!
-            var action: String = param[1] as! String
-            
-            switch action {
-                case "recent":
-                    println("recent")
-                case "vote":
-                    var color: String = param[2] as! String
-                    var id: String = param[3] as! String
-                    
-                    // need auth check?
-                    VoteModel.voteFor(id: id, color: color, completion: { (vote) -> Void in
-                        // need some notification
-                        println("Voted!")
-                    })
-                
-                default:
-                    println("Unknown url for scheme ", &action)
-            }
+            self.handleWidgetsOpenUrl(url)
         } else {
             OAuth2Swift.handleOpenURL(url)
         }
@@ -65,6 +47,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func handleWidgetsOpenUrl(url: NSURL)
+    {
+        var param : [AnyObject] = url.pathComponents!
+        var action: String = param[1] as! String
+        
+        switch action {
+        case "recent":
+            println("recent")
+        case "vote":
+            var strcolor: String = param[2] as! String
+            var id: String = param[3] as! String
+            
+            var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
+            
+            switch strcolor {
+            case "green": color = VoteColor.VOTE_COLOR_GREEN
+            case "yellow": color = VoteColor.VOTE_COLOR_YELLOW
+            case "red": color = VoteColor.VOTE_COLOR_RED
+            default : break
+            }
+            
+            // need auth check?
+            VoteModel.voteFor(id: id, color: color, completion: { (vote) -> Void in
+                // need some notification
+                println("Voted!")
+            })
+            
+        default:
+            println("Unknown url for scheme ", &action)
+        }
     }
     
     func updateGlobalUI() {
@@ -93,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
             println("Need call OAuth")
-//            API.oauthAuthorization()
+            API.oauthAuthorization()
         }
     }
 
@@ -109,38 +123,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // Store the deviceToken in the current installation and save it to Parse.
-        println("device token : \n\(deviceToken)")
+        var token = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString:"<>"))
         
-        var tokenString = deviceToken.description
+        token = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        var charsSet = NSCharacterSet(charactersInString:"<>")
+        println(token)
         
-        var token = tokenString.stringByTrimmingCharactersInSet(charsSet)
-        
-        var newToken : String  = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        
-        println(newToken)
-            
-//        NSUserDefaults.standardUserDefaults().setBool(true, forKey: .AppLaunchedFirstTime)
-//        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    //Called if unable to register for APNS.
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println(error)
+        NSUserDefaults.standardUserDefaults().setObject(token, forKey: "device_push_token")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("Recived: \(userInfo)")
         //Parsing userinfo:
-        var temp : NSDictionary = userInfo
-        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
-        {
-            var alertMsg = info["alert"] as! String
-            var alert: UIAlertView!
-            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
+//        var temp : NSDictionary = userInfo
+//        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+//        {
+//            var alertMsg = info["alert"] as! String
+//            var alert: UIAlertView!
+//            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+//            alert.show()
+//        }
+        
+        var rateView = RateAlertView(ownerTitle: "Owner", voteBody: "Vote body string")
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
     }
     
 //MARK: watch kit
@@ -161,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
                 if let info = voteInfo as? [String : String] {
                     println(voteInfo)
-                    let val = voteInfo!["value"] as? String
+                    let val = voteInfo!["value"] as? VoteColor
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
                         var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()

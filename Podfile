@@ -14,4 +14,5 @@ target :'MOCPulse Widget' do
     pod 'Alamofire', '~> 1.2'
     pod 'SwiftyJSON', '~> 2.2.0'
     pod 'KeychainAccess', '~> 1.2.1'
+    pod 'VBPieChart', '~> 0.3.0'
 end

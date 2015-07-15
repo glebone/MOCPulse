@@ -14,8 +14,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VoteCell" id="V36-tN-ykF" customClass="VoteTableViewCell" customModule="MOCPulse_Widget" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="1" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V36-tN-ykF" id="Jm0-rV-Y98">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" id="6o5-4n-eSf">
@@ -24,7 +26,7 @@
                                             <color key="backgroundColor" red="0.53724568259177574" green="1" blue="0.60865883549966149" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ohO-td-B1X">
-                                            <rect key="frame" x="31" y="12" width="296" height="17"/>
+                                            <rect key="frame" x="31" y="0.0" width="296" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -197,9 +199,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="greenSmile" width="48" height="48"/>
-        <image name="redSmile" width="48" height="48"/>
-        <image name="yellowSmile" width="48" height="48"/>
+        <image name="greenSmile" width="25" height="25"/>
+        <image name="redSmile" width="25" height="25"/>
+        <image name="yellowSmile" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

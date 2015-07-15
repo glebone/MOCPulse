@@ -9,8 +9,41 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import VBPieChart
 
 let kAuthToken_FIXME = ["auth_token" : "123123"]
+
+
+enum VoteColor : Int {
+    case VOTE_COLOR_RED = 0
+    case VOTE_COLOR_YELLOW = 1
+    case VOTE_COLOR_GREEN = 2
+    
+    var description : String {
+        switch self {
+        case .VOTE_COLOR_GREEN: return "VOTE_COLOR_GREEN";
+        case .VOTE_COLOR_RED: return "VOTE_COLOR_RED";
+        case .VOTE_COLOR_YELLOW: return "VOTE_COLOR_YELLOW";
+        }
+    }
+    
+    var color : UIColor {
+        switch self {
+        case .VOTE_COLOR_GREEN: return UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1);
+        case .VOTE_COLOR_RED: return UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1);
+        case .VOTE_COLOR_YELLOW: return UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1);
+        }
+    }
+    
+    var forPieChart : UIColor {
+        switch self {
+        case .VOTE_COLOR_GREEN: return UIColor(hexString: "00bf20");
+        case .VOTE_COLOR_RED: return UIColor(hexString: "fb250d");
+        case .VOTE_COLOR_YELLOW: return UIColor(hexString: "ffc000");
+        }
+    }
+}
+
 
 class VoteModel : NSObject {
     var id : String?
@@ -19,12 +52,12 @@ class VoteModel : NSObject {
     var create : NSDate?
     var voted : Bool! = false
 
-    var greenVotes : Int?
-    var redVotes : Int?
-    var yellowVotes : Int?
+    var greenVotes : Int! = 0
+    var redVotes : Int! = 0
+    var yellowVotes : Int! = 0
 
-    var allUsers : Int?
-    var voteUsers : Int?
+    var allUsers : Int! = 0
+    var voteUsers : Int! = 0
     
     override init () {
         super.init()
@@ -49,7 +82,9 @@ class VoteModel : NSObject {
         self.name = _json["name"].stringValue
         
         self.owner = _json["owner"].stringValue
-        self.create = NSDate(timeIntervalSince1970:_json["create"].doubleValue)
+        self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
+        
+        self.voted = _json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
@@ -60,10 +95,10 @@ class VoteModel : NSObject {
     }
     
 // MARK: API Call
-    static func voteFor(id _id:String, color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color]
+    static func voteFor(id _id:String, color _color:VoteColor, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color.hashValue]
         
-        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
@@ -73,10 +108,10 @@ class VoteModel : NSObject {
         });
     }
     
-    func voteFor(color _color:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        let _parameters: [String : AnyObject] = ["value" : _color]
+    func voteFor(color _color:VoteColor, completion _completion: (VoteModel?) -> Void) -> Request {
+        let _parameters: [String : AnyObject] = ["value" : _color.hashValue]
         
-        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: ["vote": _parameters], headers: kAuthToken_FIXME),
+        return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(id!)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 self.update(json: object["vote"]);
                 _completion(self);
@@ -92,6 +127,7 @@ class VoteModel : NSObject {
                 var list: [VoteModel] = [];
 
                 for (index: String, subJson: JSON) in object["votes"] {
+//                    println(object)
                     var vote : VoteModel = VoteModel(json: subJson)
                     list.append(vote);
                 }
@@ -125,7 +161,7 @@ class VoteModel : NSObject {
     }
     
     static func createVote(name:String, completion _completion: (VoteModel?) -> Void) -> Request {
-        return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["vote": ["name": name , "type" : "1"]], headers: kAuthToken_FIXME),
+        return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["name" : name, "type" : "1"], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 var vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
