@@ -37,7 +37,7 @@ class VoteDetailsViewController: UIViewController {
     func setupView() {
         var screenRect : CGRect = UIScreen.mainScreen().bounds
 
-        pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(self.view.center.x, self.view.center.y - self.navigationController!.navigationBar.frame.size.height))
+        pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(self.view.center.x, self.view.center.y ))
         
         println("\(voteModel.name)")
         

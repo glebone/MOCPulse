@@ -59,17 +59,17 @@ class LastVoteViewController: UIViewController, NCWidgetProviding {
     }
     
     @IBAction func greenButtonPressed(sender: AnyObject) {
-        let url:NSURL = NSURL(fileURLWithPath: NSString(format: "mocpulse://vote/green/%@", vote.id!) as String)!
+        let url:NSURL = NSURL(string: NSString(format: "mocpulse://vote/green/%@", vote.id!) as String)!
         extensionContext!.openURL(url, completionHandler: nil)
     }
     
     @IBAction func yellowButtonPressed(sender: AnyObject) {
-        let url:NSURL = NSURL(fileURLWithPath: NSString(format: "mocpulse://vote/yellow/%@", vote.id!) as String)!
+        let url:NSURL = NSURL(string: NSString(format: "mocpulse://vote/yellow/%@", vote.id!) as String)!
         extensionContext!.openURL(url, completionHandler: nil)
     }
     
     @IBAction func redButtonPressed(sender: AnyObject) {
-        let url:NSURL = NSURL(fileURLWithPath: NSString(format: "mocpulse://vote/red/%@", vote.id!) as String)!
+        let url:NSURL = NSURL(string: NSString(format: "mocpulse://vote/red/%@", vote.id!) as String)!
         extensionContext!.openURL(url, completionHandler: nil)
     }
     

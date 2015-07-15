@@ -36,8 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if(application.respondsToSelector(Selector("registerUserNotificationSettings:")))
         {
-            var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            self.setupNotifications()
             UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         else
@@ -49,17 +48,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func setupNotifications() {
+        var voteAction = UIMutableUserNotificationAction()
+        voteAction.identifier = "ID_VOTE"
+        voteAction.title = "Vote"
+        voteAction.destructive = false
+        voteAction.authenticationRequired = false
+        voteAction.activationMode = UIUserNotificationActivationMode.Background
+        
+        var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        notificationCategory.identifier = "INVITE_CATEGORY"
+        notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
+        
+        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: NSSet(array: [notificationCategory]) as Set<NSObject>)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    }
+    
     func handleWidgetsOpenUrl(url: NSURL)
     {
-        var param : [AnyObject] = url.pathComponents!
-        var action: String = param[1] as! String
+        var host = url.host
         
-        switch action {
-        case "recent":
-            println("recent")
+        switch url.host! {
+        case "openvote":
+            var param : [AnyObject] = url.pathComponents!
+            var voteId: String = param[1] as! String
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["voteId":voteId])
+
         case "vote":
-            var strcolor: String = param[2] as! String
-            var id: String = param[3] as! String
+            var param : [AnyObject] = url.pathComponents!
+            var strcolor: String = param[1] as! String
+            var voteId: String = param[2] as! String
             
             var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
             
@@ -71,13 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             // need auth check?
-            VoteModel.voteFor(id: id, color: color, completion: { (vote) -> Void in
-                // need some notification
-                println("Voted!")
+            VoteModel.voteFor(id: voteId, color: color, completion: { (vote) -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["vote":vote!])
             })
             
-        default:
-            println("Unknown url for scheme ", &action)
+        default: break
+            //println("Unknown url for scheme ", &action)
         }
     }
     
@@ -148,6 +166,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var rateView = RateAlertView(ownerTitle: "Owner", voteBody: "Vote body string")
         
         UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        if identifier == "ID_VOTE" {
+            UIApplication.sharedApplication().openURL(NSURL(string: "mocpulse://openvote/2")!)
+        }
     }
     
 //MARK: watch kit

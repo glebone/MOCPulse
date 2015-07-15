@@ -15,8 +15,6 @@ class LocalObjectsManager {
     
     var votes : [VoteModel]?
     
-    var voteIndexSelected : Int?
-    
     class var sharedInstance : LocalObjectsManager {
         struct singleton {
             static let instance : LocalObjectsManager = LocalObjectsManager();
@@ -60,6 +58,11 @@ class LocalObjectsManager {
     // MARK: Management Votes
     func getLastVote() -> VoteModel? {
         var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.voted == false}.first
+        return vote;
+    }
+    
+    func getVoteById(id: String) -> VoteModel? {
+        var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.id! == id}.first
         return vote;
     }
     

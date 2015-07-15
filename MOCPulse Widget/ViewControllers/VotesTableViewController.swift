@@ -70,7 +70,7 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let url:NSURL = NSURL(fileURLWithPath: "mocpulse://recent")!
+        let url:NSURL = NSURL(string:  NSString(format: "mocpulse://openvote/%@", LocalObjectsManager.sharedInstance.votes![indexPath.row].id!) as String)!
         extensionContext!.openURL(url, completionHandler: nil)
     }
 }

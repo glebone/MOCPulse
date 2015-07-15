@@ -25,6 +25,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         setupView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("fetchVotesList"), name: "GET_ALL_VOTES", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadNotification:"), name: "NOTIFICATION_SHOW_VIEW", object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -105,6 +106,30 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func rightNavItemCreateClick(sender: UITapGestureRecognizer)
     {
         performSegueWithIdentifier("showCreateView", sender: nil)
+        
+        // for debug
+//        var localNotification:UILocalNotification = UILocalNotification()
+//        localNotification.alertAction = "Testing notifications on iOS8"
+//        localNotification.alertBody = "Local notification"
+//        localNotification.fireDate = NSDate(timeIntervalSinceNow: 7)
+//        localNotification.category = "INVITE_CATEGORY";
+//        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+    func handleLoadNotification(notification: NSNotification) {
+        var vote = (notification.userInfo as! [NSString:VoteModel])["vote"]
+        if vote != nil {
+            presentDetailViewForVote(vote!)
+        } else {
+            var voteId = (notification.userInfo as! [NSString:NSString])["voteId"]
+            if voteId != nil {
+                VoteModel.voteByID(voteId! as String, completion: { (newVote) -> Void in
+                    if newVote != nil {
+                        self.presentDetailViewForVote(newVote!)
+                    }
+                })
+            }
+        }
     }
     
 //MARK: tableview
@@ -150,16 +175,19 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
-        
         var votesList = self.tableArray()
-        
-        detailsVC.voteModel = votesList[indexPath.row] as! VoteModel
-        
-        self.navigationController?.pushViewController(detailsVC, animated: true)
+        presentDetailViewForVote(votesList[indexPath.row] as! VoteModel)
     }
     
 //MARK: actions
+    
+    func presentDetailViewForVote(vote: VoteModel) {
+        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
+        detailsVC.voteModel = vote
+        
+        self.navigationController?.popToRootViewControllerAnimated(false)
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
     
     @IBAction func pendingAction()
     {

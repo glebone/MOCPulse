@@ -24,9 +24,6 @@ class VoteViewController : UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var objPointer = LocalObjectsManager.sharedInstance
-        self.vote = objPointer.votes![objPointer.voteIndexSelected!]
-        
         randomData()
         drawChart()
     }
