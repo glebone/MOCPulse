@@ -153,19 +153,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("Recived: \(userInfo)")
-        //Parsing userinfo:
-//        var temp : NSDictionary = userInfo
-//        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
-//        {
-//            var alertMsg = info["alert"] as! String
-//            var alert: UIAlertView!
-//            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
-//            alert.show()
-//        }
+        // structure example
+        // {"aps":{"alert":"This is some fancy message.","badge":1, "category":"newVote", "vote":{"id":"1437029089921061910","name":"This is some fancy message.","owner":"Jack London"}}}
         
-        var rateView = RateAlertView(ownerTitle: "Owner", voteBody: "Vote body string")
-        
-        UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
+        if var aps = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary {
+            if var vote = aps["vote"] as? NSDictionary {
+                var voteId = vote["id"] as! String
+                var owner = vote["owner"] as! String
+                var body = vote["name"] as! String
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                
+                var rateView = RateAlertView(ownerTitle: owner, voteBody: body, voteId: voteId)
+                
+                UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
+            }
+        }
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
@@ -179,13 +182,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        var aps = (userInfo as! [NSString : AnyObject])["aps"] as! NSDictionary
-        var vote = aps["vote"] as! NSDictionary
-        var voteId = vote["id"] as! String
+        if var aps = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary {
+            if var vote = aps["vote"] as? NSDictionary {
+                var voteId = vote["id"] as! String
     
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
+                NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                
+                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                    UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
+                }
+            }
         }
     }
     

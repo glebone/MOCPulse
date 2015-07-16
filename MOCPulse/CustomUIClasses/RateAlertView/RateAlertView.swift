@@ -13,8 +13,12 @@ class RateAlertView: UIView {
 
     var pulseEffect : PulseAnimation!
     
-    init(ownerTitle: String, voteBody: String) {
+    var voteId : String!
+    
+    init(ownerTitle: String, voteBody: String, voteId: String) {
         super.init(frame: UIScreen.mainScreen().bounds)
+        
+        self.voteId = voteId
         
         var screenRect : CGRect = UIScreen.mainScreen().bounds
         
@@ -102,15 +106,15 @@ class RateAlertView: UIView {
     }
     
     func redButtonAction(sender:UIButton!) {
-        animateAndRate(UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1))
+        animateAndRate(UIColor(red: 221/255, green: 48/255, blue: 61/255, alpha: 1), colorType: VoteColor.VOTE_COLOR_RED)
     }
     
     func greenButtonAction(sender:UIButton!) {
-        animateAndRate(UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1))
+        animateAndRate(UIColor(red: 130/255, green: 177/255, blue: 17/255, alpha: 1), colorType: VoteColor.VOTE_COLOR_GREEN)
     }
     
     func yellowButtonAction(sender:UIButton!) {
-        animateAndRate(UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1))
+        animateAndRate(UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 1), colorType: VoteColor.VOTE_COLOR_YELLOW)
     }
     
     func closeButtonAction(sender:UIButton!) {
@@ -121,7 +125,7 @@ class RateAlertView: UIView {
         })
     }
     
-    func animateAndRate(color: UIColor) {
+    func animateAndRate(color: UIColor, colorType: VoteColor) {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         if (pulseEffect.superlayer == nil) {
@@ -131,7 +135,9 @@ class RateAlertView: UIView {
         pulseEffect.backgroundColor = color.CGColor
         pulseEffect.addAnimation(pulseEffect.animationGroup, forKey: "pulse")
         
-//TODO: need add request
+        VoteModel.voteFor(id: voteId, color: colorType, completion: { (vote) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["vote":vote!])
+        })
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW,
             Int64(0.25 * Double(NSEC_PER_SEC)))

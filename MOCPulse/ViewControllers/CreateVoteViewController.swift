@@ -33,8 +33,9 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     @IBAction func createButtonClicked(sender: AnyObject) {
         var voteText = self.voteTextView.text
         // send to server
-
+        
         VoteModel.createVote(voteText, completion: { (vote) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
             println(vote)
         })
         

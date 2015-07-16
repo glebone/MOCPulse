@@ -73,11 +73,18 @@ class API : NSObject {
 
                     API.isRunAuthorization = false
                     
-                    var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
+                    var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
             
+                    // FIX ME
+                    // we auth to fast, token not ready
+                    if deviceToken == nil {
+                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                        return
+                    }
+                    
                     println("deviceToken: \(deviceToken)")
                     
-                    UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken, _completion: { (Void) -> Void in
+                    UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
                         println(user)
             
                         NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
