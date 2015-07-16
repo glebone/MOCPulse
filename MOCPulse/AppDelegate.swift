@@ -200,7 +200,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, handleWatchKitExtensionRequest
         voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
-            
             var task = UIBackgroundTaskInvalid
             UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({ () -> Void in
                 UIApplication.sharedApplication().endBackgroundTask(task)
@@ -210,17 +209,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 // do some task
-            
-            
                 if let info = voteInfo as? [String : String] {
                     println(voteInfo)
-                    let val = voteInfo!["value"] as? VoteColor
+                    let val = voteInfo!["value"] as? String
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
                         var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
                         if curVote == nil
                         {
-                           reply.map {$0 (["name" : "", "id": ""])}
+                            reply.map {$0 (["name" : "", "id": ""])}
                         }
                         else
                         {
@@ -228,8 +225,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                     else {
+                        var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
+                        switch val! {
+                        case "Green": color = VoteColor.VOTE_COLOR_GREEN
+                        case "Yellow": color = VoteColor.VOTE_COLOR_YELLOW
+                        case "Red": color = VoteColor.VOTE_COLOR_RED
+                        default : break
+                        }
                         
-                        VoteModel.voteFor(id: id!, color: val!, completion: { (vote) -> Void in
+                        VoteModel.voteFor(id: id!, color: color, completion: { (vote) -> Void in
+                            NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                             println("Voted!!!!)))")
                         })
                         
