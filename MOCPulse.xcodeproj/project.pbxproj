@@ -133,6 +133,8 @@
 		842D259E1B53E5420013844F /* LastVoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastVoteViewController.swift; path = "MOCPulse Widget/ViewControllers/LastVoteViewController.swift"; sourceTree = SOURCE_ROOT; };
 		842D259F1B53E5420013844F /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingViewController.swift; path = "MOCPulse Widget/ViewControllers/LoadingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		842D25A21B53E54C0013844F /* VoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoteTableViewCell.swift; path = "MOCPulse Widget/View/VoteTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		843B41AF1B57A2A20067B28F /* MOCPulse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MOCPulse.entitlements; sourceTree = "<group>"; };
+		843B41B01B57A45E0067B28F /* MOCPulse Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "MOCPulse Widget.entitlements"; path = "MOCPulse Widget/MOCPulse Widget.entitlements"; sourceTree = SOURCE_ROOT; };
 		8496CDA81B528E5700984A0D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		8496CDEE1B52B3EF00984A0D /* MOCPulse Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MOCPulse Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8496CDF21B52B3EF00984A0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		8496CDF01B52B3EF00984A0D /* MOCPulse Widget */ = {
 			isa = PBXGroup;
 			children = (
+				843B41B01B57A45E0067B28F /* MOCPulse Widget.entitlements */,
 				8496CE1C1B52BFB500984A0D /* ViewControllers */,
 				84FA7E8B1B52C9F300C2D0D8 /* View */,
 				8496CE011B52B47100984A0D /* Helpers */,
@@ -368,6 +371,7 @@
 		F798B3741B46C34700A17754 /* MOCPulse */ = {
 			isa = PBXGroup;
 			children = (
+				843B41AF1B57A2A20067B28F /* MOCPulse.entitlements */,
 				3DECE1951B48246900B6B358 /* Helpers */,
 				3DECE18A1B47E90500B6B358 /* Models */,
 				F798B3771B46C34800A17754 /* AppDelegate.swift */,
@@ -553,10 +557,20 @@
 					8496CDED1B52B3EF00984A0D = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = ZLW345FG82;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F798B3711B46C34700A17754 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = ZLW345FG82;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F798B3861B46C34900A17754 = {
 						CreatedOnToolsVersion = 6.4;
@@ -843,6 +857,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "MOCPulse Widget/MOCPulse Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -863,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "MOCPulse Widget/MOCPulse Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "MOCPulse WIdget/Info.plist";
@@ -967,12 +983,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bbf1b2fb-14b9-440e-926f-f9b603619107";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -985,12 +1003,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bbf1b2fb-14b9-440e-926f-f9b603619107";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
