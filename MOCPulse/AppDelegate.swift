@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIBackgroundTaskInvalid
  
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        // handle todays url
+        // handle todays and notifications url
         if (url.scheme == "mocpulse") {
             self.handleWidgetsOpenUrl(url)
         } else {
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         voteAction.title = "Vote"
         voteAction.destructive = false
         voteAction.authenticationRequired = false
-        voteAction.activationMode = UIUserNotificationActivationMode.Background
+        voteAction.activationMode = UIUserNotificationActivationMode.Foreground
         
         var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         notificationCategory.identifier = "INVITE_CATEGORY"
@@ -83,10 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
             
             switch strcolor {
-            case "green": color = VoteColor.VOTE_COLOR_GREEN
-            case "yellow": color = VoteColor.VOTE_COLOR_YELLOW
-            case "red": color = VoteColor.VOTE_COLOR_RED
-            default : break
+                case "green": color = VoteColor.VOTE_COLOR_GREEN
+                case "yellow": color = VoteColor.VOTE_COLOR_YELLOW
+                case "red": color = VoteColor.VOTE_COLOR_RED
+                default : break
             }
             
             // need auth check?
@@ -169,9 +169,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+
         if identifier == "ID_VOTE" {
-            UIApplication.sharedApplication().openURL(NSURL(string: "mocpulse://openvote/2")!)
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                UIApplication.sharedApplication().openURL(NSURL(string: "mocpulse://openvote/1437029089921061910")!)
+            }
         }
+        
     }
     
 //MARK: watch kit
