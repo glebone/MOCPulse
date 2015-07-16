@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         voteAction.activationMode = UIUserNotificationActivationMode.Foreground
         
         var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-        notificationCategory.identifier = "INVITE_CATEGORY"
+        notificationCategory.identifier = "newVote"
         notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
         
         var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: NSSet(array: [notificationCategory]) as Set<NSObject>)
@@ -176,7 +176,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.sharedApplication().openURL(NSURL(string: "mocpulse://openvote/1437029089921061910")!)
             }
         }
-        
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        var aps = (userInfo as! [NSString : AnyObject])["aps"] as! NSDictionary
+        var vote = aps["vote"] as! NSDictionary
+        var voteId = vote["id"] as! String
+    
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
+        }
     }
     
 //MARK: watch kit

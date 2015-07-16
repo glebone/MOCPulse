@@ -106,14 +106,6 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func rightNavItemCreateClick(sender: UITapGestureRecognizer)
     {
         performSegueWithIdentifier("showCreateView", sender: nil)
-        
-        // for debug
-//        var localNotification:UILocalNotification = UILocalNotification()
-//        localNotification.alertAction = "Testing notifications on iOS8"
-//        localNotification.alertBody = "Local notification"
-//        localNotification.fireDate = NSDate(timeIntervalSinceNow: 7)
-//        localNotification.category = "INVITE_CATEGORY";
-//        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
     
     func handleLoadNotification(notification: NSNotification) {

@@ -70,11 +70,12 @@ class API : NSObject {
                 UserModel.user(self.userToken!, _completion: { (user) -> Void in
                     var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
                     manager.user = user
-                    
-                    println(manager.user)
-                    API.isRunAuthorization = false;
+
+                    API.isRunAuthorization = false
                     
                     var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
+            
+                    println("deviceToken: \(deviceToken)")
                     
                     UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken, _completion: { (Void) -> Void in
                         println(user)
