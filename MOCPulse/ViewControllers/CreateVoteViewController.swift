@@ -14,6 +14,8 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var voteTextView: UITextView!
     @IBOutlet weak var charsLeftLabel: UILabel!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,16 +58,12 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     
     func keyboardWasShown(aNotification: NSNotification)
     {
-        var info : NSDictionary = aNotification.userInfo!
-        var val : NSValue = info[UIKeyboardFrameEndUserInfoKey] as! NSValue
-        var kbWindowRect : CGRect = CGRect(x: 0,y: 0,width: 0,height: 0)
-        val.getValue(&kbWindowRect)
-        self.view.window!.convertRect(kbWindowRect, fromWindow:nil)
-        var kbRect = self.view.convertRect(kbWindowRect, fromView: nil)
+        var info = aNotification.userInfo!
+        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         
-        // moving button and label to the top of keyboard
-        self.createButton.frame = CGRectMake(0, kbRect.origin.y - self.createButton.frame.height, self.view.frame.width, self.createButton.frame.height)
-        self.charsLeftLabel.frame = CGRectMake(0, kbRect.origin.y - self.charsLeftLabel.frame.height - self.createButton.frame.height - 10, self.view.frame.width, self.charsLeftLabel.frame.height)
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.bottomConstraint.constant = keyboardFrame.size.height
+        })
     }
     
     func calculateCharsLeft() {

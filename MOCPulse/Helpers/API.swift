@@ -78,6 +78,7 @@ class API : NSObject {
                     // FIX ME
                     // we auth to fast, token not ready
                     if deviceToken == nil {
+                        println("no device token: \(deviceToken)")
                         NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                         return
                     }

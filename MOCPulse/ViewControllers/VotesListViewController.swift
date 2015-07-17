@@ -26,6 +26,14 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("fetchVotesList"), name: "GET_ALL_VOTES", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadNotification:"), name: "NOTIFICATION_SHOW_VIEW", object: nil)
+        
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -121,6 +129,17 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
                     }
                 })
             }
+        }
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.Right:
+            self.votedAction()
+        case UISwipeGestureRecognizerDirection.Left:
+            self.pendingAction()
+        default:
+            break
         }
     }
     

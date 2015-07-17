@@ -145,8 +145,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         token = token.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
-        println(token)
-        
         NSUserDefaults.standardUserDefaults().setObject(token, forKey: "device_push_token")
         NSUserDefaults.standardUserDefaults().synchronize()
     }

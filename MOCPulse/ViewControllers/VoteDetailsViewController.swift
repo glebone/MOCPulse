@@ -16,13 +16,11 @@ class VoteDetailsViewController: UIViewController {
     @IBOutlet var voteBodyTextView : UITextView!
     
     @IBOutlet var buttonsHolderView : UIView!
-    @IBOutlet var progressHolderView : UIView!
+    @IBOutlet weak var colorChart: ColorChart!
     
     @IBOutlet var greenButton : UIButton!
     @IBOutlet var yellowButton : UIButton!
     @IBOutlet var redButton : UIButton!
-    
-    var colorChart : ColorChart!
     
     var pulseEffect : PulseAnimation!
     
@@ -52,30 +50,25 @@ class VoteDetailsViewController: UIViewController {
         println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
         
         if vote.voted == true {
-            
-            if colorChart == nil {
-                colorChart = ColorChart(frame: CGRectMake(0, 0, progressHolderView.frame.size.width, progressHolderView.frame.size.height))
-                var greenColor : ColorChartObject = colorChart.getGreenColor()
-                greenColor.value = CGFloat(voteModel.greenVotes!)
-                var yellowColor : ColorChartObject = colorChart.getYellowColor()
-                yellowColor.value = CGFloat(voteModel.yellowVotes!)
-                var redColor : ColorChartObject = colorChart.getRedColor()
-                redColor.value = CGFloat(voteModel.redVotes!)
-                progressHolderView!.addSubview(colorChart)
-            }
+            var greenColor : ColorChartObject = colorChart.getGreenColor()
+            greenColor.value = CGFloat(voteModel.greenVotes!)
+            var yellowColor : ColorChartObject = colorChart.getYellowColor()
+            yellowColor.value = CGFloat(voteModel.yellowVotes!)
+            var redColor : ColorChartObject = colorChart.getRedColor()
+            redColor.value = CGFloat(voteModel.redVotes!)
             
             colorChart.reloadChart()
             
-            if progressHolderView.hidden == true {
-                progressHolderView.hidden = false
+            if colorChart.hidden == true {
+                colorChart.hidden = false
             }
             if buttonsHolderView.hidden == false {
                 buttonsHolderView.hidden = true
             }
         }
         else {
-            if progressHolderView.hidden == false {
-                progressHolderView.hidden = true
+            if colorChart.hidden == false {
+                colorChart.hidden = true
             }
             if buttonsHolderView.hidden == true {
                 buttonsHolderView.hidden = false
