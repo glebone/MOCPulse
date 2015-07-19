@@ -13,8 +13,11 @@ import SwiftyJSON
 import OAuthSwift
 #endif
 
+let kTcpServer = "91.244.58.131"
+let kTcpServerPort = 4242
+
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://192.168.5.225:8080/"
+let kProductionServer : String = "http://91.244.58.131:8080/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
@@ -74,6 +77,8 @@ class API : NSObject {
                     API.isRunAuthorization = false
                     
                     var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
+            
+                    TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
             
                     // FIX ME
                     // we auth to fast, token not ready

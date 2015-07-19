@@ -11,7 +11,8 @@ import Alamofire
 import SwiftyJSON
 import VBPieChart
 
-let kAuthToken_FIXME = ["auth_token" : "123123"]
+let kHardCodedToken = "123123"
+let kAuthToken_FIXME = ["auth_token" : kHardCodedToken]
 
 
 enum VoteColor : Int {
@@ -105,6 +106,17 @@ class VoteModel : NSObject {
         return result
     }
     
+    static func jsonToVotes(data: JSON) -> [VoteModel] {
+        var list: [VoteModel] = [];
+        
+        for (index: String, subJson: JSON) in data["votes"] {
+            var vote : VoteModel = VoteModel(json: subJson)
+            list.append(vote);
+        }
+        
+        return list
+    }
+    
 // MARK: API Call
     static func voteFor(id _id:String, color _color:VoteColor, completion _completion: (VoteModel?) -> Void) -> Request {
         let _parameters: [String : AnyObject] = ["value" : _color.hashValue]
@@ -135,14 +147,7 @@ class VoteModel : NSObject {
     static func votes(completion _completion: ([VoteModel]?) -> Void) -> Request {
         return API.response(API.request(.GET, path: "\(kProductionServer)votes", headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var list: [VoteModel] = [];
-
-                for (index: String, subJson: JSON) in object["votes"] {
-//                    println(object)
-                    var vote : VoteModel = VoteModel(json: subJson)
-                    list.append(vote);
-                }
-                _completion(list);
+                 _completion(self.jsonToVotes(object))
             },
             failure: { (error : NSError?) -> Void in
                println("API.Error: \(error?.localizedDescription)")

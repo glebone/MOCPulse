@@ -28,6 +28,8 @@ class VoteDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateVote:", name:"voteUpdated", object: nil)
 
         setupView()
     }
@@ -47,7 +49,8 @@ class VoteDetailsViewController: UIViewController {
     
     func interfaceFotVote(vote : VoteModel) {
         
-        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
+        println("red: \(vote.redVotes) yellow: \(vote.yellowVotes) green: \(vote.greenVotes)")
+        voteModel = vote
         
         if vote.voted == true {
             var greenColor : ColorChartObject = colorChart.getGreenColor()
@@ -74,6 +77,8 @@ class VoteDetailsViewController: UIViewController {
                 buttonsHolderView.hidden = false
             }
         }
+        
+        LocalObjectsManager.sharedInstance.replaceVoteIfExists(vote)
     }
     
     func voteForColor(voteColor:VoteColor) {
@@ -113,5 +118,12 @@ class VoteDetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateVote(n: NSNotification) {
+        var newVote : VoteModel = n.object as! VoteModel
+        if (newVote.id == voteModel.id) {
+            interfaceFotVote(newVote)
+        }
     }
 }

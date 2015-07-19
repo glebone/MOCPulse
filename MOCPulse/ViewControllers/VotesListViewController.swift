@@ -26,6 +26,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("fetchVotesList"), name: "GET_ALL_VOTES", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadNotification:"), name: "NOTIFICATION_SHOW_VIEW", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTable:", name:"reloadVotes", object: nil)
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
@@ -141,6 +142,11 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         default:
             break
         }
+    }
+    
+    func updateTable(notification: NSNotification) {
+        self.votes = LocalObjectsManager.sharedInstance.votes
+        self.tableView.reloadData()
     }
     
 //MARK: tableview

@@ -70,6 +70,26 @@ class LocalObjectsManager {
         self.votes = self.votes?.sorted{($0 as VoteModel).isNewerThan($1 as VoteModel)}
     }
     
+    func removeVote(voteId: String) {
+        for (index, vote) in enumerate(self.votes!) {
+            if (vote.id == voteId) {
+                self.votes?.removeAtIndex(index)
+                break
+            }
+        }
+    }
+    
+    func replaceVoteIfExists(vote: VoteModel) -> Bool {
+        for (index, voteitr) in enumerate(self.votes!) {
+            if (voteitr.id == vote.id) {
+                self.votes![index] = vote
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     // MARK: Generation
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []

@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             OAuth2Swift.handleOpenURL(url)
         }
-        
         return true
     }
 
