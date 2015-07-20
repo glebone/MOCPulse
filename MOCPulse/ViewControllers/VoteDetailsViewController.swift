@@ -30,7 +30,7 @@ class VoteDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateVote:", name:"voteUpdated", object: nil)
-
+        
         setupView()
     }
     

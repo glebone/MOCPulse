@@ -13,6 +13,9 @@ class TcpSocket: NSObject, NSStreamDelegate {
     
     static var sharedInstance = TcpSocket()
     
+    var host : String!
+    var port : Int!
+    
     var session : PulseSession?
     var isopen : Bool!
     
@@ -34,6 +37,9 @@ class TcpSocket: NSObject, NSStreamDelegate {
     }
     
     func connect(host: String, port: Int) {
+        self.host = host
+        self.port = port
+        
         NSStream.getStreamsToHostWithName(host, port: port, inputStream: &(self.input), outputStream: &(self.output))
         
         self.input!.delegate  = self
@@ -44,6 +50,12 @@ class TcpSocket: NSObject, NSStreamDelegate {
         
         self.input!.open()
         self.output!.open()
+    }
+    
+    func reconnectIfNeeded() {
+        if (self.isopen == false) {
+            self.connect(self.host, port: self.port)
+        }
     }
     
     func close() {
@@ -57,6 +69,11 @@ class TcpSocket: NSObject, NSStreamDelegate {
     }
     
     func send(packet: PulsePacket) {
+        if (!self.isopen) {
+            println("Trying to send data to closed socket.")
+            return
+        }
+        
         var data : NSData = packet.toData()
         self.output?.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
     }
@@ -78,8 +95,9 @@ class TcpSocket: NSObject, NSStreamDelegate {
                 
                 if (session == nil) {
                     session = PulseSession(socket: self)
-                    session?.tryAuth(kHardCodedToken)
                 }
+            
+                session?.tryAuth(kHardCodedToken)
             
             case NSStreamEvent.HasBytesAvailable:
                 

@@ -88,12 +88,6 @@ class PulseSession: NSObject {
             if id.isEmpty != true {
                 self.isAuth = true
                 
-//                for window in NSApplication.sharedApplication().windows {
-//                    if var w = window as? NSWindow {
-//                        w.title =  "MOCPulse - " + id
-//                    }
-//                }
-                
                 self.getVotesQuery()
                 
                 return

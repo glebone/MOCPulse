@@ -13,11 +13,11 @@ import SwiftyJSON
 import OAuthSwift
 #endif
 
-let kTcpServer = "91.244.58.131"
+let kTcpServer = "192.168.4.56"
 let kTcpServerPort = 4242
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://91.244.58.131:8080/"
+let kProductionServer : String = "http://192.168.4.56:8080/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
@@ -69,7 +69,9 @@ class API : NSObject {
                 credential, response, parameters in
                 
                 self.userToken = String(credential.oauth_token)
-                
+            
+                println("userToken: \(self.userToken)")
+            
                 UserModel.user(self.userToken!, _completion: { (user) -> Void in
                     var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
                     manager.user = user

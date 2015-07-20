@@ -125,6 +125,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (manager.user == nil) {
             println("Need call OAuth")
             API.oauthAuthorization()
+        } else {
+            TcpSocket.sharedInstance.reconnectIfNeeded()
         }
     }
 
