@@ -9,10 +9,15 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+#if !TODAY_EXTENSION
 import OAuthSwift
+#endif
+
+let kTcpServer = "192.168.4.56"
+let kTcpServerPort = 4242
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://192.168.5.225:8080/"
+let kProductionServer : String = "http://192.168.4.56:8080/"
 let kAuthorizationServer : String = "http://fritzvl.info/"
 
 class API : NSObject {
@@ -39,50 +44,66 @@ class API : NSObject {
 // MARK: Authorization
     static func oauthAuthorization()
     {
-        if (API.isRunAuthorization) {
-            return
-        }
-        API.isRunAuthorization = true;
-        
-        let oauthswift = OAuth2Swift(
-            consumerKey:    "288c7689f3eb0d5426c434413a8711534cc781751a545e431af6f7f3aa8650ee",
-            consumerSecret: "0d88640d7e479c01cb37bff27cc08843e97d4b3d021e3d13449a377afeeec5f3",
-            authorizeUrl:   "\(kAuthorizationServer)oauth/authorize",
-            accessTokenUrl: "\(kAuthorizationServer)oauth/token",
-            responseType:   "code"
-        )
-        
-        let state: String = generateStateWithLength(20) as String
-        
-        var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
-        
-        let userClass: UserModel
-        
-        oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
-            credential, response, parameters in
-        
-            self.userToken = String(credential.oauth_token)
+        // no need auth in today extension?
+        #if !TODAY_EXTENSION
+            if (API.isRunAuthorization) {
+                return
+            }
+            API.isRunAuthorization = true;
             
-            UserModel.user(self.userToken!, _completion: { (user) -> Void in
-                var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
-                manager.user = user
+            let oauthswift = OAuth2Swift(
+                consumerKey:    "288c7689f3eb0d5426c434413a8711534cc781751a545e431af6f7f3aa8650ee",
+                consumerSecret: "0d88640d7e479c01cb37bff27cc08843e97d4b3d021e3d13449a377afeeec5f3",
+                authorizeUrl:   "\(kAuthorizationServer)oauth/authorize",
+                accessTokenUrl: "\(kAuthorizationServer)oauth/token",
+                responseType:   "code"
+            )
+            
+            let state: String = generateStateWithLength(20) as String
+            
+            var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
+            
+            let userClass: UserModel
+            
+            oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
+                credential, response, parameters in
                 
-                println(manager.user)
-                API.isRunAuthorization = false;
-                
-                var deviceToken : String = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as! String
-                
-                UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken, _completion: { (Void) -> Void in
-                    println(user)
+                self.userToken = String(credential.oauth_token)
+            
+                println("userToken: \(self.userToken)")
+            
+                UserModel.user(self.userToken!, _completion: { (user) -> Void in
+                    var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+                    manager.user = user
+
+                    API.isRunAuthorization = false
                     
-                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                })
-            })
+                    var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
             
-            }, failure: {(error:NSError!) -> Void in
-                println(error.localizedDescription)
-                API.isRunAuthorization = false;
-        })
+                    TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
+            
+                    // FIX ME
+                    // we auth to fast, token not ready
+                    if deviceToken == nil {
+                        println("no device token: \(deviceToken)")
+                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                        return
+                    }
+                    
+                    println("deviceToken: \(deviceToken)")
+                    
+                    UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
+                        println(user)
+            
+                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                    })
+                })
+                
+                }, failure: {(error:NSError!) -> Void in
+                    println(error.localizedDescription)
+                    API.isRunAuthorization = false;
+            })
+        #endif
     }
 
 // MARK: API Call

@@ -25,6 +25,16 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         setupView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("fetchVotesList"), name: "GET_ALL_VOTES", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleLoadNotification:"), name: "NOTIFICATION_SHOW_VIEW", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTable:", name:"reloadVotes", object: nil)
+        
+        var swipeRight = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -107,6 +117,38 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         performSegueWithIdentifier("showCreateView", sender: nil)
     }
     
+    func handleLoadNotification(notification: NSNotification) {
+        var vote = (notification.userInfo as! [NSString:VoteModel])["vote"]
+        if vote != nil {
+            presentDetailViewForVote(vote!)
+        } else {
+            var voteId = (notification.userInfo as! [NSString:NSString])["voteId"]
+            if voteId != nil {
+                VoteModel.voteByID(voteId! as String, completion: { (newVote) -> Void in
+                    if newVote != nil {
+                        self.presentDetailViewForVote(newVote!)
+                    }
+                })
+            }
+        }
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case UISwipeGestureRecognizerDirection.Right:
+            self.votedAction()
+        case UISwipeGestureRecognizerDirection.Left:
+            self.pendingAction()
+        default:
+            break
+        }
+    }
+    
+    func updateTable(notification: NSNotification) {
+        self.votes = LocalObjectsManager.sharedInstance.votes
+        self.tableView.reloadData()
+    }
+    
 //MARK: tableview
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -150,16 +192,19 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
-        
         var votesList = self.tableArray()
-        
-        detailsVC.voteModel = votesList[indexPath.row] as! VoteModel
-        
-        self.navigationController?.pushViewController(detailsVC, animated: true)
+        presentDetailViewForVote(votesList[indexPath.row] as! VoteModel)
     }
     
 //MARK: actions
+    
+    func presentDetailViewForVote(vote: VoteModel) {
+        let detailsVC = self.storyboard!.instantiateViewControllerWithIdentifier("VoteDetailsVC") as! VoteDetailsViewController
+        detailsVC.voteModel = vote
+        
+        self.navigationController?.popToRootViewControllerAnimated(false)
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
     
     @IBAction func pendingAction()
     {

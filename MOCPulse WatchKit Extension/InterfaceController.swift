@@ -15,9 +15,13 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var VoteLabel: WKInterfaceLabel!
     
     var notificationDic: NSDictionary!
+    var voteDic: NSDictionary!
     var isNotification : Bool = false
     var voteId : String!
     
+    @IBOutlet weak var redButton: WKInterfaceButton!
+    @IBOutlet weak var yellowButton: WKInterfaceButton!
+    @IBOutlet weak var greenButton: WKInterfaceButton!
 
     
     override func awakeWithContext(context: AnyObject?) {
@@ -48,7 +52,7 @@ class InterfaceController: WKInterfaceController {
     @IBAction func RedButtonPressed() {
         NSLog("Red action")
         if (isNotification) {
-            sendParent(["Red", notificationDic["aps"]!["id"]! as! String])
+            sendParent(["Red", voteDic["id"]! as! String])
         } else
         {
            sendParent(["Red" , voteId!])
@@ -61,7 +65,7 @@ class InterfaceController: WKInterfaceController {
     @IBAction func YellowButtonPressed() {
         NSLog("Yellow action")
         if (isNotification) {
-            sendParent(["Yellow", notificationDic["aps"]!["id"]! as! String])
+            sendParent(["Yellow", voteDic["id"]! as! String])
         } else
         {
             sendParent(["Yellow" , voteId!])
@@ -74,7 +78,7 @@ class InterfaceController: WKInterfaceController {
     @IBAction func GreenButtonPressed() {
         NSLog("Green Action")
         if (isNotification) {
-            sendParent(["Green", notificationDic["aps"]!["id"]! as! String])
+            sendParent(["Green", voteDic["id"]! as! String])
         } else
         {
             sendParent(["Green" , voteId!])
@@ -110,9 +114,18 @@ class InterfaceController: WKInterfaceController {
             }
             if let data = data {
                 println(data)
+                var id : String = data["id"] as! String
+                var name : String? = data["name"] as? String
+                
+                self.setButtonsVision(!id.isEmpty)
+                
+                if id.isEmpty {
+                    name = "There is no active votes =("
+                }
+
                 //sendParent([data!["value"]!, data["id"]!])
-                self.VoteLabel.setText(data["name"] as? String)
-                self.voteId = data["id"] as! String
+                self.VoteLabel.setText(name)
+                self.voteId = id
             }
         })
         
@@ -127,6 +140,10 @@ class InterfaceController: WKInterfaceController {
                 
                 VoteLabel.setText(remoteNotification["aps"]!["alert"] as? String)
                 notificationDic = remoteNotification
+                voteDic = (notificationDic["aps"] as! NSDictionary)["vote"] as! NSDictionary
+                
+                self.setButtonsVision(true)
+                
                 isNotification = true
                 if notificationIdentifier == "voteButtonAction" {
                     NSLog("There")
@@ -134,5 +151,11 @@ class InterfaceController: WKInterfaceController {
             }
     }
 
-
+    func setButtonsVision(visible: Bool) {
+        // no vision methods?
+        let alpha : CGFloat = visible ? 1 : 0
+        self.greenButton.setAlpha(alpha)
+        self.yellowButton.setAlpha(alpha)
+        self.redButton.setAlpha(alpha)
+    }
 }

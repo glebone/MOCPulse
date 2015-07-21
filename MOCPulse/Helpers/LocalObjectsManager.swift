@@ -15,8 +15,6 @@ class LocalObjectsManager {
     
     var votes : [VoteModel]?
     
-    var voteIndexSelected : Int?
-    
     class var sharedInstance : LocalObjectsManager {
         struct singleton {
             static let instance : LocalObjectsManager = LocalObjectsManager();
@@ -61,6 +59,35 @@ class LocalObjectsManager {
     func getLastVote() -> VoteModel? {
         var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.voted == false}.first
         return vote;
+    }
+    
+    func getVoteById(id: String) -> VoteModel? {
+        var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.id! == id}.first
+        return vote;
+    }
+    
+    func sortVotesByDate() {
+        self.votes = self.votes?.sorted{($0 as VoteModel).isNewerThan($1 as VoteModel)}
+    }
+    
+    func removeVote(voteId: String) {
+        for (index, vote) in enumerate(self.votes!) {
+            if (vote.id == voteId) {
+                self.votes?.removeAtIndex(index)
+                break
+            }
+        }
+    }
+    
+    func replaceVoteIfExists(vote: VoteModel) -> Bool {
+        for (index, voteitr) in enumerate(self.votes!) {
+            if (voteitr.id == vote.id) {
+                self.votes![index] = vote
+                return true
+            }
+        }
+        
+        return false
     }
     
     // MARK: Generation

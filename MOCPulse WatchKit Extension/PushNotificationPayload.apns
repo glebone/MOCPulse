@@ -3,7 +3,7 @@
         
             "alert": "How is our hackathon?",
             "title": "MOC Pulse",
-            "category": "watchkit",
+            "category": "newVote",
             "id": "3"
 
         

@@ -14,10 +14,11 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var voteTextView: UITextView!
     @IBOutlet weak var charsLeftLabel: UILabel!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIKeyboardDidShowNotification
         
         self.voteTextView.delegate = self
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
@@ -34,20 +35,19 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     @IBAction func createButtonClicked(sender: AnyObject) {
         var voteText = self.voteTextView.text
         // send to server
-
+        
         VoteModel.createVote(voteText, completion: { (vote) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
             println(vote)
         })
+        
+        self.navigationController!.popViewControllerAnimated(true)
     }
     
     func setupView() {
         textViewDidChange(self.voteTextView)
         
         var vWidth = self.view.frame.width
-        
-        self.createButton.frame = CGRectMake(0, self.createButton.frame.origin.y, vWidth, self.createButton.frame.height)
-        self.charsLeftLabel.frame = CGRectMake(0, self.charsLeftLabel.frame.origin.y, vWidth, self.charsLeftLabel.frame.height)
-        self.voteTextView.frame = CGRectMake(0, self.voteTextView.frame.origin.y, vWidth, self.voteTextView.frame.height)
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -58,20 +58,17 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     
     func keyboardWasShown(aNotification: NSNotification)
     {
-        var info : NSDictionary = aNotification.userInfo!
-        var val : NSValue = info[UIKeyboardFrameEndUserInfoKey] as! NSValue
-        var kbWindowRect : CGRect = CGRect(x: 0,y: 0,width: 0,height: 0)
-        val.getValue(&kbWindowRect)
-        self.view.window!.convertRect(kbWindowRect, fromWindow:nil)
-        var kbRect = self.view.convertRect(kbWindowRect, fromView: nil)
+        var info = aNotification.userInfo!
+        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         
-        // moving button and label to the top of keyboard
-        self.createButton.frame = CGRectMake(0, kbRect.origin.y - self.createButton.frame.height, self.view.frame.width, self.createButton.frame.height)
-        self.charsLeftLabel.frame = CGRectMake(0, kbRect.origin.y - self.charsLeftLabel.frame.height - self.createButton.frame.height - 10, self.view.frame.width, self.charsLeftLabel.frame.height)
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.bottomConstraint.constant = keyboardFrame.size.height
+        })
     }
     
     func calculateCharsLeft() {
-        var charsLeft = 140 - count(self.voteTextView.text)
+        let maxChars = 140
+        var charsLeft = maxChars - count(self.voteTextView.text)
         
         var notEnoughChars : Bool = charsLeft < 0
         
@@ -80,7 +77,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         if (notEnoughChars) {
             var voteNameText : String = self.voteTextView.text!
             let stringLength = count(voteNameText)
-            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, 140))
+            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, maxChars))
             self.voteTextView.text = voteNameText
         }
     }

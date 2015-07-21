@@ -16,13 +16,11 @@ class VoteDetailsViewController: UIViewController {
     @IBOutlet var voteBodyTextView : UITextView!
     
     @IBOutlet var buttonsHolderView : UIView!
-    @IBOutlet var progressHolderView : UIView!
+    @IBOutlet weak var colorChart: ColorChart!
     
     @IBOutlet var greenButton : UIButton!
     @IBOutlet var yellowButton : UIButton!
     @IBOutlet var redButton : UIButton!
-    
-    var colorChart : ColorChart!
     
     var pulseEffect : PulseAnimation!
     
@@ -30,54 +28,57 @@ class VoteDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateVote:", name:"voteUpdated", object: nil)
+        
         setupView()
     }
     
     func setupView() {
         var screenRect : CGRect = UIScreen.mainScreen().bounds
 
-        pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(self.view.center.x, self.view.center.y - self.navigationController!.navigationBar.frame.size.height))
+        pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(self.view.center.x, self.view.center.y ))
         
         println("\(voteModel.name)")
         
         ownerTitleLabel.text = voteModel.owner
         voteBodyTextView.text = voteModel.name
+        
+        interfaceFotVote(self.voteModel)
     }
     
     func interfaceFotVote(vote : VoteModel) {
         
-        println("red: \(voteModel.redVotes) yellow: \(voteModel.yellowVotes) green: \(voteModel.greenVotes)")
+        println("red: \(vote.redVotes) yellow: \(vote.yellowVotes) green: \(vote.greenVotes)")
+        voteModel = vote
         
-        if voteModel.voted == true {
-            if colorChart == nil {
-                colorChart = ColorChart(frame: CGRectMake(0, 0, progressHolderView.frame.size.width, progressHolderView.frame.size.height))
-                var greenColor : ColorChartObject = colorChart.getGreenColor()
-                greenColor.value = CGFloat(voteModel.greenVotes!)
-                var yellowColor : ColorChartObject = colorChart.getYellowColor()
-                yellowColor.value = CGFloat(voteModel.yellowVotes!)
-                var redColor : ColorChartObject = colorChart.getRedColor()
-                redColor.value = CGFloat(voteModel.redVotes!)
-                progressHolderView!.addSubview(colorChart)
-            }
+        if vote.voted == true {
+            var greenColor : ColorChartObject = colorChart.getGreenColor()
+            greenColor.value = CGFloat(voteModel.greenVotes!)
+            var yellowColor : ColorChartObject = colorChart.getYellowColor()
+            yellowColor.value = CGFloat(voteModel.yellowVotes!)
+            var redColor : ColorChartObject = colorChart.getRedColor()
+            redColor.value = CGFloat(voteModel.redVotes!)
             
             colorChart.reloadChart()
             
-            if progressHolderView.hidden == true {
-                progressHolderView.hidden = false
+            if colorChart.hidden == true {
+                colorChart.hidden = false
             }
             if buttonsHolderView.hidden == false {
                 buttonsHolderView.hidden = true
             }
         }
         else {
-            if progressHolderView.hidden == false {
-                progressHolderView.hidden = true
+            if colorChart.hidden == false {
+                colorChart.hidden = true
             }
             if buttonsHolderView.hidden == true {
                 buttonsHolderView.hidden = false
             }
         }
+        
+        LocalObjectsManager.sharedInstance.replaceVoteIfExists(vote)
     }
     
     func voteForColor(voteColor:VoteColor) {
@@ -86,7 +87,7 @@ class VoteDetailsViewController: UIViewController {
         showPulseAnimation(voteColor.color)
         
         voteModel.voteFor(color: voteColor, completion:  { (vote:VoteModel?) -> Void in
-            self.interfaceFotVote(self.voteModel)
+            self.interfaceFotVote(vote!)
         })
     }
     
@@ -117,5 +118,12 @@ class VoteDetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateVote(n: NSNotification) {
+        var newVote : VoteModel = n.object as! VoteModel
+        if (newVote.id == voteModel.id) {
+            interfaceFotVote(newVote)
+        }
     }
 }

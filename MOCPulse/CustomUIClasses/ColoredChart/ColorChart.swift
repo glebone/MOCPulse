@@ -26,6 +26,12 @@ class ColorChart: UIView {
         setup()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setup()
+    }
+    
     func getGreenColor() -> ColorChartObject {
         if (greenColor == nil) {
             greenColor = ColorChartObject()
@@ -114,6 +120,10 @@ class ColorChart: UIView {
     }
     
     override func drawRect(rect: CGRect) {
+        if (greenColor == nil || redColor == nil || yellowColor == nil) {
+            return
+        }
+        
         var currentGraphicsContext = UIGraphicsGetCurrentContext();
         var sumOfAllSegmentValues : CGFloat = 0.0
         
@@ -162,6 +172,7 @@ class ColorChart: UIView {
     }
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        //fatalError("init(coder:) has not been implemented")
     }
 }

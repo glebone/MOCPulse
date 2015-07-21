@@ -32,6 +32,9 @@
                     </items>
                     <connections>
                         <outlet property="VoteLabel" destination="YNK-lU-Z1f" id="JlE-aV-kT0"/>
+                        <outlet property="greenButton" destination="QGl-0b-zAi" id="gZK-AF-xEI"/>
+                        <outlet property="redButton" destination="Y3b-Oo-14R" id="iTg-eD-Moh"/>
+                        <outlet property="yellowButton" destination="ILo-dx-cHy" id="Kpm-X5-uNc"/>
                     </connections>
                 </controller>
             </objects>
@@ -58,7 +61,7 @@
                     <items>
                         <label width="136" height="54" alignment="left" text="Alert Label" numberOfLines="3" id="IdU-wH-bcW"/>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="watchkit" id="JfB-70-Muf"/>
+                    <notificationCategory key="notificationCategory" identifier="newVote" id="JfB-70-Muf"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
                     </connections>

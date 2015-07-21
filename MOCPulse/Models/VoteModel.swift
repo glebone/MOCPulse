@@ -9,8 +9,10 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import VBPieChart
 
-let kAuthToken_FIXME = ["auth_token" : "123123"]
+let kHardCodedToken = "123123"
+let kAuthToken_FIXME = ["auth_token" : kHardCodedToken]
 
 
 enum VoteColor : Int {
@@ -83,7 +85,8 @@ class VoteModel : NSObject {
         self.owner = _json["owner"].stringValue
         self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
         
-        self.voted = _json["voted"].boolValue
+        // we receive inversion of value, why?
+        self.voted = !_json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
@@ -91,6 +94,27 @@ class VoteModel : NSObject {
         
         self.allUsers = _json["result"]["all_users"].intValue
         self.voteUsers = _json["result"]["vote_users"].intValue
+    }
+    
+    func isNewerThan(vote: VoteModel) -> Bool {
+        var result = false
+        
+        if (self.create?.compare(vote.create!) == NSComparisonResult.OrderedDescending) {
+            result = true
+        }
+        
+        return result
+    }
+    
+    static func jsonToVotes(data: JSON) -> [VoteModel] {
+        var list: [VoteModel] = [];
+        
+        for (index: String, subJson: JSON) in data["votes"] {
+            var vote : VoteModel = VoteModel(json: subJson)
+            list.append(vote);
+        }
+        
+        return list
     }
     
 // MARK: API Call
@@ -123,14 +147,7 @@ class VoteModel : NSObject {
     static func votes(completion _completion: ([VoteModel]?) -> Void) -> Request {
         return API.response(API.request(.GET, path: "\(kProductionServer)votes", headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var list: [VoteModel] = [];
-
-                for (index: String, subJson: JSON) in object["votes"] {
-//                    println(object)
-                    var vote : VoteModel = VoteModel(json: subJson)
-                    list.append(vote);
-                }
-                _completion(list);
+                 _completion(self.jsonToVotes(object))
             },
             failure: { (error : NSError?) -> Void in
                println("API.Error: \(error?.localizedDescription)")
