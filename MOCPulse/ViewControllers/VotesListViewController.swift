@@ -16,6 +16,8 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     
     @IBOutlet var tableView : UITableView!
 
+    var refreshControl:UIRefreshControl!
+    
     var colorChart : ColorChart!
     var votes : [VoteModel]?
     
@@ -35,6 +37,11 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "fetchVotesList", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,6 +61,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
             self.tableView.reloadData()
             
             UIApplication.sharedApplication().applicationIconBadgeNumber = self.tableArray().count
+            self.refreshControl.endRefreshing()
         }
     }
     
