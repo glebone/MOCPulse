@@ -128,6 +128,7 @@ class VoteModel : NSObject {
             },
             failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t vote for.\n \(error!.localizedDescription)")
         });
     }
     
@@ -150,7 +151,8 @@ class VoteModel : NSObject {
                  _completion(self.jsonToVotes(object))
             },
             failure: { (error : NSError?) -> Void in
-               println("API.Error: \(error?.localizedDescription)")
+                println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t get votes list.\n \(error!.localizedDescription)")
         });
     }
     
@@ -162,6 +164,7 @@ class VoteModel : NSObject {
             },
             failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t get vote.\n \(error!.localizedDescription)")
         });
     }
     
@@ -173,6 +176,7 @@ class VoteModel : NSObject {
             },
             failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t reload votes.\n \(error!.localizedDescription)")
         });
     }
     
@@ -184,6 +188,7 @@ class VoteModel : NSObject {
             },
             failure: { (error : NSError?) -> Void in
                 println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t create vote.\n \(error!.localizedDescription)")
         });
     }
 }

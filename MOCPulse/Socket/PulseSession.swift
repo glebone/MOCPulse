@@ -88,7 +88,7 @@ class PulseSession: NSObject {
             if id.isEmpty != true {
                 self.isAuth = true
                 
-                self.getVotesQuery()
+//                self.getVotesQuery()
                 
                 return
             }
