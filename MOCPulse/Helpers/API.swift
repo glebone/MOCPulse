@@ -92,7 +92,7 @@ class API : NSObject {
                     
                     println("deviceToken: \(deviceToken)")
                     
-                    UserModel.updatePushToken(_userToken: manager.user!.userID!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
+                    UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
                         println(user)
             
                         NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
