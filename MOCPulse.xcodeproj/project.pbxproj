@@ -18,15 +18,22 @@
 		03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED41B48396000A9EA45 /* VotesListViewController.swift */; };
 		03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */; };
 		03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
-		0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		0C2420501B4832E8007333C4 /* ThanksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C24204F1B4832E8007333C4 /* ThanksController.swift */; };
-		2E3C07580047D65842B49FC5 /* Pods_MOCPulse_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		31E948B9ADCAB7758C6ED44F /* Pods_MOCPulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		3DA53BAA52AA2742E77B16D3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61AA81994E61EC5F8E1299E9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3D7146F01B664C7B00F96714 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
+		3D7146F11B664C8600F96714 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
+		3D7146F21B664C8900F96714 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18B1B47E90E00B6B358 /* UserModel.swift */; };
+		3D7146F31B664CAF00F96714 /* TcpSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABF0D31B5C2C5700129B63 /* TcpSocket.swift */; };
+		3D7146F41B664CCD00F96714 /* PulsePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABF0D11B5C2C5700129B63 /* PulsePacket.swift */; };
+		3D7146F51B664CCF00F96714 /* PulseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABF0D21B5C2C5700129B63 /* PulseSession.swift */; };
+		3D7146F61B664CD200F96714 /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABF0D01B5C2C5700129B63 /* Opcode.swift */; };
+		3D7146F71B664EC900F96714 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
+		3D7146F81B664EEB00F96714 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
 		3DECE18C1B47E90E00B6B358 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18B1B47E90E00B6B358 /* UserModel.swift */; };
 		3DECE18E1B47EECD00B6B358 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE18D1B47EECD00B6B358 /* VoteModel.swift */; };
 		3DECE1981B48249400B6B358 /* Alamofire-SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */; };
 		3DECE1991B48249400B6B358 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
+		7244F08430CD8F00831A6897 /* Pods_MOCPulseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CDCCE8790A6F59545D922EF /* Pods_MOCPulseTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		745942821B511EBC00A0C8BF /* CreateVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */; };
 		74BDCF781B487227003B3E7E /* VoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDCF771B487227003B3E7E /* VoteViewController.swift */; };
 		842D25A01B53E5420013844F /* LastVoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842D259E1B53E5420013844F /* LastVoteViewController.swift */; };
@@ -52,6 +59,7 @@
 		84ABF0D71B5C2C5700129B63 /* TcpSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABF0D31B5C2C5700129B63 /* TcpSocket.swift */; };
 		84FA7E901B52CDA300C2D0D8 /* VotesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA7E8E1B52CD0600C2D0D8 /* VotesTableViewController.swift */; };
 		97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 97A503C31B490A4F00B931AC /* iTunesArtwork */; };
+		F73797FABF8251D52A734FAC /* Pods_MOCPulse_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F798B3781B46C34800A17754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B3771B46C34800A17754 /* AppDelegate.swift */; };
 		F798B37D1B46C34900A17754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F798B37B1B46C34900A17754 /* Main.storyboard */; };
 		F798B37F1B46C34900A17754 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F798B37E1B46C34900A17754 /* Images.xcassets */; };
@@ -125,7 +133,9 @@
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
 		0C24204F1B4832E8007333C4 /* ThanksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksController.swift; sourceTree = "<group>"; };
+		1CDCCE8790A6F59545D922EF /* Pods_MOCPulseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOCPulseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse.release.xcconfig"; sourceTree = "<group>"; };
+		2B8A7A0AA4D4A4C7B24D31D7 /* Pods-MOCPulseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulseTests/Pods-MOCPulseTests.release.xcconfig"; sourceTree = "<group>"; };
 		3DECE18B1B47E90E00B6B358 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserModel.swift; path = Models/UserModel.swift; sourceTree = "<group>"; };
 		3DECE18D1B47EECD00B6B358 /* VoteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VoteModel.swift; path = Models/VoteModel.swift; sourceTree = "<group>"; };
 		3DECE1961B48249400B6B358 /* Alamofire-SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire-SwiftyJSON.swift"; path = "Helpers/Alamofire-SwiftyJSON.swift"; sourceTree = "<group>"; };
@@ -176,6 +186,7 @@
 		F798B3AE1B46C36F00A17754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F798B3B01B46C36F00A17754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		F798B3B21B46C36F00A17754 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FCB80D400518527B980BDF4D /* Pods-MOCPulseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulseTests/Pods-MOCPulseTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8496CDEF1B52B3EF00984A0D /* NotificationCenter.framework in Frameworks */,
-				3DA53BAA52AA2742E77B16D3 /* Pods.framework in Frameworks */,
-				2E3C07580047D65842B49FC5 /* Pods_MOCPulse_Widget.framework in Frameworks */,
+				F73797FABF8251D52A734FAC /* Pods_MOCPulse_Widget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +203,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE0B04A420247509BEE7F3F /* Pods.framework in Frameworks */,
 				31E948B9ADCAB7758C6ED44F /* Pods_MOCPulse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7244F08430CD8F00831A6897 /* Pods_MOCPulseTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +281,7 @@
 				8496CDA81B528E5700984A0D /* NotificationCenter.framework */,
 				7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */,
 				B2B3D85FC965AEAF2C9B56B9 /* Pods_MOCPulse_Widget.framework */,
+				1CDCCE8790A6F59545D922EF /* Pods_MOCPulseTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +315,8 @@
 				8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */,
 				1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */,
 				9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */,
+				FCB80D400518527B980BDF4D /* Pods-MOCPulseTests.debug.xcconfig */,
+				2B8A7A0AA4D4A4C7B24D31D7 /* Pods-MOCPulseTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -518,9 +531,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F798B3941B46C34900A17754 /* Build configuration list for PBXNativeTarget "MOCPulseTests" */;
 			buildPhases = (
+				55F09738B7DED0B0654D352E /* Check Pods Manifest.lock */,
 				F798B3831B46C34900A17754 /* Sources */,
 				F798B3841B46C34900A17754 /* Frameworks */,
 				F798B3851B46C34900A17754 /* Resources */,
+				8869C1CF986C3F7A9AF7D22D /* Embed Pods Frameworks */,
+				41AEFE704B0665ACE670E396 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -726,6 +742,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulse Widget/Pods-MOCPulse Widget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		41AEFE704B0665ACE670E396 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulseTests/Pods-MOCPulseTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		51614B9ADFF180E79943DCB7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -739,6 +770,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		55F09738B7DED0B0654D352E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8869C1CF986C3F7A9AF7D22D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MOCPulseTests/Pods-MOCPulseTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BFD77A74770D2DE4AD2F7DBF /* Embed Pods Frameworks */ = {
@@ -810,7 +871,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D7146F01B664C7B00F96714 /* API.swift in Sources */,
+				3D7146F61B664CD200F96714 /* Opcode.swift in Sources */,
+				3D7146F81B664EEB00F96714 /* Alamofire-SwiftyJSON.swift in Sources */,
 				F798B38E1B46C34900A17754 /* MOCPulseTests.swift in Sources */,
+				3D7146F21B664C8900F96714 /* UserModel.swift in Sources */,
+				3D7146F41B664CCD00F96714 /* PulsePacket.swift in Sources */,
+				3D7146F31B664CAF00F96714 /* TcpSocket.swift in Sources */,
+				3D7146F11B664C8600F96714 /* VoteModel.swift in Sources */,
+				3D7146F71B664EC900F96714 /* LocalObjectsManager.swift in Sources */,
+				3D7146F51B664CCF00F96714 /* PulseSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1111,7 @@
 		};
 		F798B3951B46C34900A17754 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB80D400518527B980BDF4D /* Pods-MOCPulseTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1063,6 +1134,7 @@
 		};
 		F798B3961B46C34900A17754 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B8A7A0AA4D4A4C7B24D31D7 /* Pods-MOCPulseTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";

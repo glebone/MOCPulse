@@ -13,12 +13,12 @@ import SwiftyJSON
 import OAuthSwift
 #endif
 
-let kTcpServer = "192.168.5.225"
+let kTcpServer = "pulse.masterofcode.com"
 let kTcpServerPort = 4242
 
 let kDevServer : String = "http://localhost:3000/"
-let kProductionServer : String = "http://192.168.5.225:8080/"
-let kAuthorizationServer : String = "http://fritzvl.info/"
+let kProductionServer : String = "https://pulse.masterofcode.com/"
+let kAuthorizationServer : String = "https://id.masterofcode.com/"
 
 class API : NSObject {
     
