@@ -49,7 +49,11 @@ class UserModel : NSObject {
     }
     
     static func updatePushToken(_userToken userToken: String,_deviceToken deviceToken: String, _completion: (Void) -> Void) -> Request {
-        return API.response(API.request(.POST, path: "\(kAuthorizationServer)/api/me/data", parameters: ["app_data" : deviceToken], headers: ["Authorization" : "Bearer \(userToken)"]), success: { (responseObject) -> Void in
+        return API.response(API.request(.POST, path: "\(kAuthorizationServer)api/me/data",
+            parameters: ["app_data" : ["push_token" : deviceToken]],
+            headers: ["Authorization" : "Bearer \(userToken)"]),
+            success: { (responseObject) -> Void in
+                
             println(responseObject)
             _completion()
         }, failure: { (error) -> Void in

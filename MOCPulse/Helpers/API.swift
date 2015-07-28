@@ -130,6 +130,9 @@ class API : NSObject {
     static func response(_request:Request, success _success: (SwiftyJSON.JSON) -> Void, failure _failure: (NSError?) -> Void) -> Request {
         
         return self.response(_request, completionHandler: { (request, response, json, error) -> Void in
+
+            println("\n\(_request.debugDescription)\n")
+
             if ((error) != nil) {
                 _failure(error)
             }
