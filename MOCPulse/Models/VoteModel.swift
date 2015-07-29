@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import VBPieChart
 
-let kHardCodedToken = "123123"
+let kHardCodedToken = LocalObjectsManager.sharedInstance.user?.apiToken
 let kAuthToken_FIXME = ["auth_token" : kHardCodedToken]
 
 
