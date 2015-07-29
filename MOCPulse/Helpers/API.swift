@@ -86,19 +86,19 @@ class API : NSObject {
             
                 println("deviceToken: \(deviceToken)")
             
-                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
+                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { () -> Void in
             
-                    UserModel.user(self.userToken!, _completion: { (user) -> Void in
+                    UserModel.user(self.userToken!, _completion: { (user:UserModel?) -> Void in
                         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
                         manager.user = user
-            
+                        
                         API.isRunAuthorization = false
-            
+                        
                         println(user)
-            
+                        
                         NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                     })
-            
+                                
                     NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                 })
             
