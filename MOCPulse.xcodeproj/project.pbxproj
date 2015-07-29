@@ -132,6 +132,8 @@
 		03C3EED41B48396000A9EA45 /* VotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesListViewController.swift; sourceTree = "<group>"; };
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
+		03E7F6D91B6901000072CD64 /* Pods_MOCPulse_Widget.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MOCPulse_Widget.framework; path = "Pods/../build/Debug-iphoneos/Pods_MOCPulse_Widget.framework"; sourceTree = "<group>"; };
+		03E7F6DA1B6901000072CD64 /* Pods_MOCPulseTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MOCPulseTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_MOCPulseTests.framework"; sourceTree = "<group>"; };
 		0C24204F1B4832E8007333C4 /* ThanksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksController.swift; sourceTree = "<group>"; };
 		1CDCCE8790A6F59545D922EF /* Pods_MOCPulseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOCPulseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse.release.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +279,8 @@
 		0E17897313ABD3CBDD9AAC0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03E7F6D91B6901000072CD64 /* Pods_MOCPulse_Widget.framework */,
+				03E7F6DA1B6901000072CD64 /* Pods_MOCPulseTests.framework */,
 				61AA81994E61EC5F8E1299E9 /* Pods.framework */,
 				8496CDA81B528E5700984A0D /* NotificationCenter.framework */,
 				7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */,
@@ -1002,8 +1006,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1025,7 +1029,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "bbf1b2fb-14b9-440e-926f-f9b603619107";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1048,8 +1052,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dmytro Hrytsenko (BSPA7SQU2E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1064,7 +1068,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "bbf1b2fb-14b9-440e-926f-f9b603619107";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1080,6 +1084,10 @@
 				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1100,6 +1108,10 @@
 				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = MOCPulse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -67,41 +67,44 @@ class API : NSObject {
             
             oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
                 credential, response, parameters in
-                
+            
                 self.userToken = String(credential.oauth_token)
             
                 println("userToken: \(self.userToken)")
             
-                UserModel.user(self.userToken!, _completion: { (user) -> Void in
-                    var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
-                    manager.user = user
-
-                    API.isRunAuthorization = false
-                    
-                    var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
+                var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
             
-                    TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
+                TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
             
-                    // FIX ME
-                    // we auth to fast, token not ready
-                    if deviceToken == nil {
-                        println("no device token: \(deviceToken)")
-                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                        return
-                    }
-                    
-                    println("deviceToken: \(deviceToken)")
-                    
-                    UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
+                // FIX ME
+                // we auth to fast, token not ready
+                if deviceToken == nil {
+                    println("no device token: \(deviceToken)")
+                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                    return
+                }
+            
+                println("deviceToken: \(deviceToken)")
+            
+                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { (Void) -> Void in
+            
+                    UserModel.user(self.userToken!, _completion: { (user) -> Void in
+                        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+                        manager.user = user
+            
+                        API.isRunAuthorization = false
+            
                         println(user)
             
                         NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                     })
+            
+                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                 })
-                
-                }, failure: {(error:NSError!) -> Void in
-                    println(error.localizedDescription)
-                    API.isRunAuthorization = false;
+            
+            }, failure: {(error:NSError!) -> Void in
+                println(error.localizedDescription)
+                API.isRunAuthorization = false;
             })
         #endif
     }
@@ -117,7 +120,7 @@ class API : NSObject {
         Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
         var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
         
-        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
+//        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
         
         return request;
     }
@@ -131,7 +134,7 @@ class API : NSObject {
         
         return self.response(_request, completionHandler: { (request, response, json, error) -> Void in
 
-            println("\n\(_request.debugDescription)\n")
+//            println("\n\(_request.debugDescription)\n")
 
             if ((error) != nil) {
                 _failure(error)
