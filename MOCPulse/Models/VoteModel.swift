@@ -12,7 +12,7 @@ import SwiftyJSON
 import VBPieChart
 
 var kHardCodedToken : String!
-let kAuthToken_FIXME = ["auth_token" : kHardCodedToken]
+var kAuthToken_FIXME = ["auth_token" : kHardCodedToken]
 
 
 enum VoteColor : Int {

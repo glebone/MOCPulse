@@ -148,6 +148,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSUserDefaults.standardUserDefaults().setObject(token, forKey: "device_push_token")
         NSUserDefaults.standardUserDefaults().synchronize()
+        
+        var userToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("user_tmp_token") as? String
+        
+        if userToken != nil {
+            API.putPushToken(_pushToken: token, _userToken: userToken!)
+        }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

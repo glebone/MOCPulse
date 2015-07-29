@@ -69,40 +69,28 @@ class API : NSObject {
                 credential, response, parameters in
             
                 self.userToken = String(credential.oauth_token)
-            
+                
                 println("userToken: \(self.userToken)")
             
+                NSUserDefaults.standardUserDefaults().setObject(self.userToken, forKey: "user_tmp_token")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                
                 var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
             
                 TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
             
                 kHardCodedToken = self.userToken!
                 
-                // FIX ME
-                // we auth to fast, token not ready
                 if deviceToken == nil {
-                    println("no device token: \(deviceToken)")
-                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                    return
+                    println("no device token yet")
+                    
+                    self.getUser(_userToken: self.userToken!)
                 }
-            
-                println("deviceToken: \(deviceToken)")
-            
-                UserModel.updatePushToken(_userToken: self.userToken!, _deviceToken: deviceToken!, _completion: { () -> Void in
-            
-                    UserModel.user(self.userToken!, _completion: { (user:UserModel?) -> Void in
-                        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
-                        manager.user = user
-                        
-                        API.isRunAuthorization = false
-                        
-                        println(user)
-                        
-                        NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                    })
-                                
-                    NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                })
+                else {
+                    println("device token: \(deviceToken)")
+                    
+                    self.putPushToken(_pushToken: deviceToken!, _userToken: self.userToken!)
+                }
             
             }, failure: {(error:NSError!) -> Void in
                 println(error.localizedDescription)
@@ -110,7 +98,30 @@ class API : NSObject {
             })
         #endif
     }
-
+    
+    static func putPushToken(_pushToken pushToken : String, _userToken userToken : String) {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("user_tmp_token")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        UserModel.updatePushToken(_userToken: userToken, _deviceToken: pushToken, _completion: { () -> Void in
+            self.getUser(_userToken: userToken)
+        })
+    }
+    
+    static func getUser(_userToken userToken : String) {
+        UserModel.user(userToken, _completion: { (user:UserModel?) -> Void in
+            var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+            manager.user = user
+            
+            kHardCodedToken = user?.apiToken
+            
+            API.isRunAuthorization = false
+            
+//            println(user)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+        })
+    }
+    
 // MARK: API Call
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
         

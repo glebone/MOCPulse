@@ -48,21 +48,21 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
-        if (manager.user != nil) {
-            self.fetchVotesList()
-        }
+        self.fetchVotesList()
     }
     
     func fetchVotesList() {
-        VoteModel.votes { (votesList) -> Void in
-            self.votes = votesList
-            LocalObjectsManager.sharedInstance.votes = votesList;
-            
-            self.tableView.reloadData()
-            
-            UIApplication.sharedApplication().applicationIconBadgeNumber = self.tableArray().count
-            self.refreshControl.endRefreshing()
+        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+        if (manager.user != nil) {
+            VoteModel.votes { (votesList) -> Void in
+                self.votes = votesList
+                LocalObjectsManager.sharedInstance.votes = votesList;
+                
+                self.tableView.reloadData()
+                
+                UIApplication.sharedApplication().applicationIconBadgeNumber = self.tableArray().count
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     

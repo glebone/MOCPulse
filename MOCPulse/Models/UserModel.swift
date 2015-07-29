@@ -35,7 +35,7 @@ class UserModel : NSObject {
         
         return API.response(API.request(.GET, path: "\(kAuthorizationServer)api/me.json", headers: ["Authorization" : "Bearer \(token)"]),
             success: { (object) -> Void in
-                println(object)
+//                println(object)
                 
                 var email : String = object["email"].stringValue
                 var name : String = object["name"].stringValue
@@ -57,7 +57,7 @@ class UserModel : NSObject {
             headers: ["Authorization" : "Bearer \(userToken)"]),
             success: { (responseObject) -> Void in
                 
-            println(responseObject)
+//            println(responseObject)
             _completion()
         }, failure: { (error) -> Void in
             var error2: NSError? = error
