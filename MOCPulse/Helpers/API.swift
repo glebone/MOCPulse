@@ -76,6 +76,8 @@ class API : NSObject {
             
                 TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
             
+                kHardCodedToken = self.userToken!
+                
                 // FIX ME
                 // we auth to fast, token not ready
                 if deviceToken == nil {
