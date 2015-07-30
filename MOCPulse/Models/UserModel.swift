@@ -40,7 +40,7 @@ class UserModel : NSObject {
                 var email : String = object["email"].stringValue
                 var name : String = object["name"].stringValue
                 var userID : String = object["uid"].stringValue
-                var apiToken : String = object["uid"]["vote_api_token"].stringValue
+                var apiToken : String = object["app_data"]["vote_api_token"].stringValue
                 
                 var user: UserModel = UserModel(email: email, name: name, userID: userID, apiToken: apiToken)
 
