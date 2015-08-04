@@ -16,8 +16,13 @@ class PulsePacket: NSObject{
     
     var content : JSON! {
         didSet {
-            self.size = UInt32(content.rawData()!.length)
-            if (self.size == nil) {
+            var raw = content.rawData()
+            if raw != nil {
+                self.size = UInt32(content.rawData()!.length)
+                if (self.size == nil) {
+                    self.size = 0
+                }
+            } else {
                 self.size = 0
             }
         }
