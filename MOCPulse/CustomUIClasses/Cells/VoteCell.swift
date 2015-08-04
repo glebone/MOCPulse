@@ -22,7 +22,7 @@ class VoteCell: UITableViewCell {
     
     func setupWithVote(vote : VoteModel) {
         voteBodyLabel.text = vote.name
-        usernameLabel.text = vote.owner
+        usernameLabel.text = vote.displayOwnerName()
     }
     
     override func awakeFromNib() {

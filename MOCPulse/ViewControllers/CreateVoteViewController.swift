@@ -33,15 +33,19 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     }
     
     @IBAction func createButtonClicked(sender: AnyObject) {
-        var voteText = self.voteTextView.text
+        var voteText : String! = self.voteTextView.text
         // send to server
         
-        VoteModel.createVote(voteText, completion: { (vote) -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-            println(vote)
-        })
-        
-        self.navigationController!.popViewControllerAnimated(true)
+        if (count(voteText) > 0) {
+            VoteModel.createVote(voteText, completion: { (vote) -> Void in
+                self.navigationController!.popViewControllerAnimated(true)
+                NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                println(vote)
+            })
+        }
+        else {
+            UIAlertView(title: "Error", message: "Vote body can't be blank", delegate: nil, cancelButtonTitle: "Ok").show()
+        }
     }
     
     func setupView() {

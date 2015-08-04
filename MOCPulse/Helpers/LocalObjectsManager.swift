@@ -96,7 +96,8 @@ class LocalObjectsManager {
         for (var i = 0; i < _count; i++) {
             var vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(Int(10 + arc4random_uniform(130))))
             
-            vote.owner = self.randomStringWithLength(Int(5+arc4random_uniform(30)))
+            vote.ownerFirstName = self.randomStringWithLength(Int(5+arc4random_uniform(30)))
+            vote.ownerLastName = self.randomStringWithLength(Int(5+arc4random_uniform(30)))
             vote.voted = (arc4random_uniform(2) != 0)
             
             vote.greenVotes = Int(arc4random_uniform(25))

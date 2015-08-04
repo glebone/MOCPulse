@@ -49,7 +49,8 @@ enum VoteColor : Int {
 class VoteModel : NSObject {
     var id : String?
     var name : String?
-    var owner : String?
+    var ownerFirstName : String?
+    var ownerLastName : String?
     var create : NSDate?
     var voted : Bool! = false
 
@@ -82,7 +83,8 @@ class VoteModel : NSObject {
         self.id = _json["id"].stringValue
         self.name = _json["name"].stringValue
         
-        self.owner = _json["owner"].stringValue
+        self.ownerFirstName = _json["owner"]["first_name"].stringValue
+        self.ownerLastName = _json["owner"]["last_name"].stringValue
         self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
         
         // we receive inversion of value, why?
@@ -94,6 +96,23 @@ class VoteModel : NSObject {
         
         self.allUsers = _json["result"]["all_users"].intValue
         self.voteUsers = _json["result"]["vote_users"].intValue
+    }
+    
+    internal func displayOwnerName() -> String {
+        var ownerName : String!
+        
+        if (self.ownerFirstName != nil
+            && self.ownerLastName != nil) {
+                ownerName = "\(self.ownerFirstName as String!) \(self.ownerLastName as String!)"
+        }
+        else if (self.ownerFirstName != nil) {
+            ownerName = self.ownerFirstName! as String!
+        }
+        else if (self.ownerLastName != nil) {
+            ownerName = self.ownerLastName! as String!
+        }
+        
+        return ownerName
     }
     
     func isNewerThan(vote: VoteModel) -> Bool {
@@ -110,6 +129,9 @@ class VoteModel : NSObject {
         var list: [VoteModel] = [];
         
         for (index: String, subJson: JSON) in data["votes"] {
+            
+            println(subJson)
+            
             var vote : VoteModel = VoteModel(json: subJson)
             list.append(vote);
         }

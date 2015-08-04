@@ -43,7 +43,7 @@ class VoteDetailsViewController: UIViewController {
         
         println("\(voteModel.name)")
         
-        ownerTitleLabel.text = voteModel.owner
+        ownerTitleLabel.text = voteModel.displayOwnerName()
         voteBodyTextView.text = voteModel.name
         
         interfaceFotVote(self.voteModel)

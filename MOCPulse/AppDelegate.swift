@@ -10,6 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import OAuthSwift
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
 //            application.registerForRemoteNotificationTypes(.Alert | .Badge | .Sound)
         }
+        
+        Fabric.with([Crashlytics()])
         
         return true
     }

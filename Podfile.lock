@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (1.2.3)
+  - Crashlytics (3.1.0)
+  - Fabric (1.2.8):
+    - Fabric/Base (= 1.2.8)
+  - Fabric/Base (1.2.8)
   - KeychainAccess (1.2.1)
   - OAuthSwift (0.3.6)
   - SwiftyJSON (2.2.0)
@@ -7,6 +11,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
+  - Crashlytics
+  - Fabric
   - KeychainAccess (~> 1.2.1)
   - OAuthSwift (~> 0.3.4)
   - SwiftyJSON (~> 2.2.0)
@@ -14,6 +20,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
+  Crashlytics: ef9a58a4e806b316a1748c06432f6f847ba09ac6
+  Fabric: a9eabe53915e9f1db55a84dd2838737928675878
   KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
   OAuthSwift: 3517e94380923085dfa7f23421bc3d4a61ce48c0
   SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c

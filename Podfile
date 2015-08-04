@@ -8,6 +8,8 @@ target :'MOCPulse' do
     pod 'KeychainAccess', '~> 1.2.1'
     pod 'VBPieChart', '~> 0.3.0'
     pod 'OAuthSwift', '~> 0.3.4'
+    pod 'Fabric'
+    pod 'Crashlytics'
 end
 
 target :'MOCPulseTests' do

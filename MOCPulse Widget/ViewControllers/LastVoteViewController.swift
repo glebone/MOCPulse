@@ -30,7 +30,17 @@ class LastVoteViewController: UIViewController, NCWidgetProviding {
     
     func setupView() {
         self.question.text = vote.name
-        self.author.text = vote.owner
+        
+        if (vote.ownerFirstName != nil
+            && vote.ownerLastName != nil) {
+            self.author.text = "\(vote.ownerFirstName) \(vote.ownerLastName)"
+        }
+        else if (vote.ownerFirstName != nil) {
+                self.author.text = vote.ownerFirstName
+        }
+        else if (vote.ownerLastName != nil) {
+                self.author.text = vote.ownerLastName
+        }
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
