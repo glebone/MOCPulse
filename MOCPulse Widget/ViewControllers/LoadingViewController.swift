@@ -25,6 +25,7 @@ class LoadingViewController: UIViewController, NCWidgetProviding {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateSize()
+        kHardCodedToken = "123123"
 
         VoteModel.votes(completion: { (arr: [VoteModel]?) -> Void in
             if arr?.count < 0 {

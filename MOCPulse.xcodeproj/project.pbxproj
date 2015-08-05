@@ -161,6 +161,7 @@
 		84ABF0D11B5C2C5700129B63 /* PulsePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PulsePacket.swift; path = Socket/PulsePacket.swift; sourceTree = "<group>"; };
 		84ABF0D21B5C2C5700129B63 /* PulseSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PulseSession.swift; path = Socket/PulseSession.swift; sourceTree = "<group>"; };
 		84ABF0D31B5C2C5700129B63 /* TcpSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TcpSocket.swift; path = Socket/TcpSocket.swift; sourceTree = "<group>"; };
+		84AE8E3E1B71FFDD00FF2FF3 /* VBPieChart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VBPieChart.framework; path = "Pods/../build/Debug-iphoneos/VBPieChart.framework"; sourceTree = "<group>"; };
 		84FA7E8E1B52CD0600C2D0D8 /* VotesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotesTableViewController.swift; path = "MOCPulse Widget/ViewControllers/VotesTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		8B342EE4B95FA6B24F99EA71 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse Widget/Pods-MOCPulse Widget.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		0E17897313ABD3CBDD9AAC0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84AE8E3E1B71FFDD00FF2FF3 /* VBPieChart.framework */,
 				03E7F6D91B6901000072CD64 /* Pods_MOCPulse_Widget.framework */,
 				03E7F6DA1B6901000072CD64 /* Pods_MOCPulseTests.framework */,
 				61AA81994E61EC5F8E1299E9 /* Pods.framework */,
@@ -600,7 +602,7 @@
 						DevelopmentTeam = ZLW345FG82;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -609,7 +611,7 @@
 						DevelopmentTeam = ZLW345FG82;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -969,7 +971,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E138B52D8FA8FFCC4078B95 /* Pods-MOCPulse Widget.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "MOCPulse Widget/MOCPulse Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MasterOfCode LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MasterOfCode LLC";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -990,7 +991,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AADC6D704A3E75A57B0661C /* Pods-MOCPulse Widget.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "MOCPulse Widget/MOCPulse Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MasterOfCode LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MasterOfCode LLC";
 				INFOPLIST_FILE = "MOCPulse WIdget/Info.plist";
@@ -1043,7 +1043,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f0d3f49d-533a-42ca-9e90-0c34971669ca";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1082,7 +1082,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f0d3f49d-533a-42ca-9e90-0c34971669ca";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1095,7 +1095,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MasterOfCode LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MasterOfCode LLC";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1119,7 +1118,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = MOCPulse/MOCPulse.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MasterOfCode LLC";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MasterOfCode LLC";
 				FRAMEWORK_SEARCH_PATHS = (

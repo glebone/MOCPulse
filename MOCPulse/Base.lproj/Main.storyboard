@@ -71,7 +71,20 @@
                             <constraint firstItem="MQU-f0-DgP" firstAttribute="bottom" secondItem="1dp-8P-936" secondAttribute="top" id="xwr-gv-CFQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I"/>
+                    <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="8u9-nW-FQw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kDi-pr-fqj">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Push">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Aic-Lc-DIZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pendingButton" destination="RWO-VR-0am" id="9dV-i7-cMS"/>
                         <outlet property="tableView" destination="MQU-f0-DgP" id="Zjw-wb-dS5"/>
@@ -81,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="350"/>
+            <point key="canvasLocation" x="281" y="337"/>
         </scene>
         <!--Create new vote-->
         <scene sceneID="vtC-1e-hR1">

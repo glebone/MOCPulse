@@ -242,5 +242,17 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func pushButtonPressed(sender: AnyObject) {
+        var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
+        API.response(API.requestWithoutJSON(.POST, path: "\(kProductionServer)test_ios_notification", parameters: ["dev_id" : deviceToken!], headers: kAuthToken_FIXME),
+            success: { (object) -> Void in
+                println("success")
+            },
+            failure: { (error : NSError?) -> Void in
+                println("API.Error: \(error?.localizedDescription)")
+                NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t create vote.\n \(error!.localizedDescription)")
+        });
+    }
 
 }

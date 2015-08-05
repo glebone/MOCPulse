@@ -137,6 +137,21 @@ class API : NSObject {
         
         return request;
     }
+    
+    static func requestWithoutJSON(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
+        
+        //        if _parameters != nil {
+        //            println(JSON(_parameters!))
+        //        }
+        
+        // FIXME: need to add Authorization Token to headers
+        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
+        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters)
+        
+        //        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
+        
+        return request;
+    }
         
     static func response(_request:Request, completionHandler: (NSURLRequest, NSHTTPURLResponse?, SwiftyJSON.JSON, NSError?) -> Void) -> Request {
         
