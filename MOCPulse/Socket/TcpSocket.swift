@@ -161,7 +161,10 @@ class TcpSocket: NSObject, NSStreamDelegate {
         
         if contentReadIndex == contentSize {
             var jsonData = NSData(bytes: data, length: contentSize)
-            packet?.content = JSON(data: jsonData)
+            var json = JSON(data: jsonData)
+            if (json != nil) {
+                packet?.content = json
+            }
             
             contentReadIndex = 0
             contentData = []
