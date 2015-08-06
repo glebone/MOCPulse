@@ -97,7 +97,7 @@ class TcpSocket: NSObject, NSStreamDelegate {
                     session = PulseSession(socket: self)
                 }
             
-                session?.tryAuth(kHardCodedToken)
+                session?.tryAuth("123123")
             
             case NSStreamEvent.HasBytesAvailable:
                 

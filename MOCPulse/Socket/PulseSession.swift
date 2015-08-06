@@ -101,7 +101,7 @@ class PulseSession: NSObject {
         
         LocalObjectsManager.sharedInstance.sortVotesByDate()
         
-        NSNotificationCenter.defaultCenter().postNotificationName("reloadVotes", object: nil)
+//        NSNotificationCenter.defaultCenter().postNotificationName("reloadVotes", object: nil)
     }
     
     func handleNewVote(packet: PulsePacket) {
