@@ -18,6 +18,9 @@
 		03C3EED51B48396000A9EA45 /* VotesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED41B48396000A9EA45 /* VotesListViewController.swift */; };
 		03C3EED71B48397B00A9EA45 /* VoteDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */; };
 		03C3EED91B483F1000A9EA45 /* LocalObjectsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */; };
+		03F0CC4F1B73662900E4F7D0 /* negative.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F0CC4C1B73662900E4F7D0 /* negative.png */; };
+		03F0CC501B73662900E4F7D0 /* neutral.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F0CC4D1B73662900E4F7D0 /* neutral.png */; };
+		03F0CC511B73662900E4F7D0 /* positive.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F0CC4E1B73662900E4F7D0 /* positive.png */; };
 		0C2420501B4832E8007333C4 /* ThanksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C24204F1B4832E8007333C4 /* ThanksController.swift */; };
 		31E948B9ADCAB7758C6ED44F /* Pods_MOCPulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7738CE6D153815231BF6A6D9 /* Pods_MOCPulse.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3D7146F01B664C7B00F96714 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECE1971B48249400B6B358 /* API.swift */; };
@@ -134,6 +137,9 @@
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
 		03E7F6D91B6901000072CD64 /* Pods_MOCPulse_Widget.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MOCPulse_Widget.framework; path = "Pods/../build/Debug-iphoneos/Pods_MOCPulse_Widget.framework"; sourceTree = "<group>"; };
 		03E7F6DA1B6901000072CD64 /* Pods_MOCPulseTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_MOCPulseTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_MOCPulseTests.framework"; sourceTree = "<group>"; };
+		03F0CC4C1B73662900E4F7D0 /* negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = negative.png; sourceTree = "<group>"; };
+		03F0CC4D1B73662900E4F7D0 /* neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neutral.png; sourceTree = "<group>"; };
+		03F0CC4E1B73662900E4F7D0 /* positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = positive.png; sourceTree = "<group>"; };
 		0C24204F1B4832E8007333C4 /* ThanksController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThanksController.swift; sourceTree = "<group>"; };
 		1CDCCE8790A6F59545D922EF /* Pods_MOCPulseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MOCPulseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E804122D2FE5E6468118CD2 /* Pods-MOCPulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOCPulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOCPulse/Pods-MOCPulse.release.xcconfig"; sourceTree = "<group>"; };
@@ -275,6 +281,16 @@
 				745942811B511EBC00A0C8BF /* CreateVoteViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		03F0CC4B1B73662900E4F7D0 /* MOCPulse images */ = {
+			isa = PBXGroup;
+			children = (
+				03F0CC4C1B73662900E4F7D0 /* negative.png */,
+				03F0CC4D1B73662900E4F7D0 /* neutral.png */,
+				03F0CC4E1B73662900E4F7D0 /* positive.png */,
+			);
+			path = "MOCPulse images";
 			sourceTree = "<group>";
 		};
 		0E17897313ABD3CBDD9AAC0D /* Frameworks */ = {
@@ -427,6 +443,7 @@
 		F798B3751B46C34700A17754 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				03F0CC4B1B73662900E4F7D0 /* MOCPulse images */,
 				F798B3761B46C34800A17754 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -668,9 +685,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F0CC4F1B73662900E4F7D0 /* negative.png in Resources */,
 				F798B37D1B46C34900A17754 /* Main.storyboard in Resources */,
+				03F0CC511B73662900E4F7D0 /* positive.png in Resources */,
 				F798B3821B46C34900A17754 /* LaunchScreen.xib in Resources */,
 				F798B37F1B46C34900A17754 /* Images.xcassets in Resources */,
+				03F0CC501B73662900E4F7D0 /* neutral.png in Resources */,
 				97A503C41B490A4F00B931AC /* iTunesArtwork in Resources */,
 				032262251B4FC6C800BE38A4 /* VoteCell.xib in Resources */,
 			);

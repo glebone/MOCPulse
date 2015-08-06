@@ -73,7 +73,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="MOC Pulse" id="Rpu-9Z-G3I">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="8u9-nW-FQw">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kDi-pr-fqj">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kDi-pr-fqj">
                                 <rect key="frame" x="-23" y="-15" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Push">
@@ -285,12 +285,12 @@
                                     <constraint firstItem="JeJ-Eo-fj9" firstAttribute="baseline" secondItem="Xbp-uo-70s" secondAttribute="baseline" id="Px9-Kz-jt4"/>
                                     <constraint firstItem="Ivz-tU-AVz" firstAttribute="bottom" secondItem="JeJ-Eo-fj9" secondAttribute="bottom" id="UpF-aS-aq9"/>
                                     <constraint firstItem="JeJ-Eo-fj9" firstAttribute="top" secondItem="Ivz-tU-AVz" secondAttribute="top" id="V8y-w2-dVe"/>
-                                    <constraint firstItem="Xbp-uo-70s" firstAttribute="width" secondItem="JeJ-Eo-fj9" secondAttribute="width" id="XDJ-7A-bTU"/>
+                                    <constraint firstItem="Xbp-uo-70s" firstAttribute="width" secondItem="JeJ-Eo-fj9" secondAttribute="width" constant="1" id="XDJ-7A-bTU"/>
                                     <constraint firstItem="Xbp-uo-70s" firstAttribute="leading" secondItem="X8g-74-GJn" secondAttribute="leading" id="XXX-BT-tBU"/>
                                     <constraint firstItem="JeJ-Eo-fj9" firstAttribute="top" secondItem="X8g-74-GJn" secondAttribute="top" id="Z0K-wM-Q1W"/>
                                     <constraint firstItem="Ivz-tU-AVz" firstAttribute="leading" secondItem="JeJ-Eo-fj9" secondAttribute="trailing" id="m2W-Lu-g1Q"/>
                                     <constraint firstItem="Ivz-tU-AVz" firstAttribute="firstBaseline" secondItem="JeJ-Eo-fj9" secondAttribute="firstBaseline" id="niq-NA-ab8"/>
-                                    <constraint firstItem="JeJ-Eo-fj9" firstAttribute="width" secondItem="Ivz-tU-AVz" secondAttribute="width" id="nwL-ho-DNu"/>
+                                    <constraint firstItem="JeJ-Eo-fj9" firstAttribute="width" secondItem="Ivz-tU-AVz" secondAttribute="width" constant="-1" id="nwL-ho-DNu"/>
                                     <constraint firstAttribute="height" constant="100" id="pJr-ib-Aak"/>
                                     <constraint firstItem="Xbp-uo-70s" firstAttribute="firstBaseline" secondItem="Ivz-tU-AVz" secondAttribute="firstBaseline" id="qH9-og-3mJ"/>
                                     <constraint firstItem="Xbp-uo-70s" firstAttribute="baseline" secondItem="Ivz-tU-AVz" secondAttribute="baseline" id="qJW-L5-IhK"/>

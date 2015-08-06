@@ -54,7 +54,7 @@ class RateAlertView: UIView {
         voteBodyTextView.selectable = false
         containerView.addSubview(voteBodyTextView)
         
-        var voteButtons = UIView(frame: CGRectMake(0, 215, containerView.frame.size.width, 85))
+        var voteButtons = UIView(frame: CGRectMake(0, 200, containerView.frame.size.width, 100))
         
         var maskLayer = CAShapeLayer()
         var roundedPath = UIBezierPath(roundedRect: voteButtons.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: CGSizeMake(5.0, 5.0))
@@ -71,16 +71,22 @@ class RateAlertView: UIView {
         var redButton = UIButton(frame: CGRectMake(0, 0, voteButtons.frame.size.width / 3, 100))
         redButton.backgroundColor = UIColor(red: 221.0/255, green: 48.0/255, blue: 61.0/255, alpha: 1)
         redButton.addTarget(self, action: "redButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        redButton.setImage(UIImage(named: "negative"), forState: UIControlState.Normal)
+        redButton.tintColor = UIColor.whiteColor()
         voteButtons.addSubview(redButton)
         
         var yellowButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3, 0, voteButtons.frame.size.width / 3, 100))
         yellowButton.backgroundColor = UIColor(red: 252.0/255, green: 210.0/255, blue: 56.0/255, alpha: 1)
         yellowButton.addTarget(self, action: "yellowButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        yellowButton.setImage(UIImage(named: "neutral"), forState: UIControlState.Normal)
+        yellowButton.tintColor = UIColor.whiteColor()
         voteButtons.addSubview(yellowButton)
         
         var greenButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3 * 2, 0, voteButtons.frame.size.width / 3, 100))
         greenButton.backgroundColor = UIColor(red: 130.0/255, green: 177.0/255, blue: 17.0/255, alpha: 1)
         greenButton.addTarget(self, action: "greenButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        greenButton.setImage(UIImage(named: "positive"), forState: UIControlState.Normal)
+        greenButton.tintColor = UIColor.whiteColor()
         voteButtons.addSubview(greenButton)
         
         containerView.center = CGPointMake(UIScreen.mainScreen().bounds.width / 2, UIScreen.mainScreen().bounds.height / 2)

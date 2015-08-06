@@ -46,6 +46,14 @@ class VoteDetailsViewController: UIViewController {
         ownerTitleLabel.text = voteModel.displayOwnerName()
         voteBodyTextView.text = voteModel.name
         
+        greenButton.tintColor = UIColor.whiteColor()
+        yellowButton.tintColor = UIColor.whiteColor()
+        redButton.tintColor = UIColor.whiteColor()
+        
+        greenButton.setImage(UIImage(named: "positive"), forState: UIControlState.Normal)
+        yellowButton.setImage(UIImage(named: "neutral"), forState: UIControlState.Normal)
+        redButton.setImage(UIImage(named: "negative"), forState: UIControlState.Normal)
+        
         interfaceFotVote(self.voteModel)
     }
     
@@ -125,6 +133,7 @@ class VoteDetailsViewController: UIViewController {
     func updateVote(n: NSNotification) {
         var newVote : VoteModel = n.object as! VoteModel
         if (newVote.id == voteModel.id) {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             interfaceFotVote(newVote)
         }
     }
