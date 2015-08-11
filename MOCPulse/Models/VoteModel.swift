@@ -87,8 +87,7 @@ class VoteModel : NSObject {
         self.ownerLastName = _json["owner"]["last_name"].stringValue
         self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
         
-        // we receive inversion of value, why?
-        self.voted = !_json["voted"].boolValue
+        self.voted = _json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
