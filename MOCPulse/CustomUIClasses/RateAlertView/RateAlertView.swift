@@ -42,12 +42,12 @@ class RateAlertView: UIView {
         ownerTitleLabel.text = ownerTitle
         ownerTitleLabel.textColor = UIColor.blackColor()
         ownerTitleLabel.textAlignment = NSTextAlignment.Center
-        ownerTitleLabel.font = UIFont.systemFontOfSize(14)
+        ownerTitleLabel.font = UIFont.systemFontOfSize(20)
         ownerTitleLabel.minimumScaleFactor = 0.5
         containerView.addSubview(ownerTitleLabel)
         
         var voteBodyTextView = UITextView(frame: CGRectMake(15, 70, containerView.frame.size.width - 30, 128))
-        voteBodyTextView.font = UIFont.systemFontOfSize(16)
+        voteBodyTextView.font = UIFont.systemFontOfSize(18)
         voteBodyTextView.text = voteBody
         voteBodyTextView.textAlignment = NSTextAlignment.Center
         voteBodyTextView.backgroundColor = UIColor.clearColor()

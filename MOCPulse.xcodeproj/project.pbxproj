@@ -1002,7 +1002,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TODAY_EXTENSION";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f09202b9-eda4-4cfb-87fa-1d044a751a49";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1018,7 +1018,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D TODAY_EXTENSION";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f09202b9-eda4-4cfb-87fa-1d044a751a49";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1125,7 +1125,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1148,7 +1148,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
@@ -1171,7 +1171,7 @@
 				INFOPLIST_FILE = MOCPulseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOCPulse.app/MOCPulse";
 			};
 			name = Debug;
@@ -1190,7 +1190,7 @@
 				INFOPLIST_FILE = MOCPulseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MOCPulse.app/MOCPulse";
 			};
 			name = Release;
@@ -1209,7 +1209,7 @@
 				INFOPLIST_FILE = "MOCPulse WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8042d31a-c5a7-42fd-9781-fca09024d847";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1226,7 +1226,7 @@
 				INFOPLIST_FILE = "MOCPulse WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8042d31a-c5a7-42fd-9781-fca09024d847";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -1245,7 +1245,7 @@
 				INFOPLIST_FILE = "MOCPulse WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8042d31a-c5a7-42fd-9781-fca09024d847";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1258,7 +1258,7 @@
 				INFOPLIST_FILE = "MOCPulse WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8042d31a-c5a7-42fd-9781-fca09024d847";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

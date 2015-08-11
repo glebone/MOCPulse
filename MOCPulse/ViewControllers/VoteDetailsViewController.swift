@@ -59,7 +59,7 @@ class VoteDetailsViewController: UIViewController {
     
     func interfaceFotVote(vote : VoteModel) {
         
-        println("red: \(vote.redVotes) yellow: \(vote.yellowVotes) green: \(vote.greenVotes)")
+//        println("red: \(vote.redVotes) yellow: \(vote.yellowVotes) green: \(vote.greenVotes)")
         voteModel = vote
         
         if vote.voted == true {

@@ -47,10 +47,11 @@ enum VoteColor : Int {
 
 
 class VoteModel : NSObject {
-    var id : String?
-    var name : String?
-    var ownerFirstName : String?
-    var ownerLastName : String?
+    var id : String!
+    var name : String!
+    var ownerFirstName : String!
+    var ownerLastName : String!
+    
     var create : NSDate?
     var voted : Bool! = false
 
@@ -87,8 +88,7 @@ class VoteModel : NSObject {
         self.ownerLastName = _json["owner"]["last_name"].stringValue
         self.create = NSDate(timeIntervalSince1970:_json["date"].doubleValue)
         
-        // we receive inversion of value, why?
-        self.voted = !_json["voted"].boolValue
+        self.voted = _json["voted"].boolValue
         
         self.greenVotes = _json["result"]["green"].intValue
         self.redVotes = _json["result"]["red"].intValue
@@ -129,9 +129,7 @@ class VoteModel : NSObject {
         var list: [VoteModel] = [];
         
         for (index: String, subJson: JSON) in data["votes"] {
-            
-            println(subJson)
-            
+//            println(subJson)
             var vote : VoteModel = VoteModel(json: subJson)
             list.append(vote);
         }

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var backgroundTaskIdentifier: UIBackgroundTaskIdentifier =
     UIBackgroundTaskInvalid
- 
+    
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         // handle todays and notifications url
         if (url.scheme == "mocpulse") {
@@ -165,17 +165,65 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         println("Recived: \(userInfo)")
         // structure example
-        // {"aps":{"alert":"This is some fancy message.","badge":1, "category":"newVote", "vote":{"id":"1437029089921061910","name":"This is some fancy message.","owner":"Jack London"}}}
+//            {"aps":
+//                {
+//                    "alert":"Vote from Paul",
+//                    "title":"MOC Pulse",
+//                    "category":"newVote",
+//                    "vote":
+//                    {
+//                        "id":"1439287367052059586",
+//                        "name":"Vote from Paul",
+//                        "owner":
+//                        {
+//                            "id":"a5741998-1d90-4db7-92a7-1fae08123d5a",
+//                            "email":"",
+//                            "first_name":
+//                            "Paul",
+//                            "last_name":"Kovalenko",
+//                            "device":0,
+//                            "dev_id":"985e7fd66cf512fde5bddbf302e8753d55092f13210597a9922b3d623bfb2ead"
+//                        },
+//                        "date":1439287367,
+//                        "voted":true,
+//                        "result":
+//                        {
+//                            "yellow":0,
+//                            "green":0,
+//                            "red":0,
+//                            "all_users":16,
+//                            "vote_users":0
+//                        }
+//                    }
+//                },
+//                "WatchKit Simulator Actions":[{"title":"Vote","identifier":"voteButtonAction"}]}
         
-        if var aps = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary {
-            if var vote = aps["vote"] as? NSDictionary {
-                var voteId = vote["id"] as! String
-                var owner = vote["owner"] as! String
-                var body = vote["name"] as! String
+        if let aps = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary {
+            
+            if let voteDict = aps["vote"] as? NSDictionary {
                 
-                NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+                var voteId = voteDict["id"] as! String
+                var voteName = voteDict["name"] as! String
                 
-                var rateView = RateAlertView(ownerTitle: owner, voteBody: body, voteId: voteId)
+                var ownerName : String = String()
+                
+                var ownerDict = voteDict["owner"] as! NSDictionary
+
+                var firstName = ownerDict["first_name"] as! String
+                var lastName = ownerDict["last_name"] as! String
+                
+                if !firstName.isEmpty
+                    && !lastName.isEmpty {
+                        ownerName = String(format:"%@ %@", firstName, lastName)
+                }
+                else if !firstName.isEmpty {
+                    ownerName = firstName
+                }
+                else if !lastName.isEmpty {
+                    ownerName = lastName
+                }
+
+                var rateView = RateAlertView(ownerTitle: ownerName, voteBody: voteName, voteId: voteId)
                 
                 UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
             }

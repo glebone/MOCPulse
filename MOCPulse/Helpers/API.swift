@@ -125,9 +125,9 @@ class API : NSObject {
 // MARK: API Call
     static func request(_method: Alamofire.Method, path _path: URLStringConvertible, parameters _parameters: [String: AnyObject]? = nil, headers: [NSObject : AnyObject]? = nil) -> Request {
         
-//        if _parameters != nil {
+        if _parameters != nil {
 //            println(JSON(_parameters!))
-//        }
+        }
         
         // FIXME: need to add Authorization Token to headers
         Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
