@@ -27,13 +27,14 @@ class InterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onThanksClosed:", name: "thanksClosed", object: nil)
+        
         // Configure interface objects here.
     }
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         println("-----")
-        
         
         super.willActivate()
         println(isNotification)
@@ -42,7 +43,7 @@ class InterfaceController: WKInterfaceController {
             getVote()
         }
     }
-
+    
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
@@ -57,9 +58,8 @@ class InterfaceController: WKInterfaceController {
         {
            sendParent(["Red" , voteId!])
         }
-        pushThanks()
-
         
+        pushThanks()
     }
     
     @IBAction func YellowButtonPressed() {
@@ -72,18 +72,18 @@ class InterfaceController: WKInterfaceController {
         }
         
         pushThanks()
-     
     }
     
     @IBAction func GreenButtonPressed() {
         NSLog("Green Action")
         if (isNotification) {
+            isNotification = false
             sendParent(["Green", voteDic["id"]! as! String])
         } else
         {
             sendParent(["Green" , voteId!])
         }
-
+        
         pushThanks()
     }
     
@@ -103,7 +103,12 @@ class InterfaceController: WKInterfaceController {
             if let data = data {
                 println(data)
             }
+            self.getVote()
         })
+    }
+    
+    func onThanksClosed(n: NSNotification) {
+        getVote()
     }
     
     func getVote() {
@@ -135,13 +140,14 @@ class InterfaceController: WKInterfaceController {
     override func handleActionWithIdentifier(identifier: String?,
         forRemoteNotification remoteNotification: [NSObject : AnyObject]) {
             if let notificationIdentifier = identifier {
-                println(remoteNotification["aps"]!["alert"])
+                println(remoteNotification["aps"]!["vote"]!)
                 println(remoteNotification["aps"]!["id"])
                 
-                VoteLabel.setText(remoteNotification["aps"]!["alert"] as? String)
+                //VoteLabel.setText(remoteNotification["aps"]!["alert"] as? String)
                 notificationDic = remoteNotification
                 voteDic = (notificationDic["aps"] as! NSDictionary)["vote"] as! NSDictionary
-                
+                VoteLabel.setText(voteDic["name"] as? String);
+                voteId = voteDic["id"] as! String
                 self.setButtonsVision(true)
                 
                 isNotification = true

@@ -273,6 +273,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let val = voteInfo!["value"] as? String
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
+                        LocalObjectsManager.sharedInstance.sortVotesByDate()
                         var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
                         if curVote == nil
                         {
@@ -293,6 +294,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                         
                         VoteModel.voteFor(id: id!, color: color, completion: { (vote) -> Void in
+                            var votetmp : VoteModel? = LocalObjectsManager.sharedInstance.getVoteById(vote!.id)
+                            if (votetmp != nil) {
+                                votetmp!.voted = true
+                            } else {
+                                LocalObjectsManager.sharedInstance.votes! += [vote!]
+                                vote!.voted = true
+                            }
+                            
                             NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                             println("Voted!!!!)))")
                         })
