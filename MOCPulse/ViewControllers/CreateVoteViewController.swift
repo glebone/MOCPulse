@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class CreateVoteViewController : UIViewController, UITextViewDelegate {
     
@@ -37,7 +38,13 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         // send to server
         
         if (count(voteText) > 0) {
+            
+            let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
             VoteModel.createVote(voteText, completion: { (vote) -> Void in
+                
+                progressHUD.hide(true)
+                
                 self.navigationController!.popViewControllerAnimated(true)
                 NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
                 println(vote)

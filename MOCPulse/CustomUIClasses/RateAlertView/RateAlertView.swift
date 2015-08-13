@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import MBProgressHUD
 
 class RateAlertView: UIView {
 
@@ -141,7 +142,12 @@ class RateAlertView: UIView {
         pulseEffect.backgroundColor = color.CGColor
         pulseEffect.addAnimation(pulseEffect.animationGroup, forKey: "pulse")
         
+        let progressHUD = MBProgressHUD.showHUDAddedTo(self, animated: true)
+        
         VoteModel.voteFor(id: voteId, color: colorType, completion: { (vote) -> Void in
+            
+            progressHUD.hide(true)
+            
             NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["vote":vote!])
         })
         

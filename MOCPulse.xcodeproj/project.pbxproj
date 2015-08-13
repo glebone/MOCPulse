@@ -132,6 +132,7 @@
 		032262221B4FC6C800BE38A4 /* VoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		032262231B4FC6C800BE38A4 /* VoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoteCell.xib; sourceTree = "<group>"; };
 		032CB2701B51535400612183 /* RateAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateAlertView.swift; sourceTree = "<group>"; };
+		034339051B7CB9110002E57C /* MOCPulse-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MOCPulse-Bridging-Header.h"; sourceTree = "<group>"; };
 		03C3EED41B48396000A9EA45 /* VotesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotesListViewController.swift; sourceTree = "<group>"; };
 		03C3EED61B48397B00A9EA45 /* VoteDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteDetailsViewController.swift; sourceTree = "<group>"; };
 		03C3EED81B483F1000A9EA45 /* LocalObjectsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalObjectsManager.swift; path = Helpers/LocalObjectsManager.swift; sourceTree = "<group>"; };
@@ -445,6 +446,7 @@
 			children = (
 				03F0CC4B1B73662900E4F7D0 /* MOCPulse images */,
 				F798B3761B46C34800A17754 /* Info.plist */,
+				034339051B7CB9110002E57C /* MOCPulse-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1126,7 +1128,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MOCPulse/MOCPulse-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1149,7 +1151,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "39312464-afd3-476a-afeb-1f6569e50850";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MOCPulse/MOCPulse-Bridging-Header.h";
 			};
 			name = Release;
 		};

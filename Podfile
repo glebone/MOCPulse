@@ -10,6 +10,7 @@ target :'MOCPulse' do
     pod 'OAuthSwift', '~> 0.3.4'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'MBProgressHUD'
 end
 
 target :'MOCPulseTests' do

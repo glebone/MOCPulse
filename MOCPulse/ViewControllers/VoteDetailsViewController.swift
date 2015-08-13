@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioToolbox
+import MBProgressHUD
 
 class VoteDetailsViewController: UIViewController {
 
@@ -98,7 +99,12 @@ class VoteDetailsViewController: UIViewController {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         showPulseAnimation(voteColor.color)
         
+        let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
         voteModel.voteFor(color: voteColor, completion:  { (vote:VoteModel?) -> Void in
+            
+            progressHUD.hide(true)
+            
             self.interfaceFotVote(vote!)
         })
     }

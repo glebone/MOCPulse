@@ -9,6 +9,8 @@
 import UIKit
 import OAuthSwift
 
+import MBProgressHUD
+
 class VotesListViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, UIGestureRecognizerDelegate
 {
     @IBOutlet var pendingButton : UIButton!
@@ -54,9 +56,15 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func fetchVotesList() {
         var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user != nil) {
+            
+            let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
             VoteModel.votes { (votesList) -> Void in
+                
                 self.votes = votesList
                 LocalObjectsManager.sharedInstance.votes = votesList;
+                
+                progressHUD.hide(true)
                 
                 self.tableView.reloadData()
                 
