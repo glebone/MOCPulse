@@ -45,6 +45,8 @@ class VoteDetailsViewController: UIViewController {
         
         ownerTitleLabel.text = voteModel.displayOwnerName()
         voteBodyTextView.text = voteModel.name
+        voteBodyTextView.textAlignment = NSTextAlignment.Center
+        voteBodyTextView.font = UIFont.systemFontOfSize(18)
         
         greenButton.tintColor = UIColor.whiteColor()
         yellowButton.tintColor = UIColor.whiteColor()
