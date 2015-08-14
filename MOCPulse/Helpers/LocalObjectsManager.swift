@@ -90,6 +90,10 @@ class LocalObjectsManager {
         return false
     }
     
+    func getPendingVotesCount() -> Int {
+        return votes == nil ? 0 : votes!.filter{(vote:VoteModel) in vote.voted == false}.count;
+    }
+    
     // MARK: Generation
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []

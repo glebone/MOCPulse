@@ -68,7 +68,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
                 
                 self.tableView.reloadData()
                 
-                UIApplication.sharedApplication().applicationIconBadgeNumber = self.tableArray().count
+                UIApplication.sharedApplication().applicationIconBadgeNumber = LocalObjectsManager.sharedInstance.getPendingVotesCount();
                 self.refreshControl.endRefreshing()
             }
         }
