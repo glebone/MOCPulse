@@ -17,20 +17,14 @@ import Crashlytics
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var pendingNotification: NSDictionary?
+    var handleNotificationActioonAfterLogin: Bool = false
     var window: UIWindow?
     
     var backgroundTaskIdentifier: UIBackgroundTaskIdentifier =
     UIBackgroundTaskInvalid
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        // handle todays and notifications url
-        if (url.scheme == "mocpulse") {
-            self.handleWidgetsOpenUrl(url)
-        } else {
-            OAuth2Swift.handleOpenURL(url)
-        }
-        return true
-    }
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -52,56 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func setupNotifications() {
-        var voteAction = UIMutableUserNotificationAction()
-        voteAction.identifier = "ID_VOTE"
-        voteAction.title = "Vote"
-        voteAction.destructive = false
-        voteAction.authenticationRequired = false
-        voteAction.activationMode = UIUserNotificationActivationMode.Foreground
-        
-        var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-        notificationCategory.identifier = "newVote"
-        notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
-        
-        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: NSSet(array: [notificationCategory]) as Set<NSObject>)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-    }
-    
-    func handleWidgetsOpenUrl(url: NSURL)
-    {
-        var host = url.host
-        
-        switch url.host! {
-        case "openvote":
-            var param : [AnyObject] = url.pathComponents!
-            var voteId: String = param[1] as! String
-            
-            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["voteId":voteId])
 
-        case "vote":
-            var param : [AnyObject] = url.pathComponents!
-            var strcolor: String = param[1] as! String
-            var voteId: String = param[2] as! String
-            
-            var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
-            
-            switch strcolor {
-                case "green": color = VoteColor.VOTE_COLOR_GREEN
-                case "yellow": color = VoteColor.VOTE_COLOR_YELLOW
-                case "red": color = VoteColor.VOTE_COLOR_RED
-                default : break
-            }
-            
-            // need auth check?
-            VoteModel.voteFor(id: voteId, color: color, completion: { (vote) -> Void in
-                NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["vote":vote!])
-            })
-            
-        default: break
-            //println("Unknown url for scheme ", &action)
-        }
-    }
+    
+
     
     func updateGlobalUI() {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
@@ -141,6 +88,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 //MARK: push notifications
+    
+    func setupNotifications() {
+        var voteAction = UIMutableUserNotificationAction()
+        voteAction.identifier = "ID_VOTE"
+        voteAction.title = "Vote"
+        voteAction.destructive = false
+        voteAction.authenticationRequired = false
+        voteAction.activationMode = UIUserNotificationActivationMode.Foreground
+        
+        var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        notificationCategory.identifier = "newVote"
+        notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
+        
+        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: NSSet(array: [notificationCategory]) as Set<NSObject>)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         application.registerForRemoteNotifications()
@@ -241,17 +204,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        if var aps = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary {
-            if var vote = aps["vote"] as? NSDictionary {
-                var voteId = vote["id"] as! String
-    
-                NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                
-                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                    UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
-                }
+        pendingNotification = (userInfo as! [NSString : AnyObject])["aps"] as? NSDictionary
+        
+        if (LocalObjectsManager.sharedInstance.user == nil) {
+            handleNotificationActioonAfterLogin = true
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                API.oauthAuthorization()
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotificationAction:", name:"DID_AUTH", object: nil)
             }
+            return
+        }
+        
+        self.handleNotificationAction()
+    }
+    
+    func handleNotificationAction(n: NSNotification) {
+        handleNotificationAction()
+    }
+    
+    func handleNotificationAction() {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(250 * NSEC_PER_MSEC)), dispatch_get_main_queue()) { () -> Void in
+            if (self.handleNotificationActioonAfterLogin == true) {
+                NSNotificationCenter.defaultCenter().removeObserver(self);
+            }
+            
+            if var vote = self.pendingNotification!["vote"] as? NSDictionary {
+                var voteId = vote["id"] as! String
+                UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
+            }
+            
+            self.handleNotificationActioonAfterLogin = false
+        }
+    }
+    
+//MARK: url handeling
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        // handle todays and notifications url
+        if (url.scheme == "mocpulse") {
+            self.handleWidgetsOpenUrl(url)
+        } else {
+            OAuth2Swift.handleOpenURL(url)
+        }
+        return true
+    }
+    
+    func handleWidgetsOpenUrl(url: NSURL)
+    {
+        var host = url.host
+        
+        switch url.host! {
+        case "openvote":
+            var param : [AnyObject] = url.pathComponents!
+            var voteId: String = param[1] as! String
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["voteId":voteId])
+            
+        case "vote":
+            var param : [AnyObject] = url.pathComponents!
+            var strcolor: String = param[1] as! String
+            var voteId: String = param[2] as! String
+            
+            var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
+            
+            switch strcolor {
+            case "green": color = VoteColor.VOTE_COLOR_GREEN
+            case "yellow": color = VoteColor.VOTE_COLOR_YELLOW
+            case "red": color = VoteColor.VOTE_COLOR_RED
+            default : break
+            }
+            
+            // need auth check?
+            VoteModel.voteFor(id: voteId, color: color, completion: { (vote) -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["vote":vote!])
+            })
+            
+        default: break
+            //println("Unknown url for scheme ", &action)
         }
     }
     

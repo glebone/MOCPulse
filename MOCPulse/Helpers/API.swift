@@ -119,6 +119,7 @@ class API : NSObject {
 //            println(user)
             
             NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("DID_AUTH", object: nil)
         })
     }
     
