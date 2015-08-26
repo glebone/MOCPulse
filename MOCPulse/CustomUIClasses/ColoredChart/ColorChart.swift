@@ -136,7 +136,7 @@ class ColorChart: UIView {
         
         var lastSegmentRect : CGRect = CGRectMake(0, 0, 0, 0)
         
-        for colorObject in [redColor, yellowColor, greenColor]
+        for colorObject in [greenColor, yellowColor, redColor]
         {
             var currentSegmentValue : CGFloat = colorObject!.value
             
