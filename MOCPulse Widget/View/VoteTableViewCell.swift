@@ -14,7 +14,7 @@ class VoteTableViewCell: UITableViewCell {
     @IBOutlet weak var coloredView: UIView!
     
     func setupView() {
-        var bgView = UIView(frame: CGRectMake(0, 0, 320, 40))
+        let bgView = UIView(frame: CGRectMake(0, 0, 320, 40))
         bgView.backgroundColor = UIColor(red: 252/255, green: 210/255, blue: 56/255, alpha: 0.1)
         self.selectedBackgroundView = bgView
         
@@ -44,7 +44,7 @@ class VoteTableViewCell: UITableViewCell {
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
-        var savedColor = self.coloredView.backgroundColor
+        let savedColor = self.coloredView.backgroundColor
         super.setSelected(selected, animated: animated)
         self.coloredView.backgroundColor = savedColor
     }

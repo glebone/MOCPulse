@@ -74,9 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
       
-        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+        let manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user == nil) {
-            println("Need call OAuth")
+            print("Need call OAuth")
             API.oauthAuthorization()
         } else {
             TcpSocket.sharedInstance.reconnectIfNeeded()
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationCategory.identifier = "newVote"
         notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
         
-        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:UIUserNotificationType.Alert|UIUserNotificationType.Sound, categories: NSSet(array: [notificationCategory]) as Set<NSObject>)
+        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:[UIUserNotificationType.Alert, UIUserNotificationType.Sound], categories: NSSet(array: [notificationCategory]) as? Set<UIUserNotificationCategory>)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSUserDefaults.standardUserDefaults().setObject(token, forKey: "device_push_token")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        var userToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("user_tmp_token") as? String
+        let userToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("user_tmp_token") as? String
         
         if userToken != nil {
             API.putPushToken(_pushToken: token, _userToken: userToken!)
@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        println("Recived: \(userInfo)")
+        print("Recived: \(userInfo)")
         // structure example
 //            {"aps":
 //                {
@@ -165,15 +165,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if let voteDict = aps["vote"] as? NSDictionary {
                 
-                var voteId = voteDict["id"] as! String
-                var voteName = voteDict["name"] as! String
+                let voteId = voteDict["id"] as! String
+                let voteName = voteDict["name"] as! String
                 
                 var ownerName : String = String()
                 
-                var ownerDict = voteDict["owner"] as! NSDictionary
+                let ownerDict = voteDict["owner"] as! NSDictionary
 
-                var firstName = ownerDict["first_name"] as! String
-                var lastName = ownerDict["last_name"] as! String
+                let firstName = ownerDict["first_name"] as! String
+                let lastName = ownerDict["last_name"] as! String
                 
                 if !firstName.isEmpty
                     && !lastName.isEmpty {
@@ -186,7 +186,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     ownerName = lastName
                 }
 
-                var rateView = RateAlertView(ownerTitle: ownerName, voteBody: voteName, voteId: voteId)
+                let rateView = RateAlertView(ownerTitle: ownerName, voteBody: voteName, voteId: voteId)
                 
                 UIApplication.sharedApplication().keyWindow?.addSubview(rateView)
             }
@@ -229,8 +229,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSNotificationCenter.defaultCenter().removeObserver(self);
             }
             
-            if var vote = self.pendingNotification!["vote"] as? NSDictionary {
-                var voteId = vote["id"] as! String
+            if let vote = self.pendingNotification!["vote"] as? NSDictionary {
+                let voteId = vote["id"] as! String
                 UIApplication.sharedApplication().openURL(NSURL(string: NSString(format: "mocpulse://openvote/%@", voteId) as String)!)
             }
             
@@ -239,7 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 //MARK: url handeling
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         // handle todays and notifications url
         if (url.scheme == "mocpulse") {
             self.handleWidgetsOpenUrl(url)
@@ -286,8 +286,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //MARK: watch kit
     
-    func application(application: UIApplication, handleWatchKitExtensionRequest
-        voteInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)?) {
+//    application
+    
+    func application(application: UIApplication,
+        handleWatchKitExtensionRequest voteInfo: [NSObject : AnyObject]?,
+        reply: ([NSObject : AnyObject]?) -> Void) {
             var task = UIBackgroundTaskInvalid
             UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler({ () -> Void in
                 UIApplication.sharedApplication().endBackgroundTask(task)
@@ -298,7 +301,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 // do some task
                 if let info = voteInfo as? [String : String] {
-                    println(voteInfo)
+                    print(voteInfo)
                     let val = voteInfo!["value"] as? String
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
@@ -306,11 +309,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
                         if curVote == nil
                         {
-                            reply.map {$0 (["name" : "", "id": ""])}
+//                            reply.map {$0 (["name" : "", "id": ""])}
                         }
                         else
                         {
-                            reply.map {$0 (["name" : curVote!.name!, "id": curVote!.id!])}
+//                            reply.map {$0 (["name" : curVote!.name!, "id": curVote!.id!])}
                         }
                     }
                     else {
@@ -332,16 +335,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                             
                             NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                            println("Voted!!!!)))")
+                            print("Voted!!!!)))")
                         })
                         
                         
-                        reply.map { $0(["response" : "success"]) }
+//                        reply.map { $0(["response" : "success"]) }
                     }
                 } else {
                     
                     
-                    reply.map { $0(["response" : "fail"]) }
+//                    reply.map { $0(["response" : "fail"]) }
                 }
 
             }

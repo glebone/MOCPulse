@@ -21,24 +21,24 @@ class RateAlertView: UIView {
         
         self.voteId = voteId
         
-        var screenRect : CGRect = UIScreen.mainScreen().bounds
+        let screenRect : CGRect = UIScreen.mainScreen().bounds
         
         pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(UIScreen.mainScreen().bounds.width / 2, UIScreen.mainScreen().bounds.height / 2))
         
         self.backgroundColor = UIColor.clearColor()
         
-        var backView = UIView(frame: self.bounds)
+        let backView = UIView(frame: self.bounds)
         backView.backgroundColor = UIColor.blackColor()
         backView.alpha = 0.5
         self.addSubview(backView)
         
-        var containerView = UIView(frame: CGRectMake(30, 100, UIScreen.mainScreen().bounds.width - 60, 300))
+        let containerView = UIView(frame: CGRectMake(30, 100, UIScreen.mainScreen().bounds.width - 60, 300))
         containerView.backgroundColor = UIColor(red: 235.0/255, green: 235.0/255, blue: 235.0/255, alpha: 1)
         containerView.layer.cornerRadius = 5
 //        containerView.clipsToBounds = true
         self.addSubview(containerView)
         
-        var ownerTitleLabel = UILabel(frame: CGRectMake(5, 30, containerView.frame.size.width - 10, 25))
+        let ownerTitleLabel = UILabel(frame: CGRectMake(5, 30, containerView.frame.size.width - 10, 25))
         ownerTitleLabel.numberOfLines = 1
         ownerTitleLabel.text = ownerTitle
         ownerTitleLabel.textColor = UIColor.blackColor()
@@ -47,7 +47,7 @@ class RateAlertView: UIView {
         ownerTitleLabel.minimumScaleFactor = 0.5
         containerView.addSubview(ownerTitleLabel)
         
-        var voteBodyTextView = UITextView(frame: CGRectMake(15, 70, containerView.frame.size.width - 30, 128))
+        let voteBodyTextView = UITextView(frame: CGRectMake(15, 70, containerView.frame.size.width - 30, 128))
         voteBodyTextView.font = UIFont.systemFontOfSize(18)
         voteBodyTextView.text = voteBody
         voteBodyTextView.textAlignment = NSTextAlignment.Center
@@ -55,10 +55,10 @@ class RateAlertView: UIView {
         voteBodyTextView.selectable = false
         containerView.addSubview(voteBodyTextView)
         
-        var voteButtons = UIView(frame: CGRectMake(0, 200, containerView.frame.size.width, 100))
+        let voteButtons = UIView(frame: CGRectMake(0, 200, containerView.frame.size.width, 100))
         
-        var maskLayer = CAShapeLayer()
-        var roundedPath = UIBezierPath(roundedRect: voteButtons.bounds, byRoundingCorners: UIRectCorner.BottomLeft | UIRectCorner.BottomRight, cornerRadii: CGSizeMake(5.0, 5.0))
+        let maskLayer = CAShapeLayer()
+        let roundedPath = UIBezierPath(roundedRect: voteButtons.bounds, byRoundingCorners: [UIRectCorner.BottomLeft, UIRectCorner.BottomRight], cornerRadii: CGSizeMake(5.0, 5.0))
         maskLayer.fillColor = UIColor.whiteColor().CGColor;
         maskLayer.backgroundColor = UIColor.clearColor().CGColor;
         maskLayer.path = roundedPath.CGPath;
@@ -69,21 +69,21 @@ class RateAlertView: UIView {
         
         containerView.addSubview(voteButtons)
         
-        var greenButton = UIButton(frame: CGRectMake(0, 0, voteButtons.frame.size.width / 3, 100))
+        let greenButton = UIButton(frame: CGRectMake(0, 0, voteButtons.frame.size.width / 3, 100))
         greenButton.backgroundColor = UIColor(red: 130.0/255, green: 177.0/255, blue: 17.0/255, alpha: 1)
         greenButton.addTarget(self, action: "greenButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         greenButton.setImage(UIImage(named: "positive"), forState: UIControlState.Normal)
         greenButton.tintColor = UIColor.whiteColor()
         voteButtons.addSubview(greenButton)
         
-        var yellowButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3, 0, voteButtons.frame.size.width / 3, 100))
+        let yellowButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3, 0, voteButtons.frame.size.width / 3, 100))
         yellowButton.backgroundColor = UIColor(red: 252.0/255, green: 210.0/255, blue: 56.0/255, alpha: 1)
         yellowButton.addTarget(self, action: "yellowButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         yellowButton.setImage(UIImage(named: "neutral"), forState: UIControlState.Normal)
         yellowButton.tintColor = UIColor.whiteColor()
         voteButtons.addSubview(yellowButton)
         
-        var redButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3 * 2, 0, voteButtons.frame.size.width / 3, 100))
+        let redButton = UIButton(frame: CGRectMake(voteButtons.frame.size.width / 3 * 2, 0, voteButtons.frame.size.width / 3, 100))
         redButton.backgroundColor = UIColor(red: 221.0/255, green: 48.0/255, blue: 61.0/255, alpha: 1)
         redButton.addTarget(self, action: "redButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         redButton.setImage(UIImage(named: "negative"), forState: UIControlState.Normal)
@@ -92,7 +92,7 @@ class RateAlertView: UIView {
         
         containerView.center = CGPointMake(UIScreen.mainScreen().bounds.width / 2, UIScreen.mainScreen().bounds.height / 2)
         
-        var closeButton = UIButton(frame: CGRectMake(containerView.frame.size.width - 30, -10, 40, 40))
+        let closeButton = UIButton(frame: CGRectMake(containerView.frame.size.width - 30, -10, 40, 40))
         closeButton.backgroundColor = UIColor.whiteColor()
         closeButton.setTitle("X", forState: UIControlState.Normal)
         closeButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
@@ -100,11 +100,11 @@ class RateAlertView: UIView {
         closeButton.addTarget(self, action: "closeButtonAction:", forControlEvents: UIControlEvents.TouchUpInside)
         containerView.addSubview(closeButton)
         
-        var xAxis = UIInterpolatingMotionEffect(keyPath: "center.x", type: UIInterpolatingMotionEffectType.TiltAlongHorizontalAxis)
+        let xAxis = UIInterpolatingMotionEffect(keyPath: "center.x", type: UIInterpolatingMotionEffectType.TiltAlongHorizontalAxis)
         xAxis.minimumRelativeValue = (-25)
         xAxis.maximumRelativeValue = (25)
         
-        var yAxis = UIInterpolatingMotionEffect(keyPath: "center.y", type: UIInterpolatingMotionEffectType.TiltAlongVerticalAxis)
+        let yAxis = UIInterpolatingMotionEffect(keyPath: "center.y", type: UIInterpolatingMotionEffectType.TiltAlongVerticalAxis)
         yAxis.minimumRelativeValue = (-50);
         yAxis.maximumRelativeValue = (50);
         
@@ -162,7 +162,7 @@ class RateAlertView: UIView {
         }
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

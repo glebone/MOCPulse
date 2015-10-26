@@ -42,7 +42,7 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
     
     // MARK: - Widget Delegate
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         updateSize()
         self.tableView.reloadData()
         completionHandler(NCUpdateResult.NewData)
@@ -63,8 +63,8 @@ class VotesTableViewController: UITableViewController, NCWidgetProviding {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VoteCell", forIndexPath: indexPath) as! VoteTableViewCell
-        println(indexPath.row)
-        var vote : VoteModel = LocalObjectsManager.sharedInstance.votes![indexPath.row]
+        print(indexPath.row)
+        let vote : VoteModel = LocalObjectsManager.sharedInstance.votes![indexPath.row]
         cell.setupWithVote(vote)
         return cell
     }

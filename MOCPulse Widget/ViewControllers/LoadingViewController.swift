@@ -61,7 +61,7 @@ class LoadingViewController: UIViewController, NCWidgetProviding {
         self.preferredContentSize = preferredSize
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.NewData)
     }
 

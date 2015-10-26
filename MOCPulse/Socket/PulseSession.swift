@@ -26,12 +26,12 @@ class PulseSession: NSObject {
         if (self.socket.isopen == true) {
             self.socket.send(packet)
         } else {
-            println("Trying send packet with closed socket.")
+            print("Trying send packet with closed socket.")
         }
     }
     
     func processPacket(notification: NSNotification) {
-        var packet : PulsePacket! = notification.object as! PulsePacket
+        let packet : PulsePacket! = notification.object as! PulsePacket
         switch packet.opcode {
         case Opcode.SC_AUTH.rawValue:
             self.handleAuth(packet)
@@ -42,7 +42,7 @@ class PulseSession: NSObject {
         case Opcode.SC_UPDATE_VOTE.rawValue:
             self.handleUpdateVote(packet)
         default:
-            println("Received Unk Opcode.")
+            print("Received Unk Opcode.")
         }
     }
     
@@ -59,7 +59,7 @@ class PulseSession: NSObject {
     }
     
     func getVotesQuery() {
-        var packet = PulsePacket(opcode: Opcode.CS_GET_VOTES.rawValue)
+        let packet = PulsePacket(opcode: Opcode.CS_GET_VOTES.rawValue)
         send(packet)
     }
     

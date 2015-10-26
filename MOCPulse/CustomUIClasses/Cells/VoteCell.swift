@@ -24,7 +24,7 @@ class VoteCell: UITableViewCell {
         voteBodyLabel.text = vote.name
         usernameLabel.text = vote.displayOwnerName()
         
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy\nhh:mm:ss"
         dateLabel.text = dateFormatter.stringFromDate(vote.create!)
     }

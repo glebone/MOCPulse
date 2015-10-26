@@ -45,7 +45,7 @@ class PieChart : VBPieChart {
         self.setup()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -75,7 +75,7 @@ class PieChart : VBPieChart {
             return;
         }
         
-        var item = ChartItem(color_: color, value_: value);
+        let item = ChartItem(color_: color, value_: value);
         self.chartArray.append(item)
     }
     

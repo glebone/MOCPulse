@@ -34,10 +34,10 @@ class InterfaceController: WKInterfaceController {
 
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
-        println("-----")
+        print("-----")
         
         super.willActivate()
-        println(isNotification)
+        print(isNotification)
         if(!isNotification)
         {
             getVote()
@@ -98,10 +98,8 @@ class InterfaceController: WKInterfaceController {
         var voteInfo = ["value" : value[0], "id" : value[1]]
         WKInterfaceController.openParentApplication(voteInfo, reply: { (data, error) in
             if let error = error {
-                println(error)
-            }
-            if let data = data {
-                println(data)
+                print(error)
+                return
             }
             self.getVote()
         })
@@ -115,23 +113,24 @@ class InterfaceController: WKInterfaceController {
         var req = ["value" : "", "id" : "-1"]
         WKInterfaceController.openParentApplication(req, reply: { (data, error) in
             if let error = error {
-                println(error)
+                print(error)
+                return
             }
-            if let data = data {
-                println(data)
-                var id : String = data["id"] as! String
-                var name : String? = data["name"] as? String
-                
-                self.setButtonsVision(!id.isEmpty)
-                
-                if id.isEmpty {
-                    name = "There is no active votes =("
-                }
 
-                //sendParent([data!["value"]!, data["id"]!])
-                self.VoteLabel.setText(name)
-                self.voteId = id
+            print(data)
+            var id : String = data["id"] as! String
+            var name : String? = data["name"] as? String
+            
+            self.setButtonsVision(!id.isEmpty)
+            
+            if id.isEmpty {
+                name = "There is no active votes =("
             }
+
+            //sendParent([data!["value"]!, data["id"]!])
+            self.VoteLabel.setText(name)
+            self.voteId = id
+
         })
         
     }
@@ -140,8 +139,8 @@ class InterfaceController: WKInterfaceController {
     override func handleActionWithIdentifier(identifier: String?,
         forRemoteNotification remoteNotification: [NSObject : AnyObject]) {
             if let notificationIdentifier = identifier {
-                println(remoteNotification["aps"]!["vote"]!)
-                println(remoteNotification["aps"]!["id"])
+                print(remoteNotification["aps"]!["vote"]!)
+                print(remoteNotification["aps"]!["id"])
                 
                 //VoteLabel.setText(remoteNotification["aps"]!["alert"] as? String)
                 notificationDic = remoteNotification

@@ -47,7 +47,7 @@ class UserModel : NSObject {
                 _completion(user);
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
         });
     }
     
@@ -61,7 +61,7 @@ class UserModel : NSObject {
             _completion()
         }, failure: { (error) -> Void in
             var error2: NSError? = error
-            println(error2?.localizedDescription)
+            print(error2?.localizedDescription)
             _completion()
         })
     }

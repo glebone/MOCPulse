@@ -33,7 +33,7 @@ class MOCPulseTests: XCTestCase {
         
         waitForExpectationsWithTimeout(5) { error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription)", terminator: "")
             }
         }
     }
@@ -45,7 +45,7 @@ class MOCPulseTests: XCTestCase {
             success: { (object) -> Void in
                 var json : JSON = object
                 XCTAssertNotNil(json["votes"].arrayObject, "Votes array is nil.")
-                for (index: String, subJson: JSON) in object["votes"] {
+                for (index, subJson): (String, JSON) in object["votes"] {
                     self.testOneVoteWithResult(subJson)
                     
                     lastId = subJson["id"].stringValue
@@ -57,14 +57,14 @@ class MOCPulseTests: XCTestCase {
                 
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
                 XCTAssertNil(error, error!.localizedDescription)
                 expectation.fulfill()
         });
         
         waitForExpectationsWithTimeout(5) { error in
             if let error = error {
-                print("Error: \(error.localizedDescription)")
+                print("Error: \(error.localizedDescription)", terminator: "")
             }
         }
     }
@@ -84,7 +84,7 @@ class MOCPulseTests: XCTestCase {
                 }
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
                 XCTAssertNil(error, error!.localizedDescription)
                 if (expectation != nil) {
                     expectation?.fulfill()
@@ -106,7 +106,7 @@ class MOCPulseTests: XCTestCase {
                 }
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
                 XCTAssertNil(error, error!.localizedDescription)
                 if (expectation != nil) {
                     expectation?.fulfill()
@@ -127,7 +127,7 @@ class MOCPulseTests: XCTestCase {
                 }
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
                 XCTAssertNil(error, error!.localizedDescription)
                 if (expectation != nil) {
                     expectation?.fulfill()

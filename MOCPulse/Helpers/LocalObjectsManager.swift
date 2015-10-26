@@ -57,21 +57,21 @@ class LocalObjectsManager {
     
     // MARK: Management Votes
     func getLastVote() -> VoteModel? {
-        var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.voted == false}.first
+        let vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.voted == false}.first
         return vote;
     }
     
     func getVoteById(id: String) -> VoteModel? {
-        var vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.id! == id}.first
+        let vote : VoteModel? = votes?.filter{(vote:VoteModel) in vote.id! == id}.first
         return vote;
     }
     
     func sortVotesByDate() {
-        self.votes = self.votes?.sorted{($0 as VoteModel).isNewerThan($1 as VoteModel)}
+        self.votes = self.votes?.sort{($0 as VoteModel).isNewerThan($1 as VoteModel)}
     }
     
     func removeVote(voteId: String) {
-        for (index, vote) in enumerate(self.votes!) {
+        for (index, vote) in (self.votes!).enumerate() {
             if (vote.id == voteId) {
                 self.votes?.removeAtIndex(index)
                 break
@@ -80,7 +80,7 @@ class LocalObjectsManager {
     }
     
     func replaceVoteIfExists(vote: VoteModel) -> Bool {
-        for (index, voteitr) in enumerate(self.votes!) {
+        for (index, voteitr) in (self.votes!).enumerate() {
             if (voteitr.id == vote.id) {
                 self.votes![index] = vote
                 return true
@@ -125,9 +125,9 @@ class LocalObjectsManager {
         var randomString : String = String()
         
         for (var i = 0; i < len; i++) {
-            var length = UInt32 (count(letters))
-            var rand = arc4random_uniform(length)
-            let char : Character = letters[advance(letters.startIndex, Int(rand))]
+            let length = UInt32 (letters.characters.count)
+            let rand = arc4random_uniform(length)
+            let char : Character = letters[letters.startIndex.advancedBy(Int(rand))]
             randomString.append(char)
         }
         

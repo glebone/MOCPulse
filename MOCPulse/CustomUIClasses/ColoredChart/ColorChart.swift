@@ -124,7 +124,7 @@ class ColorChart: UIView {
             return
         }
         
-        var currentGraphicsContext = UIGraphicsGetCurrentContext();
+        let currentGraphicsContext = UIGraphicsGetCurrentContext();
         var sumOfAllSegmentValues : CGFloat = 0.0
         
         for colorObject in [greenColor, yellowColor, redColor]
@@ -138,11 +138,11 @@ class ColorChart: UIView {
         
         for colorObject in [greenColor, yellowColor, redColor]
         {
-            var currentSegmentValue : CGFloat = colorObject!.value
+            let currentSegmentValue : CGFloat = colorObject!.value
             
-            var color : CGColorRef = colorObject!.color.CGColor
+            let color : CGColorRef = colorObject!.color.CGColor
             
-            var percentage : CGFloat = currentSegmentValue / sumOfAllSegmentValues
+            let percentage : CGFloat = currentSegmentValue / sumOfAllSegmentValues
             
             progressRect = rect
             
@@ -152,7 +152,7 @@ class ColorChart: UIView {
             
             lastSegmentRect = progressRect;
             
-            self.fillRectWithColorOnContext(lastSegmentRect, color: color, currentGraphicsContext: currentGraphicsContext)
+            self.fillRectWithColorOnContext(lastSegmentRect, color: color, currentGraphicsContext: currentGraphicsContext!)
             
             var label = UILabel()
             
@@ -171,7 +171,7 @@ class ColorChart: UIView {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         //fatalError("init(coder:) has not been implemented")
     }

@@ -38,11 +38,11 @@ class VoteDetailsViewController: UIViewController {
     }
     
     func setupView() {
-        var screenRect : CGRect = UIScreen.mainScreen().bounds
+        let screenRect : CGRect = UIScreen.mainScreen().bounds
 
         pulseEffect = PulseAnimation(radius: screenRect.size.width * 2, position: CGPointMake(self.view.center.x, self.view.center.y ))
         
-        println("\(voteModel.name)")
+        print("\(voteModel.name)")
         
         ownerTitleLabel.text = voteModel.displayOwnerName()
         voteBodyTextView.text = voteModel.name
@@ -66,11 +66,11 @@ class VoteDetailsViewController: UIViewController {
         voteModel = vote
         
         if vote.voted == true {
-            var greenColor : ColorChartObject = colorChart.getGreenColor()
+            let greenColor : ColorChartObject = colorChart.getGreenColor()
             greenColor.value = CGFloat(voteModel.greenVotes!)
-            var yellowColor : ColorChartObject = colorChart.getYellowColor()
+            let yellowColor : ColorChartObject = colorChart.getYellowColor()
             yellowColor.value = CGFloat(voteModel.yellowVotes!)
-            var redColor : ColorChartObject = colorChart.getRedColor()
+            let redColor : ColorChartObject = colorChart.getRedColor()
             redColor.value = CGFloat(voteModel.redVotes!)
             
             colorChart.reloadChart()
@@ -139,7 +139,7 @@ class VoteDetailsViewController: UIViewController {
     }
     
     func updateVote(n: NSNotification) {
-        var newVote : VoteModel = n.object as! VoteModel
+        let newVote : VoteModel = n.object as! VoteModel
         if (newVote.id == voteModel.id) {
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             interfaceFotVote(newVote)

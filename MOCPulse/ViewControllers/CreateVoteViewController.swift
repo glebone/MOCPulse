@@ -37,7 +37,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         var voteText : String! = self.voteTextView.text
         // send to server
         
-        if (count(voteText) > 0) {
+        if (voteText.characters.count > 0) {
             
             let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
             
@@ -47,7 +47,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
                 
                 self.navigationController!.popViewControllerAnimated(true)
                 NSNotificationCenter.defaultCenter().postNotificationName("GET_ALL_VOTES", object: nil)
-                println(vote)
+                print(vote)
             })
         }
         else {
@@ -70,7 +70,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     func keyboardWasShown(aNotification: NSNotification)
     {
         var info = aNotification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.bottomConstraint.constant = keyboardFrame.size.height
@@ -79,16 +79,16 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     
     func calculateCharsLeft() {
         let maxChars = 140
-        var charsLeft = maxChars - count(self.voteTextView.text)
+        let charsLeft = maxChars - self.voteTextView.text.characters.count
         
-        var notEnoughChars : Bool = charsLeft < 0
+        let notEnoughChars : Bool = charsLeft < 0
         
         self.charsLeftLabel.text = NSString(format: "Chars left - %d.", notEnoughChars ? 0 : charsLeft) as String
         
         if (notEnoughChars) {
             var voteNameText : String = self.voteTextView.text!
-            let stringLength = count(voteNameText)
-            voteNameText = voteNameText.substringToIndex(advance(voteNameText.startIndex, maxChars))
+            let stringLength = voteNameText.characters.count
+            voteNameText = voteNameText.substringToIndex(voteNameText.startIndex.advancedBy(maxChars))
             self.voteTextView.text = voteNameText
         }
     }

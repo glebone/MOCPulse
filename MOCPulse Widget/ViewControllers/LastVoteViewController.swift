@@ -42,9 +42,9 @@ class LastVoteViewController: UIViewController, NCWidgetProviding {
                 self.author.text = vote.ownerLastName
         }
         
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
-        var dateString = dateFormatter.stringFromDate(vote.create!)
+        let dateString = dateFormatter.stringFromDate(vote.create!)
         
         self.date.text = dateString
     }
@@ -64,7 +64,7 @@ class LastVoteViewController: UIViewController, NCWidgetProviding {
         self.preferredContentSize = preferredSize
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.NewData)
     }
     

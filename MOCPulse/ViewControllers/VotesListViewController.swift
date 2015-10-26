@@ -33,11 +33,11 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateTable:", name:"reloadVotes", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showError:", name:"notifyError", object: nil)
         
-        var swipeRight = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
-        var swipeLeft = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "handleSwipes:")
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
         
@@ -86,12 +86,12 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     
     func tableArray() -> NSArray {
         if self.votes != nil {
-            var votesArray = self.votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
-            var arrayToSort = NSArray(array: votesArray!)
+            let votesArray = self.votes?.filter{(vote:VoteModel) in vote.voted != self.pendingButton.selected}
+            let arrayToSort = NSArray(array: votesArray!)
             
-            var descriptor: NSSortDescriptor = NSSortDescriptor(key: "create", ascending: false)
+            let descriptor: NSSortDescriptor = NSSortDescriptor(key: "create", ascending: false)
             
-            var arraySorted: NSArray = arrayToSort.sortedArrayUsingDescriptors([descriptor])
+            let arraySorted: NSArray = arrayToSort.sortedArrayUsingDescriptors([descriptor])
 
             return arraySorted
         }
@@ -124,7 +124,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         tapOnCreate.delegate = self
         createViewButton.addGestureRecognizer(tapOnCreate)
 
-        var rightBarButtonItemDelete: UIBarButtonItem = UIBarButtonItem(customView: createViewButton)
+        let rightBarButtonItemDelete: UIBarButtonItem = UIBarButtonItem(customView: createViewButton)
         
         self.navigationItem.setRightBarButtonItem(rightBarButtonItemDelete, animated: false)
     }
@@ -167,8 +167,8 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func showError(notification: NSNotification) { 
-        var error = notification.object as! String
-        var alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+        let error = notification.object as! String
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -180,7 +180,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var votesList = self.tableArray()
+        let votesList = self.tableArray()
         
         return votesList.count
     }
@@ -194,7 +194,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        var footer = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0.5))
+        let footer = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0.5))
         footer.backgroundColor = UIColor(red: 138.0/255, green: 138.0/255, blue: 138.0/255, alpha: 1)
         return footer
     }
@@ -206,7 +206,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
             cell = NSBundle.mainBundle().loadNibNamed("VoteCell", owner: nil, options: nil)[0] as? VoteCell
         }
         
-        var votesList = self.tableArray()
+        let votesList = self.tableArray()
 
         cell?.setupWithVote(votesList[indexPath.row] as! VoteModel)
         
@@ -216,7 +216,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        var votesList = self.tableArray()
+        let votesList = self.tableArray()
         presentDetailViewForVote(votesList[indexPath.row] as! VoteModel)
     }
     
@@ -255,10 +255,10 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
         var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
         API.response(API.requestWithoutJSON(.POST, path: "\(kProductionServer)test_ios_notification", parameters: ["dev_id" : deviceToken!], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                println("success")
+                print("success")
             },
             failure: { (error : NSError?) -> Void in
-                println("API.Error: \(error?.localizedDescription)")
+                print("API.Error: \(error?.localizedDescription)")
                 NSNotificationCenter.defaultCenter().postNotificationName("notifyError", object: "Can`t create vote.\n \(error!.localizedDescription)")
         });
     }

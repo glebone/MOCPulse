@@ -70,7 +70,7 @@ class API : NSObject {
             
                 self.userToken = String(credential.oauth_token)
                 
-                println("userToken: \(self.userToken)")
+                print("userToken: \(self.userToken)")
             
                 NSUserDefaults.standardUserDefaults().setObject(self.userToken, forKey: "user_tmp_token")
                 NSUserDefaults.standardUserDefaults().synchronize()
@@ -82,18 +82,18 @@ class API : NSObject {
                 kHardCodedToken = self.userToken!
                 
                 if deviceToken == nil {
-                    println("no device token yet")
+                    print("no device token yet")
                     
                     self.getUser(_userToken: self.userToken!)
                 }
                 else {
-                    println("device token: \(deviceToken)")
+                    print("device token: \(deviceToken)")
                     
                     self.putPushToken(_pushToken: deviceToken!, _userToken: self.userToken!)
                 }
             
             }, failure: {(error:NSError!) -> Void in
-                println(error.localizedDescription)
+                print(error.localizedDescription)
                 API.isRunAuthorization = false;
             })
         #endif
@@ -130,9 +130,7 @@ class API : NSObject {
 //            println(JSON(_parameters!))
         }
         
-        // FIXME: need to add Authorization Token to headers
-        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
-        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON)
+        let request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.JSON, headers: headers as? [String:String])
         
 //        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
         
@@ -145,9 +143,7 @@ class API : NSObject {
         //            println(JSON(_parameters!))
         //        }
         
-        // FIXME: need to add Authorization Token to headers
-        Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = headers;
-        var request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters)
+        let request: Request = Manager.sharedInstance.request(_method, _path, parameters: _parameters, encoding: ParameterEncoding.URL, headers: headers as? [String:String])
         
         //        println("request.headers:\n\(Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders!)")
         
@@ -166,6 +162,7 @@ class API : NSObject {
 //            println("\n\(_request.debugDescription)\n")
 
             if ((error) != nil) {
+                 print("\nerror:!!! \(error)\n")
                 _failure(error)
             }
             else {

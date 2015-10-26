@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class PulsePacket: NSObject{
+class PulsePacket: NSObject {
    
     var opcode : UInt16!
     var size : UInt32!
@@ -19,11 +19,15 @@ class PulsePacket: NSObject{
             
             var raw : NSData? = nil
             if content != nil {
-                raw = content.rawData()
+                do {
+                    raw = try content.rawData()
+                } catch _ {
+                    raw = nil
+                }
             }
             
             if raw != nil {
-                self.size = UInt32(content.rawData()!.length)
+                self.size = UInt32((try! content.rawData()).length)
                 if (self.size == nil) {
                     self.size = 0
                 }
@@ -49,11 +53,13 @@ class PulsePacket: NSObject{
         super.init()
         
         self.opcode = UInt16(headerData[0]) << 8 | UInt16(headerData[1])
-        self.size = UInt32(headerData[2]) << 24 | UInt32(headerData[3]) << 16 | UInt32(headerData[4]) << 8 | UInt32(headerData[5])
+        let sizePart1 = UInt32(headerData[2]) << 24 | UInt32(headerData[3]) << 16
+        
+        self.size = sizePart1 | UInt32(headerData[4]) << 8 | UInt32(headerData[5])
     }
     
     func toData() -> NSData {
-        var header : [UInt8] = [
+        let header : [UInt8] = [
             UInt8((opcode >> 8) & 0xFF), UInt8(opcode & 0xFF),
             UInt8((size >> 24) & 0xFF),
             UInt8((size >> 16) & 0xFF),
@@ -61,10 +67,17 @@ class PulsePacket: NSObject{
             UInt8(size & 0xFF)
         ]
         
-        var headerData = NSData(bytes: header, length: header.count)
-        var contentData : NSData? = size > 0 ? content.rawData() : nil
+        let headerData = NSData(bytes: header, length: header.count)
+        var contentData : NSData? = nil
         
-        var data : NSMutableData = NSMutableData(data: headerData)
+        do {
+            contentData = size > 0 ? try content.rawData() : nil
+        }
+        catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        let data : NSMutableData = NSMutableData(data: headerData)
         if (contentData != nil) {
             data.appendData(contentData!)
         }
@@ -73,7 +86,7 @@ class PulsePacket: NSObject{
     }
 }
 
-extension PulsePacket : Printable {
+extension PulsePacket {
     override var description: String {
         return "Packet \(Opcode(rawValue: self.opcode)!.description). Size: \(self.size). Content: \(self.content)."
     }

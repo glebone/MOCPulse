@@ -74,21 +74,21 @@ class TcpSocket: NSObject, NSStreamDelegate {
     
     func send(packet: PulsePacket) {
         if (!self.isopen) {
-            println("Trying to send data to closed socket.")
+            print("Trying to send data to closed socket.")
             return
         }
         
-        var data : NSData = packet.toData()
+        let data : NSData = packet.toData()
         self.output?.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
     }
     
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         switch(eventCode) {
             case NSStreamEvent.EndEncountered :
-                println("EndEncountered")
+                print("EndEncountered")
                 close()
             case NSStreamEvent.ErrorOccurred:
-                println("Error. TcpSocket: (\(aStream.streamError!.code)) \(aStream.streamError!.localizedDescription).")
+                print("Error. TcpSocket: (\(aStream.streamError!.code)) \(aStream.streamError!.localizedDescription).")
                 close()
             case NSStreamEvent.HasSpaceAvailable:
                 if (isopen == true) {
@@ -106,31 +106,31 @@ class TcpSocket: NSObject, NSStreamDelegate {
             case NSStreamEvent.HasBytesAvailable:
                 
                 if self.readHeader() {
-                    var newpacket = self.readContent()
+                    let newpacket = self.readContent()
                     if newpacket != nil {
-                        println("packet: \(newpacket)")
+                        print("packet: \(newpacket)")
                         self.handleNewPacket(newpacket!)
                         packet = nil
                     }
                 }
             
             default:
-                println("unk event")
+                print("unk event")
         }
     }
     
     private func readHeader() -> Bool {
         let headerSize = 6
-        var bytesLeft = headerSize - headerReadIndex
+        let bytesLeft = headerSize - headerReadIndex
         
         if (bytesLeft == 0 || waitingForContent == true) {
             return true
         }
         
         let buf = NSMutableData(capacity: bytesLeft)
-        var buffer = UnsafeMutablePointer<UInt8>(buf!.bytes)
+        let buffer = UnsafeMutablePointer<UInt8>(buf!.bytes)
         let length = self.input!.read(buffer, maxLength: bytesLeft)
-        var data = length > 0 ? Array(UnsafeBufferPointer(start: buffer, count: length)) : []
+        let data = length > 0 ? Array(UnsafeBufferPointer(start: buffer, count: length)) : []
         
         headerData! += data
         headerReadIndex! += length
