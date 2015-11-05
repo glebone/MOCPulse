@@ -37,12 +37,12 @@ class UserModel : NSObject {
             success: { (object) -> Void in
 //                println(object)
                 
-                var email : String = object["email"].stringValue
-                var name : String = object["name"].stringValue
-                var userID : String = object["uid"].stringValue
-                var apiToken : String = object["app_data"]["vote_api_token"].stringValue
+                let email : String = object["email"].stringValue
+                let name : String = object["name"].stringValue
+                let userID : String = object["uid"].stringValue
+                let apiToken : String = object["app_data"]["vote_api_token"].stringValue
                 
-                var user: UserModel = UserModel(email: email, name: name, userID: userID, apiToken: apiToken)
+                let user: UserModel = UserModel(email: email, name: name, userID: userID, apiToken: apiToken)
 
                 _completion(user);
             },
@@ -60,7 +60,7 @@ class UserModel : NSObject {
 //            println(responseObject)
             _completion()
         }, failure: { (error) -> Void in
-            var error2: NSError? = error
+            let error2: NSError? = error
             print(error2?.localizedDescription)
             _completion()
         })

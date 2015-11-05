@@ -53,9 +53,9 @@ class PieChart : VBPieChart {
     {
         var json = JSON(data: data);
         
-        var yCount = json["yellow"].intValue;
-        var gCount = json["green"].intValue;
-        var rCount = json["red"].intValue;
+        let yCount = json["yellow"].intValue;
+        let gCount = json["green"].intValue;
+        let rCount = json["red"].intValue;
         
         ClearChart();
         AddChartItem(yCount, color: .VOTE_COLOR_YELLOW);

@@ -90,18 +90,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK: push notifications
     
     func setupNotifications() {
-        var voteAction = UIMutableUserNotificationAction()
+        let voteAction = UIMutableUserNotificationAction()
         voteAction.identifier = "ID_VOTE"
         voteAction.title = "Vote"
         voteAction.destructive = false
         voteAction.authenticationRequired = false
         voteAction.activationMode = UIUserNotificationActivationMode.Foreground
         
-        var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        let notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         notificationCategory.identifier = "newVote"
         notificationCategory .setActions([voteAction], forContext: UIUserNotificationActionContext.Default)
         
-        var settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:[UIUserNotificationType.Alert, UIUserNotificationType.Sound], categories: NSSet(array: [notificationCategory]) as? Set<UIUserNotificationCategory>)
+        let settings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes:[UIUserNotificationType.Alert, UIUserNotificationType.Sound], categories: NSSet(array: [notificationCategory]) as? Set<UIUserNotificationCategory>)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
     }
     
@@ -251,19 +251,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleWidgetsOpenUrl(url: NSURL)
     {
-        var host = url.host
-        
         switch url.host! {
         case "openvote":
             var param : [AnyObject] = url.pathComponents!
-            var voteId: String = param[1] as! String
+            let voteId: String = param[1] as! String
             
             NSNotificationCenter.defaultCenter().postNotificationName("NOTIFICATION_SHOW_VIEW", object: nil, userInfo: ["voteId":voteId])
             
         case "vote":
             var param : [AnyObject] = url.pathComponents!
-            var strcolor: String = param[1] as! String
-            var voteId: String = param[2] as! String
+            let strcolor: String = param[1] as! String
+            let voteId: String = param[2] as! String
             
             var color : VoteColor = VoteColor.VOTE_COLOR_GREEN
             
@@ -300,13 +298,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                 // do some task
-                if let info = voteInfo as? [String : String] {
+                if let _ = voteInfo as? [String : String] {
                     print(voteInfo)
                     let val = voteInfo!["value"] as? String
                     let id =  voteInfo!["id"] as? String
                     if (id == "-1") {
                         LocalObjectsManager.sharedInstance.sortVotesByDate()
-                        var curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
+                        let curVote: VoteModel? = LocalObjectsManager.sharedInstance.getLastVote()
                         if curVote == nil
                         {
 //                            reply.map {$0 (["name" : "", "id": ""])}
@@ -326,7 +324,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                         
                         VoteModel.voteFor(id: id!, color: color, completion: { (vote) -> Void in
-                            var votetmp : VoteModel? = LocalObjectsManager.sharedInstance.getVoteById(vote!.id)
+                            let votetmp : VoteModel? = LocalObjectsManager.sharedInstance.getVoteById(vote!.id)
                             if (votetmp != nil) {
                                 votetmp!.voted = true
                             } else {

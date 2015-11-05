@@ -61,9 +61,7 @@ class API : NSObject {
             
             let state: String = generateStateWithLength(20) as String
             
-            var callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
-            
-            let userClass: UserModel
+            let callbackURL = NSURL(string: "oauth-swift://oauth-callback/MOCPulse")
             
             oauthswift.authorizeWithCallbackURL( callbackURL!, scope: "public", state: state, success: {
                 credential, response, parameters in
@@ -75,7 +73,7 @@ class API : NSObject {
                 NSUserDefaults.standardUserDefaults().setObject(self.userToken, forKey: "user_tmp_token")
                 NSUserDefaults.standardUserDefaults().synchronize()
                 
-                var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
+                let deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
             
                 TcpSocket.sharedInstance.connect(kTcpServer, port: kTcpServerPort)
             
@@ -109,7 +107,7 @@ class API : NSObject {
     
     static func getUser(_userToken userToken : String) {
         UserModel.user(userToken, _completion: { (user:UserModel?) -> Void in
-            var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+            let manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
             manager.user = user
             
             kHardCodedToken = user?.apiToken

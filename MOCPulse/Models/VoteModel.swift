@@ -128,9 +128,9 @@ class VoteModel : NSObject {
     static func jsonToVotes(data: JSON) -> [VoteModel] {
         var list: [VoteModel] = [];
         
-        for (index, subJson): (String, JSON) in data["votes"] {
+        for (_, subJson): (String, JSON) in data["votes"] {
 //            println(subJson)
-            var vote : VoteModel = VoteModel(json: subJson)
+            let vote : VoteModel = VoteModel(json: subJson)
             list.append(vote);
         }
         
@@ -143,7 +143,7 @@ class VoteModel : NSObject {
         
         return API.response(API.request(.PUT, path: "\(kProductionServer)votes/\(_id)", parameters: _parameters, headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var vote : VoteModel = VoteModel(json: object["vote"]);
+                let vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
             },
             failure: { (error : NSError?) -> Void in
@@ -179,7 +179,7 @@ class VoteModel : NSObject {
     static func voteByID(_id:String, completion _completion: (VoteModel?) -> Void) -> Request {
         return API.response(API.request(.GET, path: "\(kProductionServer)votes/\(_id)", headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var vote : VoteModel = VoteModel(json: object["vote"]);
+                let vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
             },
             failure: { (error : NSError?) -> Void in
@@ -203,7 +203,7 @@ class VoteModel : NSObject {
     static func createVote(name:String, completion _completion: (VoteModel?) -> Void) -> Request {
         return API.response(API.request(.POST, path: "\(kProductionServer)votes", parameters: ["name" : name, "type" : "1"], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
-                var vote : VoteModel = VoteModel(json: object["vote"]);
+                let vote : VoteModel = VoteModel(json: object["vote"]);
                 _completion(vote);
             },
             failure: { (error : NSError?) -> Void in

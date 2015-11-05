@@ -26,7 +26,7 @@ class MOCPulseTests: XCTestCase {
         let expectation = expectationWithDescription("get votes")
         
         VoteModel.votes { (votesList) -> Void in
-            var votes : [VoteModel]? = votesList
+            let votes : [VoteModel]? = votesList
             XCTAssertNotNil(votes, "API. When getting votes we receive nil")
             expectation.fulfill()
         }
@@ -45,7 +45,7 @@ class MOCPulseTests: XCTestCase {
             success: { (object) -> Void in
                 var json : JSON = object
                 XCTAssertNotNil(json["votes"].arrayObject, "Votes array is nil.")
-                for (index, subJson): (String, JSON) in object["votes"] {
+                for (_, subJson): (String, JSON) in object["votes"] {
                     self.testOneVoteWithResult(subJson)
                     
                     lastId = subJson["id"].stringValue

@@ -34,7 +34,7 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     }
     
     @IBAction func createButtonClicked(sender: AnyObject) {
-        var voteText : String! = self.voteTextView.text
+        let voteText : String! = self.voteTextView.text
         // send to server
         
         if (voteText.characters.count > 0) {
@@ -57,8 +57,6 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
     
     func setupView() {
         textViewDidChange(self.voteTextView)
-        
-        var vWidth = self.view.frame.width
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -87,7 +85,6 @@ class CreateVoteViewController : UIViewController, UITextViewDelegate {
         
         if (notEnoughChars) {
             var voteNameText : String = self.voteTextView.text!
-            let stringLength = voteNameText.characters.count
             voteNameText = voteNameText.substringToIndex(voteNameText.startIndex.advancedBy(maxChars))
             self.voteTextView.text = voteNameText
         }

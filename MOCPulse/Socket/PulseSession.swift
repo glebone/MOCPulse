@@ -53,7 +53,7 @@ class PulseSession: NSObject {
 // MARK: Requests to server
     
     func tryAuth(token: String) {
-        var packet = PulsePacket(opcode: Opcode.CS_AUTH.rawValue)
+        let packet = PulsePacket(opcode: Opcode.CS_AUTH.rawValue)
         packet.content = JSON(["token":token])
         send(packet)
     }
@@ -64,19 +64,19 @@ class PulseSession: NSObject {
     }
     
     func getVoteQuery(voteId: String) {
-        var packet = PulsePacket(opcode: Opcode.CS_GET_VOTE.rawValue)
+        let packet = PulsePacket(opcode: Opcode.CS_GET_VOTE.rawValue)
         packet.content = JSON(["id":voteId])
         send(packet)
     }
     
     func createVote(question: String) {
-        var packet = PulsePacket(opcode: Opcode.CS_CREATE_VOTE.rawValue)
+        let packet = PulsePacket(opcode: Opcode.CS_CREATE_VOTE.rawValue)
         packet.content = JSON(["name":question])
         send(packet)
     }
     
     func voteFor(voteId: String, colorId: Int) {
-        var packet = PulsePacket(opcode: Opcode.CS_VOTE_FOR.rawValue)
+        let packet = PulsePacket(opcode: Opcode.CS_VOTE_FOR.rawValue)
         packet.content = JSON(["id":voteId, "color":colorId])
         send(packet)
     }
@@ -84,7 +84,7 @@ class PulseSession: NSObject {
 // MARK: Hanlers
     
     func handleAuth(packet: PulsePacket) {
-        if var id = packet.content["id"].string {
+        if let id = packet.content["id"].string {
             if id.isEmpty != true {
                 self.isAuth = true
                 
@@ -96,7 +96,7 @@ class PulseSession: NSObject {
     }
     
     func handleGetVotes(packet: PulsePacket) {
-        var votes = VoteModel.jsonToVotes(packet.content)
+        let votes = VoteModel.jsonToVotes(packet.content)
         LocalObjectsManager.sharedInstance.votes = votes
         
         LocalObjectsManager.sharedInstance.sortVotesByDate()
@@ -105,7 +105,7 @@ class PulseSession: NSObject {
     }
     
     func handleNewVote(packet: PulsePacket) {
-        var vote : VoteModel = VoteModel(json: packet.content["vote"])
+        let vote : VoteModel = VoteModel(json: packet.content["vote"])
         if (LocalObjectsManager.sharedInstance.votes != nil) {
             LocalObjectsManager.sharedInstance.votes! = [vote] + LocalObjectsManager.sharedInstance.votes!
         } else {
@@ -116,9 +116,9 @@ class PulseSession: NSObject {
     }
     
     func handleUpdateVote(packet: PulsePacket) {
-        var vote : VoteModel = VoteModel(json: packet.content["vote"])
+        let vote : VoteModel = VoteModel(json: packet.content["vote"])
         
-        if var oldVote = LocalObjectsManager.sharedInstance.getVoteById(vote.id!) {
+        if let oldVote = LocalObjectsManager.sharedInstance.getVoteById(vote.id!) {
             vote.voted = oldVote.voted
             LocalObjectsManager.sharedInstance.removeVote(vote.id!)
         }

@@ -159,19 +159,19 @@ class TcpSocket: NSObject, NSStreamDelegate {
             return packet
         }
         
-        var bytesLeft = contentSize - contentReadIndex
+        let bytesLeft = contentSize - contentReadIndex
         
         let buf = NSMutableData(capacity: bytesLeft)
-        var buffer = UnsafeMutablePointer<UInt8>(buf!.bytes)
+        let buffer = UnsafeMutablePointer<UInt8>(buf!.bytes)
         let length = self.input!.read(buffer, maxLength: bytesLeft)
-        var data = length > 0 ? Array(UnsafeBufferPointer(start: buffer, count: length)) : []
+        let data = length > 0 ? Array(UnsafeBufferPointer(start: buffer, count: length)) : []
         
         contentData! += data
         contentReadIndex! += length
         
         if contentReadIndex == contentSize {
-            var jsonData = NSData(bytes: contentData, length: contentSize)
-            var json = JSON(data: jsonData)
+            let jsonData = NSData(bytes: contentData, length: contentSize)
+            let json = JSON(data: jsonData)
             if (json != nil) {
                 packet?.content = json
             }

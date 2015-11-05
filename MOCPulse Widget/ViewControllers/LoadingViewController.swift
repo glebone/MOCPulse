@@ -35,7 +35,7 @@ class LoadingViewController: UIViewController, NCWidgetProviding {
             LocalObjectsManager.sharedInstance.votes = arr
             LocalObjectsManager.sharedInstance.sortVotesByDate()
             
-            var lastVotedVote = LocalObjectsManager.sharedInstance.getLastVote()
+            let lastVotedVote = LocalObjectsManager.sharedInstance.getLastVote()
             if lastVotedVote == nil {
                 self.performSegueWithIdentifier("showVotes", sender: nil)
                 return

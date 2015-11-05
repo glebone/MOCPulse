@@ -95,7 +95,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     func sendParent(value: [String]) {
-        var voteInfo = ["value" : value[0], "id" : value[1]]
+        let voteInfo = ["value" : value[0], "id" : value[1]]
         WKInterfaceController.openParentApplication(voteInfo, reply: { (data, error) in
             if let error = error {
                 print(error)
@@ -110,7 +110,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     func getVote() {
-        var req = ["value" : "", "id" : "-1"]
+        let req = ["value" : "", "id" : "-1"]
         WKInterfaceController.openParentApplication(req, reply: { (data, error) in
             if let error = error {
                 print(error)
@@ -118,7 +118,7 @@ class InterfaceController: WKInterfaceController {
             }
 
             print(data)
-            var id : String = data["id"] as! String
+            let id : String = data["id"] as! String
             var name : String? = data["name"] as? String
             
             self.setButtonsVision(!id.isEmpty)

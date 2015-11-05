@@ -40,7 +40,7 @@ class LocalObjectsManager {
         token = _token
         keychain[_server] = _token
         
-        var tokenHash: NSInteger = (_token == nil) ? 0 : _token!.hash
+        let tokenHash: NSInteger = (_token == nil) ? 0 : _token!.hash
         NSUserDefaults.standardUserDefaults().setInteger(tokenHash, forKey: _server)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
@@ -51,7 +51,7 @@ class LocalObjectsManager {
             token = keychain[_server]
         }
         
-        var tokenHash: NSInteger = NSUserDefaults.standardUserDefaults().integerForKey(_server)
+        let tokenHash: NSInteger = NSUserDefaults.standardUserDefaults().integerForKey(_server)
         return (tokenHash != 0 && token != nil && tokenHash == token!.hash) ? token : nil;
     }
     
@@ -98,7 +98,7 @@ class LocalObjectsManager {
     func generationVotes(count _count:Int) -> [VoteModel] {
         var votes : [VoteModel] = []
         for (var i = 0; i < _count; i++) {
-            var vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(Int(10 + arc4random_uniform(130))))
+            let vote: VoteModel = VoteModel(id: String(i), name: self.randomStringWithLength(Int(10 + arc4random_uniform(130))))
             
             vote.ownerFirstName = self.randomStringWithLength(Int(5+arc4random_uniform(30)))
             vote.ownerLastName = self.randomStringWithLength(Int(5+arc4random_uniform(30)))

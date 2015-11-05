@@ -54,7 +54,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func fetchVotesList() {
-        var manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
+        let manager : LocalObjectsManager = LocalObjectsManager.sharedInstance
         if (manager.user != nil) {
             
             let progressHUD = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -135,11 +135,11 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func handleLoadNotification(notification: NSNotification) {
-        var vote = (notification.userInfo as! [NSString:VoteModel])["vote"]
+        let vote = (notification.userInfo as! [NSString:VoteModel])["vote"]
         if vote != nil {
             presentDetailViewForVote(vote!)
         } else {
-            var voteId = (notification.userInfo as! [NSString:NSString])["voteId"]
+            let voteId = (notification.userInfo as! [NSString:NSString])["voteId"]
             if voteId != nil {
                 VoteModel.voteByID(voteId! as String, completion: { (newVote) -> Void in
                     if newVote != nil {
@@ -252,7 +252,7 @@ class VotesListViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     @IBAction func pushButtonPressed(sender: AnyObject) {
-        var deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
+        let deviceToken : String? = NSUserDefaults.standardUserDefaults().objectForKey("device_push_token") as? String
         API.response(API.requestWithoutJSON(.POST, path: "\(kProductionServer)test_ios_notification", parameters: ["dev_id" : deviceToken!], headers: kAuthToken_FIXME),
             success: { (object) -> Void in
                 print("success")
